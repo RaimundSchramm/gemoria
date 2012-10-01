@@ -1,21 +1,11 @@
-%h1 Listing tasks
-
-%table
-  %tr
-    %th Name
-    %th Complete
-    %th
-    %th
-    %th
-
-  - @tasks.each do |task|
-    %tr
-      %td= task.name
-      %td= task.complete
-      %td= link_to 'Show', task
-      %td= link_to 'Edit', edit_task_path(task)
-      %td= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
+%h1 Tasks
 
 = link_to 'New Task', new_task_path
+
+%h2 Incomplete Tasks
+#incomplete_tasks.tasks
+  = render @incomplete_tasks
+
+%h2 Complete Tasks
+#complete_tasks.tasks
+  = render @complete_tasks

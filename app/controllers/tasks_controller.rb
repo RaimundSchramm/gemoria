@@ -2,7 +2,8 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all
+    @incomplete_tasks = Task.where complete: true
+    @complete_tasks   = Task.where complete: false
 
     respond_to do |format|
       format.html # index.html.erb
