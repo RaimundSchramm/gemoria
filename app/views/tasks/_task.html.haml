@@ -1,5 +1,5 @@
-= form_for task do |f|
-  = f.check_box :complete
+= form_for task, remote: true do |f|
+  = f.check_box :complete, id: "task_complete_#{task.id}"
+  = f.label "complete_#{task.id}", task.name
   = f.submit 'Update'
-  = f.label :complete, task.name
-  = link_to '(remove)', method: :delete, data: {confirm: 'Are you sure?'}
+  = link_to '(remove)', task, method: :delete, data: {confirm: 'Are you sure?'}, remote: true

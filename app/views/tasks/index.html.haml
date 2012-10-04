@@ -1,10 +1,12 @@
 %h1 Tasks
 
-= link_to 'New Task', new_task_path
+= link_to 'New Task', new_task_path, id: 'new_link', remote: true
 
 %h2 Incomplete Tasks
 #incomplete_tasks.tasks
   = render @incomplete_tasks
+
+#clearfix
 
 %h2 Complete Tasks
 #complete_tasks.tasks

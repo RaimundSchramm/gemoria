@@ -4,6 +4,8 @@ h2
 
 #incomplete_tasks form
   margin: 5px 0
+  label
+    display: inline
 
 #complete_tasks form
   font-size: 12px
@@ -11,6 +13,7 @@ h2
   margin: 3px 0
   label
     text-decoration: line-through
+    display: inline
 
 .edit_task
   a
@@ -19,3 +22,10 @@ h2
     text-decoration: none
     &:hover 
       text-decoration: underline
+
+.tasks form
+//  input, a, label
+//    float: left
+
+#clearfix
+  clear: both
