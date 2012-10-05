@@ -1,4 +1,10 @@
 $('#new_task').remove();
 $('#new_link').show();
-$('#incomplete_tasks').append('<%= j render(@task) %>');
+
+<% if @task.complete? %>
+  $('#complete_tasks').append('<%= j render(@task) %>');
+<% else %>
+  $('#incomplete_tasks').append('<%= j render(@task) %>');
+<% end %>
+
 $('#edit_task_<%= @task.id %>').submitOnCheck();

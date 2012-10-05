@@ -1,5 +1,19 @@
 TODOLIST - gemoria.yml
 
+US4: "implement feature userstories"
+  t1: "add resource userstories"
+    "index"
+      "add route to index action + routing spec"
+      "add controller + controller spec"
+      "add model, migration + model spec"
+      "add index template equivalent to tasks"
+      "add link to new userstory action"
+    "new"
+      "add routing spec to new userstory + implement route"
+      "add controller spec for new action + implement new action"
+      "add new template equivalent to tasks"
+      "add form partial equivalent to tasks"
+
 #US3: "implement features from railscast"
 #  t1: "ajaxify new task"
 #    "add remote option to new task link"
