@@ -9,6 +9,7 @@ guard 'spork', :rspec_env => { 'RAILS_ENV' => 'test' }, cucumber: false do
   watch('Gemfile.lock')
   watch('spec/spec_helper.rb') { :rspec }
   watch('test/test_helper.rb') { :test_unit }
+  watch('config/routes.rb')
 end
 
 guard 'rspec', cli: "--color --format nested --fail-fast --drb", wait: 60, all_after_pass: false, all_on_start: false, cucumber: false do
