@@ -3,4 +3,9 @@
 = link_to 'New userstory', new_userstory_path
 
 %h2 Incomplete userstories
+#incomplete_userstories.userstories
+  = render @incomplete_userstories
+
 %h2 Complete userstories
+#complete_userstories.userstories
+  = render @complete_userstories

@@ -1,6 +1,6 @@
 Gemoria::Application.routes.draw do
 
-  resources :userstories, only: [:index, :new]
+  resources :userstories, except: [:edit]
   resources :tasks
 
   root :to => "home#index"
