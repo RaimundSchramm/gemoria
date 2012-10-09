@@ -1,0 +1,7 @@
+%fieldset.tasks
+  %legend Task
+  .field
+    = f.label :name, "Name"
+    = f.text_field :name
+  = f.hidden_field :_destroy
+  = link_to "remove Task", '#', class: "remove_fields"

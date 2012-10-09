@@ -1,0 +1,19 @@
+%h1 Projects
+%br
+- @projects.each do |project|
+  .project
+    %p
+      = link_to project.name, project
+    %p
+      Userstories:
+      = project.userstories.size
+      complete:
+      = project.userstories.complete.size
+    %p
+      Tasks:
+      = project.userstories.includes(:tasks).size
+      complete:
+      = project.userstories.includes(:tasks).complete.size
+
+%br
+= link_to 'New Project', new_project_path

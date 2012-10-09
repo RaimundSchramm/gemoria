@@ -1,5 +1,25 @@
 TODOLIST - gemoria.yml
 
+#US7: "extras"
+#  "add compass-rails"
+#  "add guard-livereload"
+#  "remove bootstrap-sass"
+#  "rename .scss to .sass"
+#  "add layout and styling according to railscast"
+
+#US6: "add projects"
+#  "generate scaffold and migrate database"
+#  "model resource with attribute name"
+#  "associate project with userstory"
+#  "add link to projects on homepage"
+#  "add migration for project_id column and index"
+
+#US5: "associate tasks resource to userstories resource"
+#  t1: "add userstory foreign key to tasks"
+#    "migration for column and index"
+#    "associate models"
+#    "list all tasks to a userstory"
+
 #US4: "implement feature userstories"
 #  t1: "add resource userstories"
 #    "index"

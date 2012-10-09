@@ -1,0 +1,14 @@
+%fieldset.userstory
+  %legend Userstory
+  .field
+    = f.label :name, "Name"
+    = f.text_field :name, id: 'us_name'
+  .field
+    = f.label :description, "Description"
+    = f.text_field :description
+  %br
+  = f.hidden_field :_destroy
+  = link_to "remove Userstory", '#', class: 'remove_fields'
+  = f.fields_for :tasks do |builder|
+    = render 'task_fields', f: builder
+  = link_to_add_fields "Add Task", f, :tasks

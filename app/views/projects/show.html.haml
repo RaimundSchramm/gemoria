@@ -1,0 +1,15 @@
+%h1= @project.name
+%br
+%ol.userstories
+  - @project.userstories.each do |userstory|
+    %li
+      = "#{userstory.name}: #{userstory.description}"
+      %ol.tasks
+        - userstory.tasks.each do |task|
+          %li= task.name
+%br
+= link_to 'Edit', edit_project_path(@project)
+\|
+= link_to 'Destroy', project_path(@project), method: :delete, confirm: 'Are you sure?'
+\|
+= link_to 'Back', projects_path
