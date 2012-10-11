@@ -1,5 +1,9 @@
 TODOLIST - gemoria.yml
 
+#US8: "remove compass-rails"
+#  "remove gem from gemfile"
+#  "remove import directive from application.css.sass"
+
 #US7: "extras"
 #  "add compass-rails"
 #  "add guard-livereload"
