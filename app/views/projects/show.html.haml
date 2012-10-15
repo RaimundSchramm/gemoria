@@ -1,5 +1,5 @@
 %h1= @project.name
-%br
+
 %ol.userstories
   - @project.userstories.each do |userstory|
     %li
@@ -7,7 +7,8 @@
       %ol.tasks
         - userstory.tasks.each do |task|
           %li= task.name
-%br
+= link_to 'New Userstory', new_userstory_path, remote: true, id: 'new_userstory'
+|
 = link_to 'Edit', edit_project_path(@project)
 \|
 = link_to 'Destroy', project_path(@project), method: :delete, confirm: 'Are you sure?'

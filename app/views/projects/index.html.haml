@@ -6,14 +6,14 @@
       = link_to project.name, project
     %p
       Userstories:
-      = project.userstories.size
+      = project.size_of_all_userstories
       complete:
-      = project.userstories.complete.size
+      = project.size_of_completed_userstories
     %p
       Tasks:
-      = project.userstories.includes(:tasks).size
+      = project.size_of_all_tasks
       complete:
-      = project.userstories.includes(:tasks).complete.size
+      = project.size_of_completed_tasks
 
 %br
 = link_to 'New Project', new_project_path

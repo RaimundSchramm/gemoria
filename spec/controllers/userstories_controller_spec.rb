@@ -1,10 +1,11 @@
 require 'spec_helper'
 
 describe UserstoriesController do
-  let(:userstory) { FactoryGirl.create(:userstory) }
+  let(:project)   { FactoryGirl.create(:project) }
+  let(:userstory) { FactoryGirl.create(:userstory, project: project) }
 
   def valid_attributes
-    FactoryGirl.attributes_for(:userstory)
+    FactoryGirl.attributes_for(:userstory, project_id: project.id)
   end
 
   def valid_session
@@ -68,7 +69,7 @@ describe UserstoriesController do
 
       it 'redirects to index' do
         post 'create', { userstory: valid_attributes }, valid_session
-        response.should redirect_to userstories_path
+        response.should redirect_to assigns(:userstory).project
       end
     end
 

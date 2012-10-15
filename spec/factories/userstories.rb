@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :userstory do
+    project
     name "MyString"
     description "MyString"
   end
