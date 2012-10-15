@@ -1,5 +1,12 @@
 TODOLIST - gemoria.yml
 
+#US9: "restore bootstrap-sass manually"
+#  "add bootstrap-sass gem to Gemfile"
+#  "import bootstrap css in any sass file -- bootstrap_and_overrides.css.sass"
+#  "add styles -- application.css.sass"
+#  "require bootstrap javascripts -- application.js.sass"
+#   "restore app layout -- layouts/application.html.haml"
+
 #US8: "remove compass-rails"
 #  "remove gem from gemfile"
 #  "remove import directive from application.css.sass"
