@@ -1,5 +1,5 @@
 class Userstory < ActiveRecord::Base
-  attr_accessible :description, :name, :complete, :tasks_attributes
+  attr_accessible :project_id, :description, :name, :complete, :tasks_attributes
 
   belongs_to :project
   has_many :tasks
