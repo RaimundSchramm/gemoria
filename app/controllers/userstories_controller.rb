@@ -11,7 +11,7 @@ class UserstoriesController < ApplicationController
   def create
     @userstory = Userstory.new(params[:userstory])
     if @userstory.save
-      redirect_to userstories_url
+      redirect_to @userstory.project
     else
       render 'new'
     end
