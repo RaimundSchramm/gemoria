@@ -68,6 +68,36 @@ describe Project do
           end
         end
       end
+
+      describe '.complete_userstories' do
+        context 'WHEN it has no userstories' do
+          it 'THEN it returns []' do
+            project.complete_userstories.should eq []
+          end
+        end
+
+        context 'WHEN it has 1 or more userstories' do
+          it 'THEN it returns them' do
+            userstory = FactoryGirl.create(:userstory, project: project, complete: true)
+            project.complete_userstories.should eq [userstory]
+          end
+        end
+      end
+
+      describe '.incomplete_userstories' do
+        context 'WHEN it has no userstories' do
+          it 'THEN it returns []' do
+            project.incomplete_userstories.should eq []
+          end
+        end
+
+        context 'WHEN it has 1 or more userstories' do
+          it 'THEN it returns them' do
+            userstory = FactoryGirl.create(:userstory, project: project, complete: false)
+            project.incomplete_userstories.should eq [userstory]
+          end
+        end
+      end
     end
   end
 end

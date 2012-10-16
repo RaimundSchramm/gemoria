@@ -49,6 +49,11 @@ Spork.prefork do
     # the seed, which is printed after each run.
     #     --seed 1234
     config.order = "random"
+
+    # This allows you to use the core set of syntax methods (build,
+    # build_stubbed, create, attributes_for, and their *_list counterparts)
+    # without having to call them on FactoryGirl directly
+    config.include FactoryGirl::Syntax::Methods
   end
 
 end

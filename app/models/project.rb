@@ -22,4 +22,12 @@ class Project < ActiveRecord::Base
   def size_of_completed_tasks
     userstories.joins(:tasks).complete.size
   end
+
+  def complete_userstories
+    userstories.complete
+  end
+
+  def incomplete_userstories
+    userstories.incomplete
+  end
 end

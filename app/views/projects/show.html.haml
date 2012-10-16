@@ -1,5 +1,7 @@
 %h1= @project.name
 
+= link_to 'Userstories', project_userstories_path(@project)
+
 %ol.userstories
   - @project.userstories.each do |userstory|
     %li

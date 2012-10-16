@@ -1,7 +1,9 @@
 class UserstoriesController < ApplicationController
+  before_filter :parent
+
   def index
-    @incomplete_userstories  = Userstory.incomplete
-    @complete_userstories    = Userstory.complete
+    @incomplete_userstories  = @project.incomplete_userstories
+    @complete_userstories    = @project.complete_userstories
   end
 
   def new
@@ -35,5 +37,11 @@ class UserstoriesController < ApplicationController
     respond_to do |format| 
       format.html { redirect_to userstories_path }
     end
+  end
+
+  private
+
+  def parent
+    @project = Project.find(params[:project_id])
   end
 end
