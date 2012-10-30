@@ -1,6 +1,6 @@
 %h1= "Userstories for #{@project.name}"
 
-= link_to 'New userstory', new_userstory_path
+= link_to 'New userstory', new_project_userstory_path(@project), remote: true, id: 'new_userstory'
 
 %h2 Incomplete userstories
 #incomplete_userstories.userstories
@@ -9,3 +9,5 @@
 %h2 Complete userstories
 #complete_userstories.userstories
   = render @complete_userstories
+
+= link_to 'Back to project', @project

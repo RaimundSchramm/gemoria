@@ -19,9 +19,11 @@ describe UserstoriesController do
 
     describe '#parent' do
       context 'valid route' do
-        it 'assigns the parent project' do
-          get 'index', valid_attributes, valid_session
-          assigns(:project).should eq project
+        it 'assigns the parent project for every REST action' do
+          [:index, :new].each do |action|
+            get action, valid_attributes, valid_session
+            assigns(:project).should eq project
+          end
         end
       end
     end
@@ -52,18 +54,19 @@ describe UserstoriesController do
   end
 
   describe "GET 'new'" do
-    xit 'returns http success' do
-      get 'new', {}, valid_session
+    it 'returns http success' do
+      get 'new', valid_attributes, valid_session
       response.should be_success
     end
 
-    xit 'assigns new userstory' do
-      get 'new', {}, valid_session
+    it 'assigns new userstory to parent project' do
+      get 'new', valid_attributes, valid_session
       assigns(:userstory).should be_a_new Userstory
+      assigns(:userstory).project_id.should eq project.id
     end
 
-    xit 'renders new template' do
-      get 'new', {}, valid_session
+    it 'renders new template' do
+      get 'new', valid_attributes, valid_session
       response.should render_template 'new'
     end
   end

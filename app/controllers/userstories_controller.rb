@@ -7,7 +7,7 @@ class UserstoriesController < ApplicationController
   end
 
   def new
-    @userstory = Userstory.new
+    @userstory = @project.userstories.new
   end
 
   def create

@@ -9,7 +9,7 @@
       %ol.tasks
         - userstory.tasks.each do |task|
           %li= task.name
-= link_to 'New Userstory', new_userstory_path, remote: true, id: 'new_userstory'
+= link_to 'New Userstory', new_project_userstory_path(@project), remote: true, id: 'new_userstory'
 |
 = link_to 'Edit', edit_project_path(@project)
 \|

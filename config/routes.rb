@@ -1,7 +1,7 @@
 Gemoria::Application.routes.draw do
 
   resources :projects do
-    resources :userstories, only: [:index]
+    resources :userstories, only: [:index, :new]
   end
   resources :tasks
 

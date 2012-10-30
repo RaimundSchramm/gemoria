@@ -6,8 +6,8 @@ describe UserstoriesController do
       get('projects/1/userstories').should route_to('userstories#index', project_id: '1')
     end
 
-    xit 'routes to #new' do
-      get('/userstories/new').should route_to('userstories#new')
+    it 'routes to #new' do
+      get('projects/1/userstories/new').should route_to('userstories#new', project_id: '1')
     end
 
     xit 'routes to #create' do
@@ -28,6 +28,14 @@ describe UserstoriesController do
   end
 
   context 'not routable' do
+    it 'should not route to #index unnested' do
+      get('/userstories').should_not be_routable
+    end
+
+    it 'should not route to #new unnested' do
+      get('/userstories/new').should_not be_routable
+    end
+
     xit 'should not route to #edit' do
       get('/userstories/1/edit').should_not be_routable
     end
