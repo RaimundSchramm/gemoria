@@ -114,13 +114,13 @@ describe UserstoriesController do
   end
 
   describe "GET 'show'" do
-    xit 'assigns the userstory' do
-      get 'show', { id: userstory.to_param }, valid_session
+    it 'assigns the userstory' do
+      get 'show', valid_attributes.merge(id: userstory.to_param), valid_session
       assigns(:userstory).should eq userstory
     end
 
-    xit 'renders show template' do
-      get 'show', { id: userstory.to_param }, valid_session
+    it 'renders show template' do
+      get 'show', valid_attributes.merge(id: userstory.to_param), valid_session
       response.should render_template 'show'
     end
   end

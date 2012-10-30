@@ -5,7 +5,7 @@
 %ol.userstories
   - @project.userstories.each do |userstory|
     %li
-      = "#{userstory.name}: #{userstory.description}"
+      = link_to "#{userstory.name}: #{userstory.description}", [@project, userstory]
       %ol.tasks
         - userstory.tasks.each do |task|
           %li= task.name

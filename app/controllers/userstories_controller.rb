@@ -20,7 +20,7 @@ class UserstoriesController < ApplicationController
   end
 
   def show
-    @userstory = Userstory.find(params[:id])
+    @userstory = @project.userstories.find(params[:id])
   end
 
   def update
