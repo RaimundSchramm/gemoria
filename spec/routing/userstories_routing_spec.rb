@@ -26,8 +26,8 @@ describe UserstoriesController do
       put('projects/1/userstories/1').should route_to('userstories#update', project_id: '1', id: '1')
     end
 
-    xit 'routes to #destroy' do
-      delete('/userstories/1').should route_to('userstories#destroy', id: '1')
+    it 'routes to #destroy' do
+      delete('projects/1/userstories/1').should route_to('userstories#destroy', project_id: '1', id: '1')
     end
   end
 

@@ -9,6 +9,6 @@
   /= f.label "description"
 
   = f.submit 'Update'
-  /= link_to '(remove)', userstory, method: :delete, data: {confirm: 'Are you sure?'}
+  = link_to '(remove)', project_userstory_path(@project, userstory), method: :delete, data: {confirm: 'Are you sure?'}
 
 = render userstory.tasks

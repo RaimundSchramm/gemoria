@@ -172,21 +172,22 @@ describe UserstoriesController do
   end
 
   describe "DELETE 'destroy'" do
-    xit 'assigns the userstory' do
-      delete 'destroy', { id: userstory.to_param }, valid_session
+    it 'assigns the userstory' do
+      delete 'destroy', valid_attributes.merge({ id: userstory.to_param }), valid_session
       assigns(:userstory).should eq userstory
     end
 
-    xit 'redirects to index' do
-      delete 'destroy', { id: userstory.to_param }, valid_session
-      response.should redirect_to userstories_path
+    it 'redirects to index' do
+      delete 'destroy', valid_attributes.merge({ id: userstory.to_param }), valid_session
+      response.should redirect_to project_userstories_path(project)
     end
 
-    xit 'deletes this userstory' do
-      userstory = FactoryGirl.create(:userstory)
+    it 'deletes this userstory' do
+      userstory = FactoryGirl.create(:userstory, project: project)
       expect {
-        delete 'destroy', { id: userstory.to_param }, valid_session
+        delete 'destroy', valid_attributes.merge({ id: userstory.to_param }), valid_session
       }.to change(Userstory, :count).from(1).to(0)
+      assigns(:project).userstories.size.should eq 0
     end
   end
 end

@@ -4,3 +4,5 @@
 = link_to 'Back to project', @project
 |
 = link_to 'Edit', edit_project_userstory_path(@project, @userstory)
+|
+= link_to '(remove)', project_userstory_path(@project, @userstory), method: :delete, data: {confirm: 'Are you sure?'}

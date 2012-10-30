@@ -37,10 +37,10 @@ class UserstoriesController < ApplicationController
   end
 
   def destroy
-    @userstory = Userstory.find(params[:id])
+    @userstory = @project.userstories.find(params[:id])
     @userstory.destroy
     respond_to do |format| 
-      format.html { redirect_to userstories_path }
+      format.html { redirect_to project_userstories_path @project }
     end
   end
 
