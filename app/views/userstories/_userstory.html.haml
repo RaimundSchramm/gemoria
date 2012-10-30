@@ -1,4 +1,4 @@
-= form_for userstory do |f|
+= form_for [@project, @userstory] do |f|
   = f.check_box :complete, id: "userstory_complete_#{userstory.id}"
   /= f.label "complete_#{userstory.id}", "complete"
 
@@ -9,6 +9,6 @@
   /= f.label "description"
 
   = f.submit 'Update'
-  = link_to '(remove)', userstory, method: :delete, data: {confirm: 'Are you sure?'}
+  /= link_to '(remove)', userstory, method: :delete, data: {confirm: 'Are you sure?'}
 
 = render userstory.tasks

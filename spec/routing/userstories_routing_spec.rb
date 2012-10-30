@@ -10,8 +10,8 @@ describe UserstoriesController do
       get('projects/1/userstories/new').should route_to('userstories#new', project_id: '1')
     end
 
-    xit 'routes to #create' do
-      post('/userstories').should route_to('userstories#create')
+    it 'routes to #create' do
+      post('projects/1/userstories').should route_to('userstories#create', project_id: '1')
     end
 
     xit 'routes to #show' do

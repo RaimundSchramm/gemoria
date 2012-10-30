@@ -5,7 +5,11 @@ describe UserstoriesController do
   let(:userstory) { create(:userstory, project: project) }
 
   def valid_attributes
-    attributes_for(:userstory, project_id: project.id)
+    parent.merge(userstory: attributes_for(:userstory))
+  end
+
+  def parent
+    { project_id: project.id }
   end
 
   def valid_session
@@ -73,20 +77,21 @@ describe UserstoriesController do
 
   describe "POST 'create'" do
     context 'with valid params' do
-      xit 'creates a new userstory' do
+      it 'creates a new userstory' do
         expect {
-          post 'create', { userstory: valid_attributes }, valid_session
+          post 'create', valid_attributes, valid_session
         }.to change(Userstory, :count).by 1
       end
 
-      xit 'assigns a newly created userstory as @userstory' do
-        post 'create', { userstory: valid_attributes }, valid_session
+      it 'assigns a newly created userstory as @userstory' do
+        post 'create', valid_attributes, valid_session
         assigns(:userstory).should be_a Userstory
         assigns(:userstory).should be_persisted
+        assigns(:userstory).project_id.should eq project.id
       end
 
-      xit 'redirects to index' do
-        post 'create', { userstory: valid_attributes }, valid_session
+      it 'redirects to index' do
+        post 'create', valid_attributes, valid_session
         response.should redirect_to assigns(:userstory).project
       end
     end
@@ -96,13 +101,13 @@ describe UserstoriesController do
         Userstory.any_instance.stub(:save).and_return false
       end
 
-      xit 'assigns a new invalid userstory as @userstory' do
-        post 'create', { userstory: {} }, valid_session
+      it 'assigns a new invalid userstory as @userstory' do
+        post 'create', valid_attributes.merge(userstory: {}), valid_session
         assigns(:userstory).should be_a_new Userstory
       end
 
-      xit 'rerenders new template' do
-        post 'create', { userstory: {} }, valid_session
+      it 'rerenders new template' do
+        post 'create', valid_attributes.merge(userstory: {}), valid_session
         response.should render_template 'new'
       end
     end
