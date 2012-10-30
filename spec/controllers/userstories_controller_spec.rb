@@ -125,6 +125,18 @@ describe UserstoriesController do
     end
   end
 
+  describe "GET 'edit'" do
+    it 'assigns the userstory' do
+      get 'edit', valid_attributes.merge(id: userstory.to_param), valid_session
+      assigns(:userstory).should eq userstory
+    end
+
+    it 'renders edit template' do
+      get 'edit', valid_attributes.merge(id: userstory.to_param), valid_session
+      response.should render_template 'edit'
+    end
+  end
+
   describe "PUT 'update'" do
     xit 'assigns the userstory' do
       put 'update', { id: userstory.to_param, userstory: valid_attributes }, valid_session

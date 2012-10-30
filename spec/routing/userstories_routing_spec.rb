@@ -18,6 +18,10 @@ describe UserstoriesController do
       get('projects/1/userstories/1').should route_to('userstories#show', project_id: '1', id: '1')
     end
 
+    it 'routes to #edit' do
+      get('projects/1/userstories/1/edit').should route_to('userstories#edit', project_id: '1', id: '1')
+    end
+
     xit 'routes to #update' do
       put('/userstories/1').should route_to('userstories#update', id: '1')
     end
@@ -44,7 +48,7 @@ describe UserstoriesController do
       get('/userstories/1').should_not be_routable
     end
 
-    xit 'should not route to #edit' do
+    it 'should not route to #edit unnested' do
       get('/userstories/1/edit').should_not be_routable
     end
   end

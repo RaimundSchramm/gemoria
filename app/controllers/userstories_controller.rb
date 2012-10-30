@@ -23,6 +23,10 @@ class UserstoriesController < ApplicationController
     @userstory = @project.userstories.find(params[:id])
   end
 
+  def edit
+    @userstory = @project.userstories.find(params[:id])
+  end
+
   def update
     @userstory = Userstory.find(params[:id])
     @userstory.update_attributes(params[:userstory])
