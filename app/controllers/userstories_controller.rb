@@ -28,10 +28,11 @@ class UserstoriesController < ApplicationController
   end
 
   def update
-    @userstory = Userstory.find(params[:id])
-    @userstory.update_attributes(params[:userstory])
-    respond_to do |format|
-      format.html { redirect_to userstories_path }
+    @userstory = @project.userstories.find(params[:id])
+    if @userstory.update_attributes(params[:userstory])
+      redirect_to project_userstories_path @project
+    else
+      render 'edit'
     end
   end
 

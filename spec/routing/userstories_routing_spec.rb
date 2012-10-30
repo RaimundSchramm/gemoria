@@ -22,8 +22,8 @@ describe UserstoriesController do
       get('projects/1/userstories/1/edit').should route_to('userstories#edit', project_id: '1', id: '1')
     end
 
-    xit 'routes to #update' do
-      put('/userstories/1').should route_to('userstories#update', id: '1')
+    it 'routes to #update' do
+      put('projects/1/userstories/1').should route_to('userstories#update', project_id: '1', id: '1')
     end
 
     xit 'routes to #destroy' do
@@ -50,6 +50,14 @@ describe UserstoriesController do
 
     it 'should not route to #edit unnested' do
       get('/userstories/1/edit').should_not be_routable
+    end
+
+    it 'should not route to #update unnested' do
+      put('/userstories/1').should_not be_routable
+    end
+
+    it 'should not route to #delete unnested' do
+      delete('/userstories/1').should_not be_routable
     end
   end
 end

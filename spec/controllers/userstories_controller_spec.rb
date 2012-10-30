@@ -138,20 +138,36 @@ describe UserstoriesController do
   end
 
   describe "PUT 'update'" do
-    xit 'assigns the userstory' do
-      put 'update', { id: userstory.to_param, userstory: valid_attributes }, valid_session
+    it 'assigns the userstory' do
+      put 'update', valid_attributes.merge(id: userstory.to_param, userstory: { name: 'US2' }), valid_session
       assigns(:userstory).should eq userstory
     end
 
-    xit 'redirects to index' do
-      put 'update', { id: userstory.to_param, userstory: valid_attributes }, valid_session
-      response.should redirect_to userstories_path
+    it 'redirects to index' do
+      put 'update', valid_attributes.merge(id: userstory.to_param, userstory: { name: 'US2' }), valid_session
+      response.should redirect_to project_userstories_path(project)
     end
 
-    xit 'updates the userstory' do
-      put 'update', { id: userstory.to_param, userstory: { name: 'US2' } }, valid_session
+    it 'updates the userstory' do
+      put 'update', valid_attributes.merge(id: userstory.to_param, userstory: { name: 'US2' }), valid_session
       userstory.reload
       assigns(:userstory).name.should eq 'US2'
+    end
+
+    context 'with invalid params' do
+      before do
+        Userstory.any_instance.stub(:update_attributes).and_return false
+      end
+
+      it 'assigns a new invalid userstory as @userstory' do
+        put 'update', valid_attributes.merge(id: userstory.to_param, userstory: {}), valid_session
+        assigns(:userstory).should eq userstory
+      end
+
+      it 'rerenders edit template' do
+        put 'update', valid_attributes.merge(id: userstory.to_param, userstory: {}), valid_session
+        response.should render_template 'edit'
+      end
     end
   end
 
