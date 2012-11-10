@@ -1,0 +1,7 @@
+%li
+  .project
+    = link_to "#{current_userstory.project.try(:name)}", current_userstory.try(:project)
+  .userstory
+    = link_to "#{current_userstory.full_name}", current_userstory.project ? [current_userstory.try(:project), current_userstory] : current_userstories_path
+  .show_tasks
+    = link_to 'Show tasks'

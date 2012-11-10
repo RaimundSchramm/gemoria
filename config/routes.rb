@@ -5,5 +5,8 @@ Gemoria::Application.routes.draw do
   end
   resources :tasks
 
-  root :to => "home#index"
+  resources :current_userstories, only: [:index]
+
+  match '/home' => 'home#index'
+  root :to => 'current_userstories#index'
 end

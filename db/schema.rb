@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121008142739) do
+ActiveRecord::Schema.define(:version => 20121106154702) do
 
   create_table "projects", :force => true do |t|
     t.string   "name"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20121008142739) do
     t.datetime "updated_at",  :null => false
     t.boolean  "complete"
     t.integer  "project_id"
+    t.string   "status"
   end
 
   add_index "userstories", ["project_id"], :name => "index_userstories_on_project_id"
