@@ -9,6 +9,7 @@ gem "haml-rails",         ">= 0.3.5"
 gem "hpricot",            ">= 0.8.6"
 gem "ruby_parser",        ">= 2.3.1"
 gem "email_spec",         ">= 1.2.1"
+gem 'capistrano'
 
 group :assets do
   gem 'sass-rails',       '~> 3.2.3'
