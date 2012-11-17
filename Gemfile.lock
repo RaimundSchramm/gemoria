@@ -235,28 +235,28 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-sass
   capistrano
-  capybara (>= 1.1.2)
-  coffee-rails (~> 3.2.1)
+  capybara
+  coffee-rails
   debugger
-  email_spec (>= 1.2.1)
-  factory_girl_rails (>= 4.1.0)
+  email_spec
+  factory_girl_rails
   guard-livereload
   guard-rspec
   guard-spork
-  haml (>= 3.1.7)
-  haml-rails (>= 0.3.5)
-  hpricot (>= 0.8.6)
+  haml
+  haml-rails
+  hpricot
   jquery-rails
   launchy
   libnotify
-  pg (>= 0.14.1)
+  pg
   rails (= 3.2.9)
   rb-inotify
-  rspec-rails (>= 2.11.0)
-  ruby_parser (>= 2.3.1)
+  rspec-rails
+  ruby_parser
   rvm-capistrano
-  sass-rails (~> 3.2.3)
+  sass-rails
   spork-rails
   sqlite3
-  thin (>= 1.5.0)
-  uglifier (>= 1.0.3)
+  thin
+  uglifier

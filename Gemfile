@@ -2,27 +2,27 @@ source 'https://rubygems.org'
 
 gem 'rails',              '3.2.9'
 gem 'jquery-rails'
-gem "thin",               ">= 1.5.0"
+gem "thin"
 gem 'sqlite3'
-gem "haml",               ">= 3.1.7"
-gem "haml-rails",         ">= 0.3.5"
-gem "hpricot",            ">= 0.8.6"
-gem "ruby_parser",        ">= 2.3.1"
-gem "email_spec",         ">= 1.2.1"
+gem "haml"
+gem "haml-rails"
+gem "hpricot"
+gem "ruby_parser"
+gem "email_spec"
 
 group :assets do
-  gem 'sass-rails',       '~> 3.2.3'
-  gem 'coffee-rails',     '~> 3.2.1'
-  gem 'uglifier',         '>= 1.0.3'
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'uglifier'
   gem 'bootstrap-sass'
 end
 
 group :development, :test do
-  gem "pg",                 ">= 0.14.1"
+  gem "pg"
 
   gem 'debugger'
 
-  gem "rspec-rails",        ">= 2.11.0"
+  gem "rspec-rails"
 
   gem 'guard-rspec'
   gem 'rb-inotify'
@@ -33,9 +33,9 @@ group :development, :test do
 
   gem 'guard-livereload'
 
-  gem "factory_girl_rails", ">= 4.1.0"
+  gem "factory_girl_rails"
 
-  gem "capybara",           ">= 1.1.2"
+  gem "capybara"
   gem 'launchy'
 
   # for deployment
