@@ -17,4 +17,12 @@ class Userstory < ActiveRecord::Base
   def full_name
     "#{name}: #{description}"
   end
+
+  def incomplete_tasks
+    tasks.incomplete
+  end
+
+  def complete_tasks
+    tasks.complete
+  end
 end

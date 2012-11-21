@@ -34,34 +34,87 @@ describe TasksController do
     {}
   end
 
+  render_views
+
+  let(:userstory) { create(:userstory) }
+  let(:task)      { create(:task, userstory: userstory) }
+
+  context 'before_filters' do
+    describe '#find_userstory' do
+      it 'returns the userstory of the userstory_id in params' do
+        controller.params = { userstory_id: userstory.id }
+        controller.send(:find_userstory).should eq userstory
+      end
+
+      context 'valid route' do
+        it 'assigns the parent userstory for every REST action' do
+          [:index, :new].each do |action|
+            get action, { userstory_id: userstory.to_param }, valid_session
+            assigns(:userstory).should eq userstory
+          end
+
+          [:show, :edit].each do |action|
+            get action, { userstory_id: userstory.to_param, id: task.to_param }, valid_session
+            assigns(:userstory).should eq userstory
+          end
+
+          [:update].each do |action|
+            put action, { userstory_id: userstory.to_param, id: task.to_param }, valid_session
+            assigns(:userstory).should eq userstory
+          end
+
+          [:create, :destroy].each do |action|
+            post action, { userstory_id: userstory.to_param, id: task.to_param }, valid_session
+            assigns(:userstory).should eq userstory
+          end
+        end
+      end
+    end
+  end
+
   describe "GET index" do
-    xit "assigns all tasks as @tasks" do
-      task = Task.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:tasks).should eq([task])
+    it 'returns http success' do
+      get :index, { userstory_id: userstory.to_param }, valid_session
+      response.should be_success
+    end
+
+    it "assigns all incomplete tasks as @incomplete_tasks" do
+      task = create(:task, userstory: userstory, complete: false)
+      get :index, { userstory_id: userstory.to_param }, valid_session
+      assigns(:incomplete_tasks).should eq([task])
+    end
+
+    it "assigns all complete tasks as @complete_tasks" do
+      task = create(:task, userstory: userstory, complete: true)
+      get :index, { userstory_id: userstory.to_param }, valid_session
+      assigns(:complete_tasks).should eq([task])
+    end
+
+    it 'renders index template' do
+      get :index, { userstory_id: userstory.to_param }, valid_session
+      response.should render_template 'index'
     end
   end
 
-  describe "GET show" do
-    xit "assigns the requested task as @task" do
-      task = Task.create! valid_attributes
-      get :show, {:id => task.to_param}, valid_session
-      assigns(:task).should eq(task)
+  describe 'GET new' do
+    it 'returns http success' do
+      get :new, { userstory_id: userstory.to_param }, valid_session
+      response.should be_success
     end
-  end
 
-  describe "GET new" do
-    it "assigns a new task as @task" do
-      get :new, {}, valid_session
+    it 'assigns a new task as @task' do
+      get :new, { userstory_id: userstory.to_param }, valid_session
       assigns(:task).should be_a_new(Task)
     end
-  end
 
-  describe "GET edit" do
-    xit "assigns the requested task as @task" do
-      task = Task.create! valid_attributes
-      get :edit, {:id => task.to_param}, valid_session
-      assigns(:task).should eq(task)
+    it 'assigns a new task to @userstory' do
+      get :new, { userstory_id: userstory.to_param }, valid_session
+      assigns(:task).userstory_id.should eq userstory.id
+    end
+
+    it 'renders new template' do
+      get :new, { userstory_id: userstory.to_param }, valid_session
+      response.should render_template 'new'
     end
   end
 
@@ -69,78 +122,108 @@ describe TasksController do
     describe "with valid params" do
       it "creates a new Task" do
         expect {
-          post :create, {:task => valid_attributes}, valid_session
+          post :create, { userstory_id: userstory.to_param, :task => valid_attributes}, valid_session
         }.to change(Task, :count).by(1)
       end
 
       it "assigns a newly created task as @task" do
-        post :create, {:task => valid_attributes}, valid_session
+        post :create, { userstory_id: userstory.to_param, :task => valid_attributes}, valid_session
         assigns(:task).should be_a(Task)
         assigns(:task).should be_persisted
+        assigns(:task).userstory_id.should eq userstory.id
       end
 
-      it "redirects to the created task" do
-        post :create, {:task => valid_attributes}, valid_session
-        response.should redirect_to tasks_path
+      it "redirects to the parent userstory" do
+        post :create, { userstory_id: userstory.to_param, :task => valid_attributes}, valid_session
+        response.should redirect_to userstory_tasks_path assigns(:userstory)
       end
     end
 
     describe "with invalid params" do
-      xit "assigns a newly created but unsaved task as @task" do
+      it "assigns a newly created but unsaved task as @task" do
         # Trigger the behavior that occurs when invalid params are submitted
         Task.any_instance.stub(:save).and_return(false)
-        post :create, {:task => {}}, valid_session
+        post :create, { userstory_id: userstory.to_param, :task => {}}, valid_session
         assigns(:task).should be_a_new(Task)
       end
 
-      xit "re-renders the 'new' template" do
+      it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Task.any_instance.stub(:save).and_return(false)
-        post :create, {:task => {}}, valid_session
+        post :create, { userstory_id: userstory.to_param, :task => {}}, valid_session
         response.should render_template("new")
       end
+    end
+  end
+
+  describe 'GET show' do
+    it 'returns http success' do
+      get :show, { userstory_id: userstory.to_param, :id => task.to_param}, valid_session
+      response.should be_success
+    end
+
+    it 'assigns the requested task as @task' do
+      get :show, { userstory_id: userstory.to_param, :id => task.to_param}, valid_session
+      assigns(:task).should eq(task)
+    end
+
+    it 'renders show template' do
+      get :show, { userstory_id: userstory.to_param, :id => task.to_param}, valid_session
+      response.should render_template 'show'
+    end
+  end
+
+  describe "GET edit" do
+    it 'returns http success' do
+      get :edit, { userstory_id: userstory.to_param, :id => task.to_param}, valid_session
+      response.should be_success
+    end
+
+    it "assigns the requested task as @task" do
+      get :edit, { userstory_id: userstory.to_param, :id => task.to_param}, valid_session
+      assigns(:task).should eq(task)
+    end
+
+    it 'renders show template' do
+      get :edit, { userstory_id: userstory.to_param, :id => task.to_param}, valid_session
+      response.should render_template 'edit'
     end
   end
 
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested task" do
-        task = Task.create! valid_attributes
         # Assuming there are no other tasks in the database, this
         # specifies that the Task created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
         Task.any_instance.should_receive(:update_attributes!).with({'name' => 'other'})
-        put :update, {:id => task.to_param, :task => {'name' => 'other'}}, valid_session
+        put :update, { userstory_id: userstory.to_param, :id => task.to_param, :task => {'name' => 'other'}}, valid_session
       end
 
       it "assigns the requested task as @task" do
-        task = Task.create! valid_attributes
-        put :update, {:id => task.to_param, :task => valid_attributes}, valid_session
+        put :update, { userstory_id: userstory.to_param, :id => task.to_param, :task => valid_attributes}, valid_session
         assigns(:task).should eq(task)
       end
 
       it "redirects to the task" do
-        task = Task.create! valid_attributes
-        put :update, {:id => task.to_param, :task => valid_attributes}, valid_session
-        response.should redirect_to(tasks_path)
+        put :update, { userstory_id: userstory.to_param, :id => task.to_param, :task => valid_attributes}, valid_session
+        response.should redirect_to userstory_tasks_path(assigns(:userstory))
       end
     end
 
     describe "with invalid params" do
       it "assigns the task as @task" do
-        task = Task.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Task.any_instance.stub(:save).and_return(false)
-        put :update, {:id => task.to_param, :task => {}}, valid_session
+        put :update, { userstory_id: userstory.to_param, :id => task.to_param, :task => {}}, valid_session
         assigns(:task).should eq(task)
       end
 
-      xit "re-renders the 'edit' template" do
-        task = Task.create! valid_attributes
+      it "re-renders the 'edit' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Task.any_instance.stub(:save).and_return(false)
-        put :update, {:id => task.to_param, :task => {}}, valid_session
+        Task.any_instance.stub(:update_attributes!).and_return(false)
+        put :update, { userstory_id: userstory.to_param, :id => task.to_param, :task => {}}, valid_session
         response.should render_template("edit")
       end
     end
@@ -148,16 +231,15 @@ describe TasksController do
 
   describe "DELETE destroy" do
     it "destroys the requested task" do
-      task = Task.create! valid_attributes
+      task#TODO clearify test setup, lazy loading, let, database and object behaviour, best practice
       expect {
-        delete :destroy, {:id => task.to_param}, valid_session
+        delete :destroy, { userstory_id: userstory.to_param, :id => task.to_param}, valid_session
       }.to change(Task, :count).by(-1)
     end
 
     it "redirects to the tasks list" do
-      task = Task.create! valid_attributes
-      delete :destroy, {:id => task.to_param}, valid_session
-      response.should redirect_to(tasks_url)
+      delete :destroy, { userstory_id: userstory.to_param, :id => task.to_param}, valid_session
+      response.should redirect_to userstory_tasks_path(assigns(:userstory))
     end
   end
 

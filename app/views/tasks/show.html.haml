@@ -7,6 +7,6 @@
   %b Complete:
   = @task.complete
 
-= link_to 'Edit', edit_task_path(@task)
+= link_to 'Edit', edit_userstory_task_path(@userstory, @task)
 \|
-= link_to 'Back', tasks_path
+= link_to 'Back', userstory_tasks_path(@userstory)

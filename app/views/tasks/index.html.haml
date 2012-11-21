@@ -1,6 +1,9 @@
-%h1 Tasks
+%header
+  %h1
+    %span= "#{@userstory.full_name}"
+    %span= "--- #{@userstory.project.name}"
 
-= link_to 'New Task', new_task_path, id: 'new_link', remote: true
+= link_to 'New Task', new_userstory_task_path(@userstory), id: 'new_link', remote: true
 
 %h2 Incomplete Tasks
 #incomplete_tasks.tasks
@@ -11,3 +14,7 @@
 %h2 Complete Tasks
 #complete_tasks.tasks
   = render @complete_tasks
+
+= link_to 'Back to Userstory', [@userstory.project, @userstory]
+|
+= link_to 'Back to Project', @userstory.project

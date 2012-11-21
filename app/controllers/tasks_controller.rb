@@ -1,35 +1,60 @@
 class TasksController < ApplicationController
+  before_filter :find_userstory
+
   def index
-    @incomplete_tasks = Task.where complete: false
-    @complete_tasks   = Task.where complete: true
+    @incomplete_tasks = @userstory.incomplete_tasks
+    @complete_tasks   = @userstory.complete_tasks
   end
 
   def new
-    @task = Task.new
+    @task = @userstory.tasks.build
   end
 
   def create
-    @task = Task.create!(params[:task])
+    @task = @userstory.tasks.new(params[:task])
     respond_to do |format|
-      format.html { redirect_to tasks_url }
-      format.js
+      if @task.save
+        format.html { redirect_to userstory_tasks_path(@userstory) }
+        format.js
+      else
+        format.html { render 'new' }
+        format.js
+      end
     end
   end
 
+  def show
+    @task = @userstory.tasks.find(params[:id])
+  end
+
+  def edit
+    @task = @userstory.tasks.find(params[:id])
+  end
+
   def update
-    @task = Task.find(params[:id])
-    @task.update_attributes!(params[:task])
+    @task = @userstory.tasks.find(params[:id])
     respond_to do |format|
-      format.html { redirect_to tasks_url }
-      format.js
+      if @task.update_attributes!(params[:task])
+        format.html { redirect_to userstory_tasks_path(@userstory) }
+        format.js
+      else
+        format.html { render 'edit' }
+        format.js
+      end
     end
   end
 
   def destroy
-    @task = Task.destroy(params[:id])
+    @task = @userstory.tasks.destroy(params[:id])
     respond_to do |format|
-      format.html { redirect_to tasks_url }
+      format.html { redirect_to userstory_tasks_path(@userstory) }
       format.js
     end
+  end
+
+  private
+
+  def find_userstory
+    @userstory = Userstory.find(params[:userstory_id])
   end
 end

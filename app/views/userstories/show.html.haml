@@ -1,8 +1,38 @@
-= "#{@userstory.name} #{@userstory.description}"
+%header
+  %h1
+    %span= "#{@userstory.full_name}"
+    %span= "--- #{@userstory.project.name}"
+
+%section
+  %header
+    %h1 Acceptance Tests
+    %ul
+      %li Read nginx docu
+      %li Install nginx on MacOsX
+      %li Configure nginx
+      %li Start and test nginx
+%section
+  %header
+    %h1= link_to 'Tasks', userstory_tasks_path(@userstory)
+
+  %h2 Incomplete Tasks
+  #incomplete_tasks.tasks
+    %ul
+      - @userstory.incomplete_tasks.each do |task|
+        %li= task.name
+
+  #clearfix
+
+  %h2 Complete Tasks
+  #complete_tasks.tasks
+    %ul
+      - @userstory.complete_tasks.each do |task|
+        %li
+          %label= task.name
 
 %br
 = link_to 'Back to project', @project
 |
-= link_to 'Edit', edit_project_userstory_path(@project, @userstory)
+= link_to 'Edit userstory', edit_project_userstory_path(@project, @userstory)
 |
-= link_to '(remove)', project_userstory_path(@project, @userstory), method: :delete, data: {confirm: 'Are you sure?'}
+= link_to '(remove userstory)', project_userstory_path(@project, @userstory), method: :delete, data: {confirm: 'Are you sure?'}

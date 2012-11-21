@@ -29,4 +29,20 @@ describe Userstory do
       end
     end
   end
+
+  describe '#incomplete_tasks' do
+    it 'returns all incomplete tasks of userstory' do
+      userstory = create(:userstory)
+      task = create(:task, userstory: userstory, complete: false)
+      userstory.incomplete_tasks.should eq [task]
+    end
+  end
+
+  describe '#complete_tasks' do
+    it 'returns all complete tasks of userstory' do
+      userstory = create(:userstory)
+      task = create(:task, userstory: userstory, complete: true)
+      userstory.complete_tasks.should eq [task]
+    end
+  end
 end
