@@ -6,6 +6,7 @@ Gemoria::Application.routes.draw do
 
   resources :userstories, except: [:index, :new, :create, :show, :edit, :update, :destroy] do
     resources :tasks
+    resources :acceptance_tests, except: [:show]
   end
 
   resources :current_userstories, only: [:index]

@@ -1,0 +1,7 @@
+$('#edit_acceptance_test_<%= @acceptance_test.id %>').remove();
+$('#acceptance_test_<%= @acceptance_test.id %>').show();
+<% if @acceptance_test.complete? %>
+  $('#acceptance_test_<%= @acceptance_test.id %>').appendTo('.complete ul');
+<% else %>
+  $('#acceptance_test_<%= @acceptance_test.id %>').appendTo('.incomplete ul');
+<% end %>

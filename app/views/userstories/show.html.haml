@@ -3,32 +3,41 @@
     %span= "#{@userstory.full_name}"
     %span= "--- #{@userstory.project.name}"
 
-%section
+%section#acceptance_tests
   %header
-    %h1 Acceptance Tests
-    %ul
-      %li Read nginx docu
-      %li Install nginx on MacOsX
-      %li Configure nginx
-      %li Start and test nginx
-%section
-  %header
-    %h1= link_to 'Tasks', userstory_tasks_path(@userstory)
+    %h2= link_to 'Acceptance Tests', userstory_acceptance_tests_path(@userstory)
+    = link_to 'New acceptance test', new_userstory_acceptance_test_path(@userstory), id: 'new_link', remote: true
+    %section.incomplete
+      %h2 not yet accepted
+      %ul
+        = render @incomplete_acceptance_tests
 
-  %h2 Incomplete Tasks
-  #incomplete_tasks.tasks
-    %ul
-      - @userstory.incomplete_tasks.each do |task|
-        %li= task.name
+    %section.complete
+      %h2 accepted
+      %ul
+        = render @complete_acceptance_tests
+
+%section#tasks
+  %header
+    %h2= link_to 'Tasks', userstory_tasks_path(@userstory)
+
+  %section#tasks
+    %header
+      %h2 incomplete
+      #incomplete_tasks.tasks
+        %ul
+          = render @userstory.incomplete_tasks
 
   #clearfix
 
-  %h2 Complete Tasks
-  #complete_tasks.tasks
-    %ul
-      - @userstory.complete_tasks.each do |task|
-        %li
-          %label= task.name
+  %section#tasks
+    %header
+      %h2 complete
+      #complete_tasks.tasks
+        %ul
+          - @userstory.complete_tasks.each do |task|
+            %li
+              %label= task.name
 
 %br
 = link_to 'Back to project', @project

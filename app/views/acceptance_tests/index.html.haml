@@ -1,0 +1,9 @@
+= link_to 'New acceptance test', new_userstory_acceptance_test_path(@userstory), id: 'new_link', remote: true
+
+%ul#incomplete_acceptance_tests
+  = render @incomplete_acceptance_tests
+
+%ul#complete_acceptance_tests
+  = render @complete_acceptance_tests
+
+= link_to 'Back to userstory', [@userstory.project, @userstory]

@@ -21,6 +21,8 @@ class UserstoriesController < ApplicationController
 
   def show
     @userstory = @project.userstories.find(params[:id])
+    @incomplete_acceptance_tests = @userstory.acceptance_tests.incomplete
+    @complete_acceptance_tests = @userstory.acceptance_tests.complete
   end
 
   def edit

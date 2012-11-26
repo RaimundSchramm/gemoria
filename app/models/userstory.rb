@@ -3,8 +3,9 @@ class Userstory < ActiveRecord::Base
   attr_accessible :project_id, :description, :name, :complete, :tasks_attributes, :status
 
   # associations
-  belongs_to :project
-  has_many :tasks
+  belongs_to  :project
+  has_many    :tasks
+  has_many    :acceptance_tests
 
   accepts_nested_attributes_for :tasks, allow_destroy: true
 
