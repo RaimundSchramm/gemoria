@@ -2,12 +2,38 @@
 
 = link_to 'New userstory', new_project_userstory_path(@project), remote: true, id: 'new_userstory'
 
-%h2 Incomplete userstories
-#incomplete_userstories.userstories
-  = render @incomplete_userstories
+%section
+  %header
+    %h2 Current sprint
 
-%h2 Complete userstories
-#complete_userstories.userstories
-  = render @complete_userstories
+    %section
+      %header
+        %h2 Incomplete userstories
+        %section#incomplete_userstories.userstories
+          %table.userstories
+            %thead
+              %tr
+                %td No.
+                %td Description
+                %td Priority
+                %td Velocity
+                %td Developer
+            %tbody
+              = render @incomplete_userstories
+
+    %section
+      %header
+        %h2 Complete userstories
+        %section#complete_userstories.userstories
+          %table.userstories
+            %thead
+              %tr
+                %td No.
+                %td Description
+                %td Priority
+                %td Velocity
+                %td Developer
+            %tbody
+              = render @complete_userstories
 
 = link_to 'Back to project', @project
