@@ -13,17 +13,23 @@
 %section
   %header
     %h2 Current sprint
-    %ol.userstories
-      - @project.userstories.each do |userstory|
-        %li
-          = link_to "#{userstory.name}: #{userstory.description}", [@project, userstory]
-          %ol.tasks
-            - userstory.tasks.each do |task|
-              %li
-                = task.name
-                = link_to 'x', project_userstory_path(@project, userstory), method: :delete, data: {confirm: 'Are you sure?'}
--#= link_to 'New Userstory', new_project_userstory_path(@project), remote: true, id: 'new_userstory'
-//|
+    %table.userstories
+      %thead
+        %tr
+          %td No.
+          %td Description
+          %td Priority
+          %td Velocity
+          %td Developer
+      %tbody
+        - @project.userstories.each do |userstory|
+          %tr
+            %td= "#{userstory.name}"
+            %td= link_to "#{userstory.description}", [@project, userstory]
+            %td
+            %td
+            %td
+
 = link_to 'Edit project', edit_project_path(@project)
 \|
 = link_to 'Destroy project', project_path(@project), method: :delete, confirm: 'Are you sure?'
