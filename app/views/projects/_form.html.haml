@@ -10,9 +10,9 @@
     = f.label :name
     = f.text_field :name
 
-  = f.fields_for :userstories do |builder|
-    = render 'userstory_fields', f: builder
-  = link_to_add_fields "Add Userstory", f, :userstories
+  //= f.fields_for :userstories do |builder|
+  //    = render 'userstory_fields', f: builder
+  //= link_to_add_fields "Add Userstory", f, :userstories
 
   .actions
     = f.submit 'Save'
