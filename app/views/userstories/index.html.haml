@@ -1,39 +1,54 @@
-%h1= "Userstories for #{@project.name}"
+%header
+  %h1= "Userstories for #{@project.name}"
+  %section
+    = link_to 'New userstory', new_project_userstory_path(@project), remote: true, id: 'new_link'
 
-= link_to 'New userstory', new_project_userstory_path(@project), remote: true, id: 'new_userstory'
+%section#backlog
+  %header
+    %h2 Backlog
+    %table
+      %thead
+        %tr
+          %td No.
+          %td Description
+          %td Priority
+          %td Velocity
+          %td Developer
+      %tbody
+        = render text: "hello"
+        //-#@backlog || text: "hello"
 
-%section
+%section#current_sprint
   %header
     %h2 Current sprint
 
-    %section
-      %header
-        %h2 Incomplete userstories
-        %section#incomplete_userstories.userstories
-          %table.userstories
-            %thead
-              %tr
-                %td No.
-                %td Description
-                %td Priority
-                %td Velocity
-                %td Developer
-            %tbody
-              = render @incomplete_userstories
+  %section#incomplete_userstories
+    %header
+      %h2 Incomplete userstories
+    %table.userstories
+      %thead
+        %tr
+          %td No.
+          %td Description
+          %td Priority
+          %td Velocity
+          %td Developer
+      %tbody
+        = render @incomplete_userstories
 
-    %section
-      %header
-        %h2 Complete userstories
-        %section#complete_userstories.userstories
-          %table.userstories
-            %thead
-              %tr
-                %td No.
-                %td Description
-                %td Priority
-                %td Velocity
-                %td Developer
-            %tbody
-              = render @complete_userstories
+  %section#complete_userstories
+    %header
+      %h2 Complete userstories
+    %table
+      %thead
+        %tr
+          %td No.
+          %td Description
+          %td Priority
+          %td Velocity
+          %td Developer
+      %tbody
+        = render @complete_userstories
 
-= link_to 'Back to project', @project
+%footer
+  = link_to 'Back to project', @project

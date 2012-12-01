@@ -4,6 +4,7 @@ class UserstoriesController < ApplicationController
   def index
     @incomplete_userstories  = @project.incomplete_userstories
     @complete_userstories    = @project.complete_userstories
+    @backlog = @project.backlog
   end
 
   def new
@@ -12,10 +13,13 @@ class UserstoriesController < ApplicationController
 
   def create
     @userstory = @project.userstories.new(params[:userstory])
-    if @userstory.save
-      redirect_to @userstory.project
-    else
-      render 'new'
+    respond_to do |format|
+      if @userstory.save
+        format.html { redirect_to @userstory.project }
+        format.js
+      else
+        format.html { render 'new' }
+      end
     end
   end
 

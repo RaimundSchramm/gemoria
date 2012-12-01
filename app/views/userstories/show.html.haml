@@ -5,7 +5,7 @@
 
 %section#acceptance_tests
   %header
-    %h2= link_to 'Acceptance Tests', userstory_acceptance_tests_path(@userstory)
+    %h2 Acceptance Tests
     = link_to 'New acceptance test', new_userstory_acceptance_test_path(@userstory), id: 'new_link', remote: true
     %section.incomplete
       %h2 not yet accepted
@@ -19,7 +19,7 @@
 
 %section#tasks
   %header
-    %h2= link_to 'Tasks', userstory_tasks_path(@userstory)
+    %h2 Tasks
 
   %section#tasks
     %header
@@ -41,6 +41,8 @@
 
 %br
 = link_to 'Back to project', @project
+|
+= link_to 'Back to userstory management', project_userstories_path(@project)
 |
 = link_to 'Edit userstory', edit_project_userstory_path(@project, @userstory)
 |

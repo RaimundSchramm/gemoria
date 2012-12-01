@@ -1,0 +1,8 @@
+$('#new_userstory').hide();
+$('#new_link').show();
+<%# if @userstory.complete? %>
+//  $('section#complete_userstories tbody').append('<%= j render(@userstory) %>');
+<%# else %>
+//  $('section#incomplete_userstories tbody').append('<%= j render(@userstory) %>');
+<%# end %>
+$('section#backlog').append('<%= j render(@userstory) %>');

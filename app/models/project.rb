@@ -30,4 +30,7 @@ class Project < ActiveRecord::Base
   def incomplete_userstories
     userstories.incomplete
   end
+
+  def backlog
+  end
 end
