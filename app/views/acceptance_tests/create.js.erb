@@ -1,6 +1,6 @@
 $('#new_acceptance_test').remove();
 $('#back_link').remove();
-$('#new_link').show();
+$('#new_acceptance_test_link').show();
 <% if @acceptance_test.complete? %>
   $('section#acceptance_tests section.complete ul').append('<%= j render(@acceptance_test) %>');
 <% else %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121122170944) do
+ActiveRecord::Schema.define(:version => 20121201182413) do
 
   create_table "acceptance_tests", :force => true do |t|
     t.integer  "userstory_id"
@@ -41,12 +41,12 @@ ActiveRecord::Schema.define(:version => 20121122170944) do
 
   create_table "userstories", :force => true do |t|
     t.string   "name"
-    t.string   "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.boolean  "complete"
     t.integer  "project_id"
     t.string   "status"
+    t.text     "description"
   end
 
   add_index "userstories", ["project_id"], :name => "index_userstories_on_project_id"

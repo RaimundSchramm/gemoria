@@ -24,9 +24,11 @@ class UserstoriesController < ApplicationController
   end
 
   def show
-    @userstory = @project.userstories.find(params[:id])
-    @incomplete_acceptance_tests = @userstory.acceptance_tests.incomplete
-    @complete_acceptance_tests = @userstory.acceptance_tests.complete
+    @userstory                    = @project.userstories.find(params[:id])
+    @incomplete_acceptance_tests  = @userstory.acceptance_tests.incomplete
+    @complete_acceptance_tests    = @userstory.acceptance_tests.complete
+    @incomplete_tasks             = @userstory.incomplete_tasks
+    @complete_tasks               = @userstory.complete_tasks
   end
 
   def edit

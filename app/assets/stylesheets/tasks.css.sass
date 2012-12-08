@@ -1,13 +1,9 @@
-h2
-  font-size: 16px
-  margin-top: 20px
-
-#incomplete_tasks form
+section#tasks .incomplete form
   margin: 5px 0
   label
     display: inline
 
-#complete_tasks form, #complete_tasks ul li
+section#tasks .complete form, section#tasks .complete ul li
   font-size: 12px
   color: #777
   margin: 3px 0
@@ -23,9 +19,9 @@ h2
     &:hover 
       text-decoration: underline
 
-.tasks form
-//  input, a, label
-//    float: left
+#tasks
+  li
+    list-style-type: none
 
 #clearfix
   clear: both
