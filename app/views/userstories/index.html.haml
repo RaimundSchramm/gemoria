@@ -3,50 +3,56 @@
   %section
     = link_to 'New userstory', new_project_userstory_path(@project), remote: true, id: 'new_link'
 
-%section#backlog
-  %header
-    %h2 Backlog
-    %table
-      %thead
-        %tr
-          %td No.
-          %td Description
-          %td Priority
-          %td Velocity
-          %td Developer
-      %tbody
+.row
+  .span5
+    %section
+      %header
+        %h2 Backlog
+        %table.table
+          %thead
+            %tr
+              %td No.
+              %td Description
+              %td Priority
+              %td Velocity
+              %td Developer
+              %td Actions
+          %tbody
 
-%section#current_sprint
-  %header
-    %h2 Current sprint
+  .span7
+    %section
+      %header
+        %h2 Current sprint
 
-  %section#incomplete_userstories
-    %header
-      %h2 Incomplete userstories
-    %table.userstories
-      %thead
-        %tr
-          %td No.
-          %td Description
-          %td Priority
-          %td Velocity
-          %td Developer
-      %tbody
-        = render @incomplete_userstories
+      %section#incomplete_userstories
+        %header
+          %h2 Incomplete userstories
+        %table.userstories.table
+          %thead
+            %tr
+              %td No.
+              %td Description
+              %td Priority
+              %td Velocity
+              %td Developer
+              %td Actions
+          %tbody
+            = render @incomplete_userstories
 
-  %section#complete_userstories
-    %header
-      %h2 Complete userstories
-    %table
-      %thead
-        %tr
-          %td No.
-          %td Description
-          %td Priority
-          %td Velocity
-          %td Developer
-      %tbody
-        = render @complete_userstories
+      %section#complete_userstories
+        %header
+          %h2 Complete userstories
+        %table.table
+          %thead
+            %tr
+              %td No.
+              %td Description
+              %td Priority
+              %td Velocity
+              %td Developer
+              %td Actions
+          %tbody
+            = render @complete_userstories
 
 %footer
   = link_to 'Back to project', @project

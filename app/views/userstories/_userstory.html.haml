@@ -4,3 +4,8 @@
   %td
   %td
   %td
+  - if userstory.complete?
+    %td= link_to 'Re-open', project_userstory_path(@project, userstory, userstory: { complete: false }), method: :put, class: 'btn btn-mini btn-primary'
+  - else
+    %td= link_to 'Complete', project_userstory_path(@project, userstory, userstory: { complete: true }), method: :put, class: 'btn btn-mini btn-success'
+  %td= link_to 'x', project_userstory_path(@project, userstory), method: :delete, data: {confirm: 'Are you sure?' }, class: 'btn btn-mini btn-danger'

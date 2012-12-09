@@ -39,3 +39,8 @@
 = link_to 'Edit userstory', edit_project_userstory_path(@project, @userstory)
 |
 = link_to '(remove userstory)', project_userstory_path(@project, @userstory), method: :delete, data: {confirm: 'Are you sure?'}
+
+- if @userstory.complete?
+  = button_to 'Reopen', project_userstory_path(@project, @userstory, userstory: { complete: false }), method: :put
+- else
+  = button_to 'Complete', project_userstory_path(@project, @userstory, userstory: { complete: true }), method: :put
