@@ -1,4 +1,6 @@
-= form_for [@userstory, @acceptance_test] do |f|
+= form_for [@userstory, @acceptance_test], remote: true do |f|
+  %legend= params[:action] == "new" ? "#{params[:action]} acceptance_test" : "#{params[:action]} #{@acceptance_test.description}"
+  %button.btn.close.pull-right{type: 'button'} &times;
   - if @userstory.errors.any?
     #error_explanation
       %h2= "#{pluralize(@task.errors.count, "error")} prohibited this task from being saved:"

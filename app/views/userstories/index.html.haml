@@ -1,7 +1,7 @@
 %header
   %h1= "Userstories for #{@project.name}"
-  %section
-    = link_to 'New userstory', new_project_userstory_path(@project), remote: true, id: 'new_link'
+  %section.actions
+    = link_to 'New userstory', new_project_userstory_path(@project), remote: true, id: 'new_userstory_link'
 
 .row
   .span5

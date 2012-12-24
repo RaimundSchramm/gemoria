@@ -1,4 +1,6 @@
 = form_for [@project, @userstory], remote: true do |f|
+  %legend New userstory
+  %button.btn.close.pull-right{type: 'button'} &times;
   - if @userstory.errors.any?
     #error_explanation
       %h2= "#{pluralize(@task.errors.count, "error")} prohibited this task from being saved:"
@@ -15,5 +17,5 @@
   .field
     = f.label :complete
     = f.check_box :complete
-  .actions
+  .actions.pull-right
     = f.submit 'Save'

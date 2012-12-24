@@ -2,12 +2,24 @@
 //# All this logic will automatically be available in application.js.
 //# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-jQuery.fn.closeAnyForm = function() {
+// jQuery.fn.closeAnyForm = function() {
+//   this.click(function() {
+//     $('#acceptance_tests form, section#tasks section.actions form').remove();
+//   });
+// }
+
+// $(function() {
+//   $('a').closeAnyForm();
+// });
+
+jQuery.fn.closeAForm = function() {
   this.click(function() {
-    $('#acceptance_tests form, section#tasks section.actions form').remove();
+    $(this).parent().remove();
+    $('section li').show();
+    $('a').show();
   });
 }
 
 $(function() {
-  $('a').closeAnyForm();
+  $('button.close').closeAForm();
 });

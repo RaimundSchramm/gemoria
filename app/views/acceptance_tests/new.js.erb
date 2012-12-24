@@ -1,1 +1,4 @@
-$('#new_acceptance_test_link').after('<%= j render("form") %>');
+$('.actions form').remove();
+$('.actions a').show();
+$('#new_acceptance_test_link').hide().after('<%= j render("ajax_form") %>');
+$('button.close').closeAForm();

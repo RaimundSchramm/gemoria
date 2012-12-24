@@ -1,1 +1,4 @@
-$('#new_task_link').after('<%= j render("form") %>');
+$('section.actions form').remove();
+$('.actions a').show();
+$('#new_task_link').hide().after('<%= j render("ajax_form") %>');
+$('button.close').closeAForm();

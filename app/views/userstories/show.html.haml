@@ -11,11 +11,13 @@
   %section.incomplete
     %header
       %h3 not yet accepted
-    = render @incomplete_acceptance_tests
+    %ul
+      = render @incomplete_acceptance_tests
   %section.complete
     %header
       %h3 accepted
-    = render @complete_acceptance_tests
+    %ul
+      = render @complete_acceptance_tests
 
 %section#tasks
   %header

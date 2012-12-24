@@ -45,7 +45,7 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    @task = @userstory.tasks.destroy(params[:id])
+    @task = @userstory.tasks.destroy(params[:id]).first
     respond_to do |format|
       format.html { redirect_to userstory_tasks_path(@userstory) }
       format.js
