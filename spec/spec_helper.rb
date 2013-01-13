@@ -11,9 +11,11 @@ Spork.prefork do
   # This file is copied to spec/ when you run 'rails generate rspec:install'
   ENV["RAILS_ENV"] ||= 'test'
   require File.expand_path("../../config/environment", __FILE__)
-  require 'rspec/rails'
   require 'email_spec'
   require 'rspec/autorun'
+  require 'rspec/rails'
+  require 'capybara/rspec'
+  #require 'capybara/rails'
 
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
@@ -22,6 +24,8 @@ Spork.prefork do
   RSpec.configure do |config|
     config.include(EmailSpec::Helpers)
     config.include(EmailSpec::Matchers)
+    #config.include Capybara::DSL
+    #config.include Capybara::RSpecMatchers
     # ## Mock Framework
     #
     # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
@@ -37,7 +41,7 @@ Spork.prefork do
     # If you're not using ActiveRecord, or you'd prefer not to run each of your
     # examples within a transaction, remove the following line or assign false
     # instead of true.
-    config.use_transactional_fixtures = true
+    config.use_transactional_fixtures = false
 
     # If true, the base class of anonymous controllers will be inferred
     # automatically. This will be the default behavior in future versions of
@@ -54,6 +58,18 @@ Spork.prefork do
     # build_stubbed, create, attributes_for, and their *_list counterparts)
     # without having to call them on FactoryGirl directly
     config.include FactoryGirl::Syntax::Methods
+
+    config.before(:suite) do
+      DatabaseCleaner.strategy = :truncation
+    end
+     
+    config.before(:each) do
+      DatabaseCleaner.start
+    end
+     
+    config.after(:each) do
+      DatabaseCleaner.clean
+    end
   end
 
 end

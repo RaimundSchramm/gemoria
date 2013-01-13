@@ -1,58 +1,58 @@
-%header
-  %h1= "Userstories for #{@project.name}"
+%section#userstories
+  %header
+    %h1= "Userstories for #{@project.name}"
   %section.actions
     = link_to 'New userstory', new_project_userstory_path(@project), remote: true, id: 'new_userstory_link'
 
-.row
-  .span5
-    %section
-      %header
-        %h2 Backlog
-        %table.table
-          %thead
-            %tr
-              %td No.
-              %td Description
-              %td Priority
-              %td Velocity
-              %td Developer
-              %td Actions
-          %tbody
-
-  .span7
-    %section
-      %header
-        %h2 Current sprint
-
-      %section#incomplete_userstories
+  .row
+    .span6
+      %section#backlog
         %header
-          %h2 Incomplete userstories
-        %table.userstories.table
-          %thead
-            %tr
-              %td No.
-              %td Description
-              %td Priority
-              %td Velocity
-              %td Developer
-              %td Actions
-          %tbody
-            = render @incomplete_userstories
+          %h2 Backlog
+          %table.table.table-striped
+            %thead
+              %tr
+                %td No.
+                %td Description
+                %td Priority
+                %td Velocity
+                %td Developer
+                %td Actions
+            %tbody
 
-      %section#complete_userstories
+    .span6
+      %section#current_sprint
         %header
-          %h2 Complete userstories
-        %table.table
-          %thead
-            %tr
-              %td No.
-              %td Description
-              %td Priority
-              %td Velocity
-              %td Developer
-              %td Actions
-          %tbody
-            = render @complete_userstories
+          %h2 Current sprint
 
-%footer
-  = link_to 'Back to project', @project
+        %section.incomplete
+          %header
+            %h2 Incomplete userstories
+          %table.userstories.table.table-striped
+            %thead
+              %tr
+                %td No.
+                %td Description
+                %td Priority
+                %td Velocity
+                %td Developer
+                %td Actions
+            %tbody
+              = render @incomplete_userstories
+
+        %section.complete
+          %header
+            %h2 Complete userstories
+          %table.table.table-striped
+            %thead
+              %tr
+                %td No.
+                %td Description
+                %td Priority
+                %td Velocity
+                %td Developer
+                %td Actions
+            %tbody
+              = render @complete_userstories
+
+= link_to 'Back to project', @project
