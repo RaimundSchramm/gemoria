@@ -1,4 +1,5 @@
 require 'active_support/core_ext'
+
 guard 'livereload' do
   watch(%r{app/views/.+\.(erb|haml|slim)$})
   watch(%r{app/helpers/.+\.rb})
@@ -9,7 +10,7 @@ guard 'livereload' do
   watch(%r{(app|vendor)/assets/\w+/(.+\.(css|js|html)).*})  { |m| "/assets/application.css.sass" }
 end
 
-guard 'spork', :rspec_env => { 'RAILS_ENV' => 'test' }, cucumber: false do
+guard 'spork', :rspec_env => { 'RAILS_ENV' => 'test' }, cucumber: false, wait: 60 do
   watch('config/application.rb')
   watch('config/environment.rb')
   watch('config/environments/test.rb')
@@ -40,4 +41,10 @@ guard 'rspec', cli: "--color --format nested --fail-fast --drb", wait: 60, all_a
   # Turnip features and steps
   watch(%r{^spec/acceptance/(.+)\.feature$})
   watch(%r{^spec/acceptance/steps/(.+)_steps\.rb$})   { |m| Dir[File.join("**/#{m[1]}.feature")][0] || 'spec/acceptance' }
+end
+
+guard :jasmine, all_on_start: false, all_after_pass: false, wait: 60 do
+  watch(%r{spec/javascripts/spec\.(js\.coffee|js|coffee)$}) { 'spec/javascripts' }
+  watch(%r{spec/javascripts/.+_spec\.(js\.coffee|js|coffee)$})
+  watch(%r{app/assets/javascripts/(.+?)\.(js\.coffee|js|coffee)(?:\.\w+)*$}) { |m| "spec/javascripts/#{ m[1] }_spec.#{ m[2] }" }
 end
