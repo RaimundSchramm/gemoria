@@ -46,3 +46,5 @@
   = button_to 'Reopen', project_userstory_path(@project, @userstory, userstory: { complete: false }), method: :put
 - else
   = button_to 'Complete', project_userstory_path(@project, @userstory, userstory: { complete: true }), method: :put
+
+= button_to 'Mark as recent', project_userstory_path(@project, @userstory, userstory: { status: 'recent'}), method: :put

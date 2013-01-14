@@ -1,4 +1,14 @@
-Current Userstories
+%section#userstories
+  %section#recent
+    %header
+      %h2 Recently updated Userstories
+    %ul
+      = render partial: 'current_userstory', collection: @recent
 
-%ul#current_userstories
-  = render partial: 'current_userstory', collection: @current_userstories
+  %hr
+
+  %section#current
+    %header
+      %h2 Current Userstories
+    %ul
+      = render partial: 'current_userstory', collection: @current_userstories

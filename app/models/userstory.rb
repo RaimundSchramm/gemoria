@@ -13,12 +13,14 @@ class Userstory < ActiveRecord::Base
   scope :complete,    where(complete: true)
   scope :incomplete,  where(complete: false)
   scope :opened,      where(status: 'opened')
+  scope :recent,      where(status: 'recent').order('updated_at desc')
 
   # derived attributes
   def full_name
     "#{name}: #{description}"
   end
 
+  # delegates
   def incomplete_tasks
     tasks.incomplete
   end

@@ -1,6 +1,7 @@
 class CurrentUserstoriesController < ApplicationController
 
   def index
-    @current_userstories = Userstory.opened
+    @current  = Userstory.opened
+    @recent   = Userstory.recent
   end
 end

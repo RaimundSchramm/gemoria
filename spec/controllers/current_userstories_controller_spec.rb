@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe CurrentUserstoriesController do
+  render_views
+
   describe 'GET #index' do
     it 'renders index template' do
       get('index')
@@ -12,9 +14,15 @@ describe CurrentUserstoriesController do
       response.should be_success
     end
 
-    it 'assigns all opened userstories' do
+    it 'assigns all opened userstories as @current' do
       get('index')
-      assigns(:current_userstories).should eq Userstory.where(status: 'opened')
+      assigns(:current).should eq Userstory.where(status: 'opened')
+    end
+
+    it 'assigns all recent userstories as @recent' do
+      create :userstory, status: 'recent'
+      get :index
+      expect(assigns(:recent)).not_to be_empty
     end
 
   end
