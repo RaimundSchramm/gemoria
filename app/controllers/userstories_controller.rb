@@ -2,8 +2,8 @@ class UserstoriesController < ApplicationController
   before_filter :parent
 
   def index
-    @incomplete_userstories  = @project.incomplete_userstories
-    @complete_userstories    = @project.complete_userstories
+    @unaccepted_userstories  = @project.unaccepted_userstories
+    @accepted_userstories    = @project.accepted_userstories
     @backlog = @project.backlog
   end
 
@@ -37,10 +37,14 @@ class UserstoriesController < ApplicationController
 
   def update
     @userstory = @project.userstories.find(params[:id])
-    if @userstory.update_attributes(params[:userstory])
-      redirect_to project_userstories_path @project
-    else
-      render 'edit'
+    @old_status = @userstory.status
+    respond_to do |format|
+      if @userstory.update_attributes(params[:userstory])
+        format.html { redirect_to project_userstory_path @project, @userstory }
+        format.js
+      else
+        format.html { render 'edit' }
+      end
     end
   end
 

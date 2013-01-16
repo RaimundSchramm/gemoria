@@ -11,8 +11,8 @@ class Project < ActiveRecord::Base
     userstories.size
   end
 
-  def size_of_completed_userstories
-    userstories.complete.size
+  def size_of_accepted_userstories
+    userstories.accepted.size
   end
 
   def size_of_all_tasks
@@ -20,15 +20,15 @@ class Project < ActiveRecord::Base
   end
 
   def size_of_completed_tasks
-    userstories.joins(:tasks).complete.size
+    userstories.accepted.joins(:tasks).where("tasks.complete = ?", true).size
   end
 
-  def complete_userstories
-    userstories.complete
+  def unaccepted_userstories
+    userstories.unaccepted
   end
 
-  def incomplete_userstories
-    userstories.incomplete
+  def accepted_userstories
+    userstories.accepted
   end
 
   def backlog

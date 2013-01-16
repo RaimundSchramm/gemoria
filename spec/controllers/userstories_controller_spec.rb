@@ -39,16 +39,16 @@ describe UserstoriesController do
       response.should be_success
     end
 
-    it "assigns all completed userstories of the project" do
+    it "assigns all accepted userstories of the project as @accepted" do
       create(:userstory, complete: true)
       get 'index', valid_attributes, valid_session
-      assigns(:complete_userstories).should eq assigns(:project).complete_userstories
+      expect(assigns(:accepted_userstories)).to eq assigns(:project).accepted_userstories
     end
 
-    it "assigns all incompleted userstories of the project" do
+    it "assigns all unaccepted userstories of the project" do
       create(:userstory, complete: false)
       get 'index', valid_attributes, valid_session
-      assigns(:incomplete_userstories).should eq assigns(:project).incomplete_userstories
+      expect(assigns(:unaccepted_userstories)).to eq assigns(:project).unaccepted_userstories
     end
 
     it "renders index template" do
@@ -145,7 +145,7 @@ describe UserstoriesController do
 
     it 'redirects to index' do
       put 'update', valid_attributes.merge(id: userstory.to_param, userstory: { name: 'US2' }), valid_session
-      response.should redirect_to project_userstories_path(project)
+      response.should redirect_to project_userstory_path(project, userstory)
     end
 
     it 'updates the userstory' do

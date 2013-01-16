@@ -9,7 +9,7 @@
       %section#backlog
         %header
           %h2 Backlog
-          %table.table.table-striped
+          %table
             %thead
               %tr
                 %td No.
@@ -27,8 +27,8 @@
 
         %section.incomplete
           %header
-            %h2 Incomplete userstories
-          %table.userstories.table.table-striped
+            %h2 Incomplete
+          %table.table
             %thead
               %tr
                 %td No.
@@ -38,12 +38,12 @@
                 %td Developer
                 %td Actions
             %tbody
-              = render @incomplete_userstories
+              = render @unaccepted_userstories
 
         %section.complete
           %header
-            %h2 Complete userstories
-          %table.table.table-striped
+            %h2 Complete
+          %table.table
             %thead
               %tr
                 %td No.
@@ -53,6 +53,6 @@
                 %td Developer
                 %td Actions
             %tbody
-              = render @complete_userstories
+              = render @accepted_userstories
 
 = link_to 'Back to project', @project

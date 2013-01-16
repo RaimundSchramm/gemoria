@@ -42,9 +42,9 @@
 |
 = link_to '(remove userstory)', project_userstory_path(@project, @userstory), method: :delete, data: {confirm: 'Are you sure?'}
 
-- if @userstory.complete?
-  = button_to 'Reopen', project_userstory_path(@project, @userstory, userstory: { complete: false }), method: :put
-- else
-  = button_to 'Complete', project_userstory_path(@project, @userstory, userstory: { complete: true }), method: :put
+%hr
 
-= button_to 'Mark as recent', project_userstory_path(@project, @userstory, userstory: { status: 'recent'}), method: :put
+%section#status{ class: @userstory.status }
+  = link_to_next_status(@project, @userstory)
+  %hr
+  = @userstory.status

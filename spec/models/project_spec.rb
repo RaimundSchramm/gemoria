@@ -19,18 +19,18 @@ describe Project do
         end
       end
 
-      describe '.size_of_completed_userstories' do
-        context 'WHEN it has no completed userstories' do
+      describe '.size_of_accepted_userstories' do
+        context 'WHEN it has no accepted userstories' do
           it 'THEN it returns 0' do
-            FactoryGirl.create(:userstory, project: project, complete: false)
-            project.size_of_completed_userstories.should eq 0
+            create :userstory, project: project, status: Userstory::STATUS[:opened]
+            expect(project.size_of_accepted_userstories).to eq 0
           end
         end
 
-        context 'WHEN it has 1 or more complete userstories' do
+        context 'WHEN it has 1 or more accepted userstories' do
           it 'THEN it returns their size' do
-            FactoryGirl.create(:userstory, project: project, complete: true)
-            project.size_of_completed_userstories.should eq 1
+            create :userstory, project: project, status: Userstory::STATUS[:accepted]
+            expect(project.size_of_accepted_userstories).to eq 1
           end
         end
       end
@@ -51,50 +51,49 @@ describe Project do
         end
       end
 
-      describe '.size_of_completed_tasks' do
+      describe ' .size_of_completed_tasks' do
+        let(:userstory) { create :userstory, project: project, status: Userstory::STATUS[:accepted] }
         context 'WHEN it has no completed tasks' do
           it 'THEN it returns 0' do
-            userstory = FactoryGirl.create(:userstory, project: project, complete: false)
-            FactoryGirl.create(:task, userstory: userstory, complete: false)
-            project.size_of_completed_tasks.should eq 0
+            create :task, userstory: userstory, complete: false
+            expect(project.size_of_completed_tasks).to eq 0
           end
         end
 
         context 'WHEN it has 1 or more completed tasks' do
           it 'THEN it returns their size' do
-            userstory = FactoryGirl.create(:userstory, project: project, complete: true)
-            FactoryGirl.create(:task, userstory: userstory, complete: true)
-            project.size_of_completed_tasks.should eq 1
+            create :task, userstory: userstory, complete: true
+            expect(project.size_of_completed_tasks).to eq 1
           end
         end
       end
 
-      describe '.complete_userstories' do
+      describe '.accepted_userstories' do
         context 'WHEN it has no userstories' do
           it 'THEN it returns []' do
-            project.complete_userstories.should eq []
+            expect(project.accepted_userstories).to eq []
           end
         end
 
-        context 'WHEN it has 1 or more userstories' do
+        context 'WHEN it has 1 or more userstories that are accepted' do
           it 'THEN it returns them' do
-            userstory = FactoryGirl.create(:userstory, project: project, complete: true)
-            project.complete_userstories.should eq [userstory]
+            userstory = FactoryGirl.create(:userstory, project: project, status: Userstory::STATUS[:accepted])
+            expect(project.accepted_userstories).to eq [userstory]
           end
         end
       end
 
-      describe '.incomplete_userstories' do
+      describe '.unaccepted_userstories' do
         context 'WHEN it has no userstories' do
           it 'THEN it returns []' do
-            project.incomplete_userstories.should eq []
+            expect(project.unaccepted_userstories).to eq []
           end
         end
 
-        context 'WHEN it has 1 or more userstories' do
+        context 'WHEN it has 1 or more userstories that are unaccepted' do
           it 'THEN it returns them' do
-            userstory = FactoryGirl.create(:userstory, project: project, complete: false)
-            project.incomplete_userstories.should eq [userstory]
+            userstory = FactoryGirl.create(:userstory, project: project, status: Userstory::STATUS[:opened])
+            expect(project.unaccepted_userstories).to eq [userstory]
           end
         end
       end

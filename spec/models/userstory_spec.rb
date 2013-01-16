@@ -2,17 +2,17 @@ require 'spec_helper'
 
 describe Userstory do
   context 'scopes' do
-    describe '.complete' do
-      it 'returns all completed userstories' do
-        create :userstory, complete: true
-        Userstory.complete.should eq Userstory.where(complete: true)
+    describe '.accepted' do
+      it 'returns all accepted userstories' do
+        create :userstory, status: Userstory::STATUS[:accepted]
+        expect(Userstory.accepted).to eq Userstory.where(status: Userstory::STATUS[:accepted])
       end
     end
 
-    describe '.incomplete' do
-      it 'returns all incompleted userstories' do
-        create :userstory, complete: false
-        Userstory.incomplete.should eq Userstory.where(complete: false)
+    describe '.unaccepted' do
+      it 'returns all unaccepted userstories' do
+        create :userstory, status: Userstory::STATUS[:opened]
+        expect(Userstory.unaccepted.all).to eq Userstory.where(status: Userstory::STATUS[:opened])
       end
     end
 

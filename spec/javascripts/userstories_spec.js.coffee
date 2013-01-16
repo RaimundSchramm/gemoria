@@ -54,3 +54,9 @@ describe 'rendersAjaxFormInActionsSection', ->
     node = $('section section.actions')
     renderAjaxFormInActionsSection(node, form)
     expect($('form#new_userstory')).toExist()
+
+describe 'replace status section', ->
+  xit 'replaces the status and the action link via AJAX', ->
+    loadFixtures 'userstories_show'
+    replaceStatusSection()
+    expect($())
