@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe UserstoriesController do
+  render_views
+
   let(:project)   { create(:project) }
   let(:userstory) { create(:userstory, project: project) }
 

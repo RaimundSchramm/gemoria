@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe AcceptanceTestsController do
-
   render_views
 
   let(:userstory)       { create(:userstory) }
