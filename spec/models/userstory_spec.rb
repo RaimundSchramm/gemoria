@@ -1,6 +1,13 @@
 require 'spec_helper'
 
 describe Userstory do
+
+  context 'attributes and constants' do
+  end
+
+  context 'associations' do
+  end
+
   context 'scopes' do
     describe '.accepted' do
       it 'returns all accepted userstories' do
@@ -31,6 +38,9 @@ describe Userstory do
     end
   end
 
+  context 'callbacks' do
+  end
+
   context 'derived attributes' do
     describe '#full_name' do
       it 'returns the name and the description as one string' do
@@ -41,9 +51,11 @@ describe Userstory do
   end
 
   context 'delegates' do
+    let(:category)  { create(:category, name: 'Feature')}
+    let(:userstory) { create(:userstory, category: category) }
+
     describe '#incomplete_tasks' do
       it 'returns all incomplete tasks of userstory' do
-        userstory = create(:userstory)
         task = create(:task, userstory: userstory, complete: false)
         userstory.incomplete_tasks.should eq [task]
       end
@@ -51,9 +63,14 @@ describe Userstory do
 
     describe '#complete_tasks' do
       it 'returns all complete tasks of userstory' do
-        userstory = create(:userstory)
         task = create(:task, userstory: userstory, complete: true)
         userstory.complete_tasks.should eq [task]
+      end
+    end
+
+    describe '#category_name' do
+      it 'returns the name of the category' do
+        expect(userstory.category_name).to eq 'Feature'
       end
     end
   end

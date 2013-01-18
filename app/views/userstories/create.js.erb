@@ -5,4 +5,4 @@ $('#new_userstory_link').show();
 <%# else %>
 //  $('section#incomplete_userstories tbody').append('<%= j render(@userstory) %>');
 <%# end %>
-$('section#backlog').append('<%= j render(@userstory) %>');
+$('section#backlog table tbody').append('<%= j render(@userstory) %>');

@@ -12,5 +12,8 @@
   .field
     = f.label :description
     = f.text_area :description
+  .field
+    = f.label :category_id
+    = f.select :category_id, Category.all.map {|c| [c.name, c.id]}, prompt: 'choose please'
   .actions
     = f.submit 'Save'

@@ -2,7 +2,7 @@
   %header
     %h1= "Userstories for #{@project.name}"
   %section.actions
-    = link_to 'New userstory', new_project_userstory_path(@project), remote: true, id: 'new_userstory_link'
+    = link_to 'New userstory', new_project_userstory_path(@project), id: 'new_userstory_link', remote: true
 
   .row
     .span6
@@ -12,11 +12,12 @@
           %table
             %thead
               %tr
-                %td No.
+                %td Category
                 %td Description
                 %td Priority
                 %td Velocity
                 %td Actions
+                %td No.
             %tbody
 
     .span6
@@ -30,12 +31,13 @@
           %table.table
             %thead
               %tr
-                %td No.
+                %td Category
                 %td Description
                 %td Priority
                 %td Velocity
                 %td Status
                 %td Actions
+                %td No.
             %tbody
               = render @unaccepted_userstories
 
@@ -45,12 +47,13 @@
           %table.table
             %thead
               %tr
-                %td No.
+                %td Category
                 %td Description
                 %td Priority
                 %td Velocity
                 %td Status
                 %td Actions
+                %td No.
             %tbody
               = render @accepted_userstories
 

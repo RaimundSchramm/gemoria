@@ -1,11 +1,12 @@
 class Userstory < ActiveRecord::Base
   # attributes and constants
-  attr_accessible :project_id, :description, :name, :complete, :tasks_attributes, :status
+  attr_accessible :project_id, :description, :name, :complete, :tasks_attributes, :status, :category_id
 
   STATUS = { opened: 'opened', started: 'started', completed: 'completed', rejected: 'rejected', accepted: 'accepted' }
 
   # associations
   belongs_to  :project
+  belongs_to  :category
   has_many    :tasks
   has_many    :acceptance_tests
 
@@ -16,7 +17,6 @@ class Userstory < ActiveRecord::Base
   scope :unaccepted,  where('status <> ?', STATUS[:accepted])
   scope :opened,      where(status: 'opened')
   scope :recent,      where(status: 'recent').order('updated_at desc')
-
 
   # callbacks
   after_create :initialize_status_as_opened
@@ -37,5 +37,9 @@ class Userstory < ActiveRecord::Base
 
   def complete_tasks
     tasks.complete
+  end
+
+  def category_name
+    category.name
   end
 end

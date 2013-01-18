@@ -1,5 +1,8 @@
 Gemoria::Application.routes.draw do
 
+  resources :categories
+
+
   resources :projects do
     resources :userstories
   end

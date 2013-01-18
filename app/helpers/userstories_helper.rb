@@ -29,4 +29,13 @@ module UserstoriesHelper
   def reject_link(project, userstory)
     link_to 'Reject', project_userstory_path(@project, @userstory, userstory: { status: Userstory::STATUS[:rejected] }), method: :put, remote: true
   end
+
+  def complete_class(obj)
+    return unless [Userstory, AcceptanceTest, Task].include? obj.class
+    if obj.class == Userstory
+      'complete' if obj.status == Userstory::STATUS[:accepted]
+    else
+      'complete' if obj.complete?
+    end
+  end
 end
