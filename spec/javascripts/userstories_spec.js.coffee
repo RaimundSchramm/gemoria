@@ -21,13 +21,6 @@ describe 'js for userstories#show', ->
   beforeEach ->
     loadFixtures 'userstories_show'
 
-  describe 'showAllOtherActionLinks', ->
-    it 'makes all links on page visible', ->
-      $('a').hide()
-      expect($('a')).toBeHidden()
-      showAllOtherActionLinks($('a#new_task_link'))
-      expect($('a#new_acceptance_test_link')).toHaveCss({display: "inline"})
-
   describe 'showAllActionsSections', ->
     it 'shows all action sections', ->
       $('section.actions').hide()
@@ -36,23 +29,34 @@ describe 'js for userstories#show', ->
 
   describe 'removeAjaxForms', ->
     it 'removes all open ajax forms in actions sections', ->
-      $('section#tasks section.actions a').after('<form id="new_userstory"></form>')
+      $('section#tasks section.actions a').after('<form id="new_userstory1"></form>')
+      $('section#tasks section.actions').after('<form id="new_userstory2"></form>')
+      $('section#tasks').after('<form id="new_userstory3"></form>')
       removeAjaxForms()
-      expect($('form')).not.toExist()
+      expect($('form#new_userstory1')).not.toExist()
+      expect($('form#new_userstory2')).toExist()
+      expect($('form#new_userstory3')).toExist()
 
-  describe 'hideLinkWithId(id)', ->
-    it 'hides the new link with the passed id', ->
+  describe 'hideActionLink(node)', ->
+    it 'hides any node (used in js templates for action links)', ->
       loadFixtures 'userstories_show'
-      hideLinkWithId('new_acceptance_test_link')
+      hideActionLink($('a#new_acceptance_test_link'))
       expect($('a#new_acceptance_test_link')).toBeHidden()
 
-describe 'rendersAjaxFormInActionsSection', ->
+  describe 'showActionLinksExcept(node)', ->
+    it 'makes all links on page visible except node', ->
+      $('a').hide()
+      expect($('a')).toBeHidden()
+      showActionLinksExcept($('a#new_task_link'))
+      expect($('a#new_acceptance_test_link')).toHaveCss({display: "inline"})
+
+describe 'renderAjaxForm(type, form)', ->
   it 'puts a form String into section#actions', ->
     loadFixtures 'userstories_index'
     expect($('form#new_userstory')).not.toExist()
     form = '<form id="new_userstory"></form>'
-    node = $('section section.actions')
-    renderAjaxFormInActionsSection(node, form)
+    type = 'userstories'
+    renderAjaxForm(type, form)
     expect($('form#new_userstory')).toExist()
 
 describe 'replace status section', ->

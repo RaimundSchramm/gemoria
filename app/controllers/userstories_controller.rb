@@ -9,6 +9,10 @@ class UserstoriesController < ApplicationController
 
   def new
     @userstory = @project.userstories.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create

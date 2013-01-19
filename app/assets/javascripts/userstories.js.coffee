@@ -7,10 +7,10 @@
 $.fn.closeFormAndReactivateActions = ->
   this.click ->
     removeParentForm($(this))
-    showAllOtherActionLinks()
+    showActionLinksExcept()
 
 # $('section.actions a').show();
-@showAllOtherActionLinks = (node) ->
+@showActionLinksExcept = (node) ->
   $('section.actions a').not(node).show()
 
 @showAllActionsSections = ->
@@ -23,8 +23,8 @@ $.fn.closeFormAndReactivateActions = ->
 @removeAjaxForms = ->
   $('section.actions form').remove()
 
-@renderAjaxFormInActionsSection = (node, form) ->
-  node.after(form)
+@renderAjaxForm = (type, form_from_server) ->
+  $("section##{type} section.actions a").after(form_from_server)
 
-@hideLinkWithId = (id) ->
-  $("a##{id}").hide()
+@hideActionLink = (node) ->
+  node.hide()

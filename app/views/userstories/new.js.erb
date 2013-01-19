@@ -1,3 +1,3 @@
-hideLinkWithId('new_userstory_link');
-renderAjaxFormInActionsSection($('section#userstories section.actions a'), ('<%= j render("ajax_form") %>'));
+hideActionLink($('a#new_userstory_link'));
+renderAjaxForm('userstories', '<%= j render("ajax_form") %>');
 $('button.close').closeFormAndReactivateActions();

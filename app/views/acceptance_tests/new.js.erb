@@ -1,5 +1,6 @@
-hideLinkWithId('new_acceptance_test_link');
+hideActionLink($('a#new_acceptance_test_link'));
 removeAjaxForms();
-showAllOtherActionLinks($('a#new_acceptance_test_link'));
-renderAjaxFormInActionsSection($('section#acceptance_tests section.actions a'), '<%= j render("ajax_form") %>');
+showActionLinksExcept($('a#new_acceptance_test_link'));
+$('li').show();
+renderAjaxForm('acceptance_tests', '<%= j render("ajax_form") %>');
 $('button.close').closeFormAndReactivateActions();
