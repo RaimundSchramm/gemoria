@@ -1,10 +1,6 @@
-//%li{ id: "acceptance_test_#{acceptance_test.id}" }
-//= form_for [acceptance_test.userstory, acceptance_test], remote: true do |f|
-//= f.check_box :complete, id: "acceptance_test_complete_#{acceptance_test.id}"
-//= f.submit 'Update'
-%div.acceptance_test{ id: "acceptance_test_#{acceptance_test.id}", class: "#{complete_class(acceptance_test)}" }
-  .text= acceptance_test.description
-  .actions
+%tr.acceptance_test{ id: "acceptance_test_#{acceptance_test.id}", class: "#{complete_class(acceptance_test)}" }
+  %td.text= acceptance_test.description
+  %td.actions
     = edit_link(acceptance_test)
     = complete_acceptance_test_link(acceptance_test)
     = destroy_link(acceptance_test)

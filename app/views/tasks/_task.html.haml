@@ -1,6 +1,6 @@
-%div.task{ id: "task_#{task.id}", class: "#{complete_class(task)}" }
-  .text= task.name
-  .actions
+%tr.task{ id: "task_#{task.id}", class: "#{complete_class(task)}" }
+  %td.text= task.name
+  %td.actions
     = edit_link(task)
     = complete_task_link(task)
     = destroy_link(task)

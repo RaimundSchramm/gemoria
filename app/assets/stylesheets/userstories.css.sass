@@ -59,27 +59,31 @@ section#status
     background-color: #4FB34F
 
 section#acceptance_tests
+  width: 700px
   ul
     list-style-type: none
 
-section#tasks .actions
-  //float: right
-  form
-    display: inline
-
-.acceptance_test, .task
-  background-color: #DFB562
-  height: 22px
-  width: 500px
-  .text
-    display: inline
-    width: 300px
+section#tasks
+  width: 700px
   .actions
-    width: 200px
-    float: right
-    text-align: right
+    //float: right
+    form
+      display: inline
 
-.acceptance_test.complete, .task.complete
-  background-color: #9ecd5a
-  text-decoration: line-through
-  color: #777
+tr.acceptance_test, .task
+  background-color: #ffb573
+  td.text
+    width: 500px
+    padding: 10px
+  td.actions
+    width: 100px
+    text-align: right
+    vertical-align: top
+    padding: 10px
+  &.complete
+    background-color: #66e275
+    td.text
+      text-decoration: line-through
+      color: #777
+  &:hover
+    background-color: #ccc

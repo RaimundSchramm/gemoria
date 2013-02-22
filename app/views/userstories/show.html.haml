@@ -11,11 +11,15 @@
   %section.incomplete
     %header
       %h3 not yet accepted
-    = render @incomplete_acceptance_tests
+    %table
+      %tbody
+        = render @incomplete_acceptance_tests
   %section.complete
     %header
       %h3 accepted
-    = render @complete_acceptance_tests
+    %table
+      %tbody
+        = render @complete_acceptance_tests
 
 %section#tasks
   %header
@@ -25,12 +29,16 @@
   %section.incomplete
     %header
       %h3 incomplete
-    = render @incomplete_tasks
+    %table
+      %tbody
+        = render @incomplete_tasks
   #clearfix
   %section.complete
     %header
       %h3 complete
-    = render @complete_tasks
+    %table
+      %tbody
+        = render @complete_tasks
 
 = link_to 'Back to project', @project
 |
