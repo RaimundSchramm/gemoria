@@ -13,19 +13,25 @@ describe 'js for close button in forms', ->
 
   describe 'removeParentForm', ->
     it 'removes the parent form of clicked close button', ->
-      node = $('button.close')
-      removeParentForm(node)
+      removeParentForm($('button.close'))
       expect($('form')).not.toExist()
 
 describe 'js for userstories#show', ->
   beforeEach ->
     loadFixtures 'userstories_show'
 
-  describe 'showAllActionsSections', ->
-    it 'shows all action sections', ->
-      $('section.actions').hide()
-      expect($('section.actions')).toBeHidden()
-      showAllActionsSections()
+  describe 'hideActionLink(node)', ->
+    it 'hides any node (used in js templates for action links)', ->
+      hideActionLink($('a#new_acceptance_test_link'))
+      expect($('a#new_acceptance_test_link')).toBeHidden()
+
+  describe 'showActionLinksExcept(node)', ->
+    it 'makes all links on page visible except node', ->
+      $('a').hide()
+      expect($('a')).toBeHidden()
+      showActionLinksExcept($('a#new_task_link'))
+      expect($('a#new_acceptance_test_link')).toHaveCss({display: "inline"})
+      expect($('a#new_task_link')).toBeHidden()
 
   describe 'removeAjaxForms', ->
     it 'removes all open ajax forms in actions sections', ->
@@ -37,18 +43,20 @@ describe 'js for userstories#show', ->
       expect($('form#new_userstory2')).toExist()
       expect($('form#new_userstory3')).toExist()
 
-  describe 'hideActionLink(node)', ->
-    it 'hides any node (used in js templates for action links)', ->
-      loadFixtures 'userstories_show'
-      hideActionLink($('a#new_acceptance_test_link'))
-      expect($('a#new_acceptance_test_link')).toBeHidden()
+  describe 'replace status section', ->
+    it 'replaces the status and the action link via AJAX', ->
+      status = '<section id="status" class="started"><a>Complete</a><hr/>started</section>'
+      replaceStatusSection(status)
+      expect($('section#status')).toHaveClass 'started'
+      expect($('section#status a')).toHaveText 'Complete'
+      expect($('section#status')).toHaveText /started/
 
-  describe 'showActionLinksExcept(node)', ->
-    it 'makes all links on page visible except node', ->
-      $('a').hide()
-      expect($('a')).toBeHidden()
-      showActionLinksExcept($('a#new_task_link'))
-      expect($('a#new_acceptance_test_link')).toHaveCss({display: "inline"})
+  describe 'showItems', ->
+    it 'displays any previously hidden item', ->
+      $('div#acceptance_test_1').hide()
+      expect($('div#acceptance_test_1')).toBeHidden()
+      showItems()
+      expect($('div#acceptance_test_1')).toBeVisible()
 
 describe 'renderAjaxForm(type, form)', ->
   it 'puts a form String into section#actions', ->
@@ -57,10 +65,4 @@ describe 'renderAjaxForm(type, form)', ->
     form = '<form id="new_userstory"></form>'
     type = 'userstories'
     renderAjaxForm(type, form)
-    expect($('form#new_userstory')).toExist()
-
-describe 'replace status section', ->
-  xit 'replaces the status and the action link via AJAX', ->
-    loadFixtures 'userstories_show'
-    replaceStatusSection()
-    expect($())
+    expect($('section#userstories section.actions form#new_userstory')).toExist()

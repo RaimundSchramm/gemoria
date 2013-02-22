@@ -1,6 +1,6 @@
 hideActionLink($('a#new_task_link'));
 removeAjaxForms();
 showActionLinksExcept($('a#new_task_link'));
-$('li').show();
 renderAjaxForm('tasks', '<%= j render("ajax_form") %>');
+showItems();
 $('button.close').closeFormAndReactivateActions();

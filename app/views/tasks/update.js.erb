@@ -1,5 +1,9 @@
+removeAjaxForms();
+
+$('#task_<%= @task.id %>').remove();
+
 <% if @task.complete? %>
-  $('#edit_task_<%= @task.id %>').appendTo('section#tasks .complete');
+  $('section#tasks section.complete').append('<%= j render @task %>');
 <% else %>
-  $('#edit_task_<%= @task.id %>').appendTo('section#tasks .incomplete');
+  $('section#tasks section.incomplete').append('<%= j render @task %>');
 <% end %>

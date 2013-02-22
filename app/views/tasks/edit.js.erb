@@ -1,0 +1,7 @@
+$('#task_<%= @task.id %>').hide();
+removeAjaxForms();
+renderAjaxForm('tasks', '<%= j render("ajax_form") %>');
+$('div.task').not($('#task_<%= @task.id %>')).show();
+showActionLinksExcept();
+$('.acceptance_test, .task').not($('#task_<%= @task.id %>')).show();
+$('button.close').closeFormAndReactivateActions();

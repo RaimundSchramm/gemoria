@@ -185,7 +185,7 @@ describe TasksController do
       assigns(:task).should eq(task)
     end
 
-    it 'renders show template' do
+    it 'renders edit template' do
       get :edit, { userstory_id: userstory.to_param, :id => task.to_param}, valid_session
       response.should render_template 'edit'
     end

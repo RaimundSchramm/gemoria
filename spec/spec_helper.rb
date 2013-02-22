@@ -15,7 +15,10 @@ Spork.prefork do
   require 'rspec/autorun'
   require 'rspec/rails'
   require 'capybara/rspec'
+  require 'capybara/poltergeist'
   #require 'capybara/rails'
+
+  Capybara.javascript_driver = :poltergeist
 
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
@@ -41,6 +44,8 @@ Spork.prefork do
     # If you're not using ActiveRecord, or you'd prefer not to run each of your
     # examples within a transaction, remove the following line or assign false
     # instead of true.
+    # set to false with Capybara + Database Cleaner
+    # set to true with ActiveRecord::Base patch from Jose Valim and without Database Cleaner
     config.use_transactional_fixtures = false
 
     # If true, the base class of anonymous controllers will be inferred
@@ -59,18 +64,31 @@ Spork.prefork do
     # without having to call them on FactoryGirl directly
     config.include FactoryGirl::Syntax::Methods
 
-    config.before(:suite) do
-      DatabaseCleaner.strategy = :truncation
-    end
+  #   config.before(:suite) do
+  #     DatabaseCleaner.strategy = :truncation
+  #   end
      
-    config.before(:each) do
-      DatabaseCleaner.start
-    end
+  #   config.before(:each) do
+  #     DatabaseCleaner.start
+  #   end
      
-    config.after(:each) do
-      DatabaseCleaner.clean
+  #   config.after(:each) do
+  #     DatabaseCleaner.clean
+  #   end
+  end
+
+  class ActiveRecord::Base
+    mattr_accessor :shared_connection
+    @@shared_connection = nil
+
+    def self.connection
+      @shared_connection || retrieve_connection
     end
   end
+
+  # Forces all threads to share the same connection. This works on Capybara
+  # because it starts the web server in a thread
+  ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
 
 end
 

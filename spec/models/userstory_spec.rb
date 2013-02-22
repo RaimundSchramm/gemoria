@@ -39,6 +39,10 @@ describe Userstory do
   end
 
   context 'callbacks' do
+    describe '' do
+      xit '' do
+      end
+    end
   end
 
   context 'derived attributes' do

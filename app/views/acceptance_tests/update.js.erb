@@ -1,8 +1,9 @@
-$('li#acceptance_test_<%= @acceptance_test.id%>').replaceWith('<%= j render @acceptance_test %>');
-$('#edit_acceptance_test_<%= @acceptance_test.id %>').remove();
+removeAjaxForms();
+
+$('#acceptance_test_<%= @acceptance_test.id %>').remove();
+
 <% if @acceptance_test.complete? %>
-  $('#acceptance_test_<%= @acceptance_test.id %>').appendTo('section#acceptance_tests section.complete ul');
+  $('section#acceptance_tests section.complete').append('<%= j render @acceptance_test %>');
 <% else %>
-  $('#acceptance_test_<%= @acceptance_test.id %>').appendTo('section#acceptance_tests section.incomplete ul');
+  $('section#acceptance_tests section.incomplete').append('<%= j render @acceptance_test %>');
 <% end %>
-$('li').show();

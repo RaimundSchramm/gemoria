@@ -18,13 +18,6 @@ class Userstory < ActiveRecord::Base
   scope :opened,      where(status: 'opened')
   scope :recent,      where(status: 'recent').order('updated_at desc')
 
-  # callbacks
-  after_create :initialize_status_as_opened
-  def initialize_status_as_opened
-    self.status = STATUS[:opened]
-    self.save
-  end
-
   # derived attributes
   def full_name
     "#{name}: #{description}"
@@ -42,4 +35,13 @@ class Userstory < ActiveRecord::Base
   def category_name
     category.name
   end
+
+  # callbacks
+  before_create :initialize_status_as_opened
+
+  protected
+  def initialize_status_as_opened
+    self.status = STATUS[:opened]
+  end
+
 end

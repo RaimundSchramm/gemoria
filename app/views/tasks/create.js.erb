@@ -1,10 +1,7 @@
-$('#new_task').remove();
-$('#new_task_link').show();
-
+removeAjaxForms();
+showActionLinksExcept();
 <% if @task.complete? %>
   $('section#tasks section.complete').append('<%= j render(@task) %>');
 <% else %>
   $('section#tasks section.incomplete').append('<%= j render(@task) %>');
 <% end %>
-
-$('#edit_task_<%= @task.id %>').submitOnCheck();

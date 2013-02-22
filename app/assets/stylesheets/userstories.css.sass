@@ -61,3 +61,25 @@ section#status
 section#acceptance_tests
   ul
     list-style-type: none
+
+section#tasks .actions
+  //float: right
+  form
+    display: inline
+
+.acceptance_test, .task
+  background-color: #DFB562
+  height: 22px
+  width: 500px
+  .text
+    display: inline
+    width: 300px
+  .actions
+    width: 200px
+    float: right
+    text-align: right
+
+.acceptance_test.complete, .task.complete
+  background-color: #9ecd5a
+  text-decoration: line-through
+  color: #777

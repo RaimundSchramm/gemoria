@@ -1,6 +1,7 @@
-hideActionLink($('li#acceptance_test_<%= @acceptance_test.id %>'));
+$('#acceptance_test_<%= @acceptance_test.id %>').hide();
 removeAjaxForms();
-showActionLinksExcept();
-$('li').not($('li#acceptance_test_<%= @acceptance_test.id %>')).show();
 renderAjaxForm('acceptance_tests', '<%= j render("ajax_form") %>');
+$('div.acceptance_test').not($('#acceptance_test_<%= @acceptance_test.id %>')).show();
+showActionLinksExcept();
+$('.acceptance_test, .task').not($('#acceptance_test_<%= @acceptance_test.id %>')).show();
 $('button.close').closeFormAndReactivateActions();

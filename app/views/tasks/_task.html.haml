@@ -1,5 +1,6 @@
-= form_for [task.userstory, task], remote: true do |f|
-  = f.check_box :complete, id: "task_complete_#{task.id}"
-  = f.label "complete_#{task.id}", task.name
-  = f.submit 'Update'
-  = link_to '(remove)', [task.userstory, task], method: :delete, data: {confirm: 'Are you sure?'}, remote: true
+%div.task{ id: "task_#{task.id}", class: "#{complete_class(task)}" }
+  .text= task.name
+  .actions
+    = edit_link(task)
+    = complete_task_link(task)
+    = destroy_link(task)

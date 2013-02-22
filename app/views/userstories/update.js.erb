@@ -1,4 +1,1 @@
-$('section#status').removeClass('<%= @old_status %>').addClass('<%= @userstory.status %>');
-$('section#status').empty();
-$('section#status').append('<%= link_to_next_status(@project, @userstory) %>').append('<hr/>');
-$('section#status').append('<%= @userstory.status %>');
+replaceStatusSection('<%= j render 'status' %>');

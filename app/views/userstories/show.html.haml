@@ -11,13 +11,11 @@
   %section.incomplete
     %header
       %h3 not yet accepted
-    %ul
-      = render @incomplete_acceptance_tests
+    = render @incomplete_acceptance_tests
   %section.complete
     %header
       %h3 accepted
-    %ul
-      = render @complete_acceptance_tests
+    = render @complete_acceptance_tests
 
 %section#tasks
   %header
@@ -44,7 +42,4 @@
 
 %hr
 
-%section#status{ class: @userstory.status }
-  = link_to_next_status(@project, @userstory)
-  %hr
-  = @userstory.status
+= render 'status'

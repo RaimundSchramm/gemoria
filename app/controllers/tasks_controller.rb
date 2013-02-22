@@ -32,6 +32,7 @@ class TasksController < ApplicationController
   end
 
   def update
+    puts params
     @task = @userstory.tasks.find(params[:id])
     respond_to do |format|
       if @task.update_attributes!(params[:task])

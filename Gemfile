@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 gem 'rails',              '3.2.9'
 gem 'jquery-rails'
@@ -31,9 +31,10 @@ group :development, :test do
   gem 'jasminerice'
 
   # test framework for acceptance testing ruby, rails and javascript
-  gem "capybara"
+  gem "capybara", '~> 1.1.0'
   gem 'launchy'
   gem 'database_cleaner'
+  gem 'poltergeist'
 
   # test fixtures replacement
   gem "factory_girl_rails"
@@ -43,9 +44,9 @@ group :development, :test do
 
   # automating on file change
   gem 'guard-rspec'     # for rspec-rails
-  gem 'rb-inotify'
+  gem 'rb-inotify', '~> 0.8.8'
   gem 'libnotify'
-  gem 'guard-spork'     # for spork-rails
+  gem 'guard-spork', github: 'guard/guard-spork'#, branch: 'master'     # for spork-rails
   gem 'guard-livereload'# for assets
   gem 'guard-jasmine'   # for jasminerice, depends on phantomjs
 
@@ -53,3 +54,7 @@ group :development, :test do
   gem 'capistrano'
   gem 'rvm-capistrano'
 end
+
+# dependency issues
+gem 'rack', '1.4.1'
+gem 'childprocess'#, '0.3.7'

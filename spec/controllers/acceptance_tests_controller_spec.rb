@@ -113,7 +113,7 @@ describe AcceptanceTestsController do
       response.should render_template 'edit'
     end
 
-    it 'assigns a new acceptance test as instance variable' do
+    it 'assigns acceptance test as instance variable' do
       get :edit, { userstory_id: userstory.to_param, id: acceptance_test.to_param }, {}
       assigns(:acceptance_test).should eq acceptance_test
       assigns(:acceptance_test).userstory_id.should eq userstory.id

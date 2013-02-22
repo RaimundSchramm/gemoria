@@ -1,3 +1,10 @@
-%li{ id: "acceptance_test_#{acceptance_test.id}" }
-  =link_to "#{acceptance_test.description}", edit_userstory_acceptance_test_path(@userstory, acceptance_test), remote: true
-  =link_to '(remove)', userstory_acceptance_test_path(@userstory, acceptance_test), method: :delete, data: { confirm: 'Are you sure?' }, remote: true
+//%li{ id: "acceptance_test_#{acceptance_test.id}" }
+//= form_for [acceptance_test.userstory, acceptance_test], remote: true do |f|
+//= f.check_box :complete, id: "acceptance_test_complete_#{acceptance_test.id}"
+//= f.submit 'Update'
+%div.acceptance_test{ id: "acceptance_test_#{acceptance_test.id}", class: "#{complete_class(acceptance_test)}" }
+  .text= acceptance_test.description
+  .actions
+    = edit_link(acceptance_test)
+    = complete_acceptance_test_link(acceptance_test)
+    = destroy_link(acceptance_test)

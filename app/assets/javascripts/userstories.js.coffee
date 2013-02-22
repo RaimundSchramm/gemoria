@@ -2,29 +2,30 @@
 ## All this logic will automatically be available in application.js.
 ## You can use CoffeeScript in this file: http:#jashkenas.github.com/coffee-script/
 
-# activateCloseButton()
-# $('button.close').closeAForm()
 $.fn.closeFormAndReactivateActions = ->
   this.click ->
     removeParentForm($(this))
     showActionLinksExcept()
+    showItems()
+  this
 
-# $('section.actions a').show();
+@hideActionLink = (node) ->
+  node.hide()
+
 @showActionLinksExcept = (node) ->
   $('section.actions a').not(node).show()
 
-@showAllActionsSections = ->
-  $('section.actions').show()
-
-@removeParentForm = (node) ->
-  node.parent().remove()
-
-# $('section.actions form').remove();
 @removeAjaxForms = ->
   $('section.actions form').remove()
 
 @renderAjaxForm = (type, form_from_server) ->
   $("section##{type} section.actions a").after(form_from_server)
 
-@hideActionLink = (node) ->
-  node.hide()
+@removeParentForm = (node) ->
+  node.parent('form').remove()
+
+@replaceStatusSection = (partial) ->
+  $('section#status').replaceWith(partial)
+
+@showItems = ->
+  $('.acceptance_test, .task').show()
