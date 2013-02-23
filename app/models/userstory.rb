@@ -33,7 +33,7 @@ class Userstory < ActiveRecord::Base
   end
 
   def category_name
-    category.name
+    category ? category.name : ""
   end
 
   # callbacks

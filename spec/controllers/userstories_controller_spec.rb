@@ -185,7 +185,7 @@ describe UserstoriesController do
     end
 
     it 'deletes this userstory' do
-      userstory = FactoryGirl.create(:userstory, project: project)
+      userstory = create :userstory, project: project
       expect {
         delete 'destroy', valid_attributes.merge({ id: userstory.to_param }), valid_session
       }.to change(Userstory, :count).from(1).to(0)

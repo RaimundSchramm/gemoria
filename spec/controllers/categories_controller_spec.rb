@@ -37,7 +37,7 @@ describe CategoriesController do
 
   describe "GET index" do
     it "assigns all categories as @categories" do
-      category = Category.create! valid_attributes
+      category = create :category
       get :index, {}, valid_session
       assigns(:categories).should eq([category])
     end

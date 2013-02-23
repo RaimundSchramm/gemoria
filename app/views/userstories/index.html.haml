@@ -1,60 +1,58 @@
-%section#userstories
+%section#userstories.group
   %header
     %h1= "Userstories for #{@project.name}"
   %section.actions
     = link_to 'New userstory', new_project_userstory_path(@project), id: 'new_userstory_link', remote: true
+    |
+    = link_to 'Back to project', @project
 
-  .row
-    .span6
-      %section#backlog
-        %header
-          %h2 Backlog
-          %table
-            %thead
-              %tr
-                %td Category
-                %td Description
-                %td Priority
-                %td Velocity
-                %td Actions
-                %td No.
-            %tbody
+  %section#backlog
+    %header
+      %h2 Backlog
+      %table
+        %thead
+          %tr
+            %td Category
+            %td Description
+            %td Priority
+            %td Velocity
+            %td No.
+        %tbody
 
-    .span6
-      %section#current_sprint
-        %header
-          %h2 Current sprint
+  %section#current_sprint
+    %header
+      %h2 Current sprint
 
-        %section.incomplete
-          %header
-            %h2 Incomplete
-          %table.table
-            %thead
-              %tr
-                %td Category
-                %td Description
-                %td Priority
-                %td Velocity
-                %td Status
-                %td Actions
-                %td No.
-            %tbody
-              = render @unaccepted_userstories
+    %section.incomplete
+      %header
+        %h2 Incomplete
+      %table
+        %thead
+          %tr
+            %td Category
+            %td Description
+            %td Priority
+            %td Velocity
+            %td Status
+            %td No.
+        %tbody
+          = render @unaccepted_userstories
 
-        %section.complete
-          %header
-            %h2 Complete
-          %table.table
-            %thead
-              %tr
-                %td Category
-                %td Description
-                %td Priority
-                %td Velocity
-                %td Status
-                %td Actions
-                %td No.
-            %tbody
-              = render @accepted_userstories
+    %section.complete
+      %header
+        %h2 Complete
+      %table
+        %thead
+          %tr
+            %td Category
+            %td Description
+            %td Priority
+            %td Velocity
+            %td Status
+            %td No.
+        %tbody
+          = render @accepted_userstories
 
-= link_to 'Back to project', @project
+%section#accepted
+  %header
+    %h2 Accepted

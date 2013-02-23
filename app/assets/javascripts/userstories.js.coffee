@@ -19,7 +19,7 @@ $.fn.closeFormAndReactivateActions = ->
   $('section.actions form').remove()
 
 @renderAjaxForm = (type, form_from_server) ->
-  $("section##{type} section.actions a").after(form_from_server)
+  $("section##{type} section.actions").append(form_from_server)
 
 @removeParentForm = (node) ->
   node.parent('form').remove()

@@ -16,19 +16,19 @@
     %table.userstories
       %thead
         %tr
-          %td No.
+          %td Category
           %td Description
           %td Priority
           %td Velocity
-          %td Developer
+          %td No.
       %tbody
         - @project.userstories.each do |userstory|
           %tr{ class: userstory.status }
-            %td= "#{userstory.name}"
+            %td= "#{userstory.category_name}"
             %td= "#{userstory.description}"
             %td
             %td
-            %td
+            %td= "#{userstory.name}"
 
 = link_to 'Edit project', edit_project_path(@project)
 \|

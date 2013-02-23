@@ -4,6 +4,4 @@
   %td
   %td
   %td= userstory.status
-  %td= link_to 'Show', project_userstory_path(@project, userstory), class: 'btn btn-mini'
-  %td= link_to 'x', project_userstory_path(@project, userstory), method: :delete, data: {confirm: 'Are you sure?' }, class: 'btn btn-mini btn-danger'
   %td= "#{userstory.name}"

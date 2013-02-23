@@ -130,7 +130,7 @@ feature 'manage userstory', js: true do
     visit "/projects/#{project.id}/userstories/#{userstory.id}"
 
     # user interaction
-    within "div#acceptance_test_#{acceptance_test.id} div.actions" do
+    within "#acceptance_test_#{acceptance_test.id} .actions" do
       click_on "edit_acceptance_test_#{acceptance_test.id}"
     end
     within 'section#tasks section.actions' do
@@ -142,7 +142,7 @@ feature 'manage userstory', js: true do
       page.should have_selector('a#new_acceptance_test_link', display: 'none')
     end
     within 'section#acceptance_tests section.incomplete' do
-      page.should have_selector("div#acceptance_test_#{acceptance_test.id}")
+      page.should have_selector("#acceptance_test_#{acceptance_test.id}")
     end
     within 'section#tasks section.actions' do
       page.should have_selector('form.new_task')

@@ -35,3 +35,12 @@ form
     height: 60px
   label
     display: inline
+
+.group
+  zoom: 1
+  &:before,
+  &:after
+    content: ""
+    display: table
+  &:after
+    clear: both

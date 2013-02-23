@@ -76,6 +76,11 @@ describe Userstory do
       it 'returns the name of the category' do
         expect(userstory.category_name).to eq 'Feature'
       end
+
+      it 'returns an empty string if category is empty' do
+        userstory.category = nil
+        expect(userstory.category_name).to eq ''
+      end
     end
   end
 end

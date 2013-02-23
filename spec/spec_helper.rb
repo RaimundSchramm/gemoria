@@ -51,7 +51,7 @@ Spork.prefork do
     # If true, the base class of anonymous controllers will be inferred
     # automatically. This will be the default behavior in future versions of
     # rspec-rails.
-    config.infer_base_class_for_anonymous_controllers = false
+    config.infer_base_class_for_anonymous_controllers = true
 
     # Run specs in random order to surface order dependencies. If you find an
     # order dependency and want to debug it, you can fix the order by providing
@@ -64,31 +64,31 @@ Spork.prefork do
     # without having to call them on FactoryGirl directly
     config.include FactoryGirl::Syntax::Methods
 
-  #   config.before(:suite) do
-  #     DatabaseCleaner.strategy = :truncation
-  #   end
+    config.before(:suite) do
+      DatabaseCleaner.strategy = :truncation
+    end
      
-  #   config.before(:each) do
-  #     DatabaseCleaner.start
-  #   end
+    config.before(:each) do
+      DatabaseCleaner.start
+    end
      
-  #   config.after(:each) do
-  #     DatabaseCleaner.clean
-  #   end
-  end
-
-  class ActiveRecord::Base
-    mattr_accessor :shared_connection
-    @@shared_connection = nil
-
-    def self.connection
-      @shared_connection || retrieve_connection
+    config.after(:each) do
+      DatabaseCleaner.clean
     end
   end
 
-  # Forces all threads to share the same connection. This works on Capybara
-  # because it starts the web server in a thread
-  ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
+  # class ActiveRecord::Base
+  #   mattr_accessor :shared_connection
+  #   @@shared_connection = nil
+
+  #   def self.connection
+  #     @shared_connection || retrieve_connection
+  #   end
+  # end
+
+  # # Forces all threads to share the same connection. This works on Capybara
+  # # because it starts the web server in a thread
+  # ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
 
 end
 

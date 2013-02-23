@@ -22,14 +22,16 @@
       padding-right: 10px
 
 #current_sprint
-  border: 1px black solid
-  padding: 10px
+  float: right
 
 #backlog
-  border: 1px black solid
-  background-color: #62da97
   float: left
+
+#backlog, #current_sprint, #accepted
+  width: 550px
   padding: 10px
+  table
+    width: 550px
 
 tr.opened
   background-color: white
@@ -66,12 +68,15 @@ section#acceptance_tests
 section#tasks
   width: 700px
   .actions
-    //float: right
     form
       display: inline
 
-tr.acceptance_test, .task
-  background-color: #ffb573
+tr
+  &.acceptance_test,
+  &.task
+    background-color: #ffb573
+  td
+    padding: 5px
   td.text
     width: 500px
     padding: 10px
