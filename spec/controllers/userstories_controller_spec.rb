@@ -3,8 +3,9 @@ require 'spec_helper'
 describe UserstoriesController do
   render_views
 
-  let(:project)   { create(:project) }
-  let(:userstory) { create(:userstory, project: project) }
+  let(:project)    { create :project }
+  let!(:userstory) { create :userstory, project: project }
+  let!(:sprint)    { create :sprint, project: project }
 
   def valid_attributes
     parent.merge(userstory: attributes_for(:userstory))
@@ -37,25 +38,32 @@ describe UserstoriesController do
 
   describe "GET 'index'" do
     it "returns http success" do
-      get 'index', valid_attributes, valid_session
-      response.should be_success
+      get 'index', parent, valid_session
+      expect(response).to be_success
     end
 
     it "assigns all accepted userstories of the project as @accepted" do
-      create(:userstory, complete: true)
-      get 'index', valid_attributes, valid_session
-      expect(assigns(:accepted_userstories)).to eq assigns(:project).accepted_userstories
+      userstory.update_attributes( { status: 'accepted', position: 'sprint' } )
+      get 'index', parent, valid_session
+      expect(assigns(:accepted_userstories)).not_to be_empty
+      expect(assigns(:accepted_userstories)).to eq project.accepted_userstories
     end
 
     it "assigns all unaccepted userstories of the project" do
-      create(:userstory, complete: false)
-      get 'index', valid_attributes, valid_session
-      expect(assigns(:unaccepted_userstories)).to eq assigns(:project).unaccepted_userstories
+      userstory.update_attributes( { position: 'sprint' } )
+      get 'index', parent, valid_session
+      expect(assigns(:unaccepted_userstories)).not_to be_empty
+      expect(assigns(:unaccepted_userstories)).to eq project.unaccepted_userstories
     end
 
     it "renders index template" do
-      get 'index', valid_attributes, valid_session
-      response.should render_template 'index'
+      get 'index', parent, valid_session
+      expect(response).to render_template 'index'
+    end
+
+    it "assigns all backlog userstories of the project" do
+      get 'index', parent, valid_session
+      expect(assigns(:backlog)).to eq project.backlog
     end
   end
 
@@ -185,7 +193,6 @@ describe UserstoriesController do
     end
 
     it 'deletes this userstory' do
-      userstory = create :userstory, project: project
       expect {
         delete 'destroy', valid_attributes.merge({ id: userstory.to_param }), valid_session
       }.to change(Userstory, :count).from(1).to(0)

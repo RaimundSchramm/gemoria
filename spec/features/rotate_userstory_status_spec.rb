@@ -4,6 +4,7 @@ feature 'A userstory should have a rotating status' do
   scenario 'full status rotation' do
     project   = create :project
     userstory = create :userstory, project: project
+    sprint    = create :sprint, project: project
     visit "/projects/#{project.id}/userstories/#{userstory.id}"
     expect(page).to have_content userstory.full_name
     expect(page).to have_content project.name

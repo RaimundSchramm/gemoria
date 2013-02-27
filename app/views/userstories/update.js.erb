@@ -1,1 +1,8 @@
 replaceStatusSection('<%= j render 'status' %>');
+$('section#backlog').replaceWith('<%= j render "backlog" %>');
+$('section#current_sprint').replaceWith('<%= j render "current_sprint" %>');
+<% if @project.current_sprint_complete? %>
+  $('#complete_sprint').replaceWith('<div id="complete_sprint"><%= j complete_sprint_link(@project.sprints.first) %></div>');
+<% else %>
+  $('#complete_sprint a').remove();
+<% end %>

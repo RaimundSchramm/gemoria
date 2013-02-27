@@ -2,9 +2,10 @@ class UserstoriesController < ApplicationController
   before_filter :parent
 
   def index
-    @unaccepted_userstories  = @project.unaccepted_userstories
-    @accepted_userstories    = @project.accepted_userstories
-    @backlog = @project.backlog
+    @unaccepted_userstories = @project.userstories.sprint.unaccepted
+    @accepted_userstories   = @project.userstories.sprint.accepted
+    @backlog                = @project.backlog
+    @done                   = @project.done
   end
 
   def new
@@ -19,6 +20,7 @@ class UserstoriesController < ApplicationController
     @userstory = @project.userstories.new(params[:userstory])
     respond_to do |format|
       if @userstory.save
+        @backlog   = @project.backlog
         format.html { redirect_to @userstory.project }
         format.js
       else
@@ -40,10 +42,13 @@ class UserstoriesController < ApplicationController
   end
 
   def update
-    @userstory = @project.userstories.find(params[:id])
+    @userstory  = @project.userstories.find(params[:id])
     @old_status = @userstory.status
     respond_to do |format|
       if @userstory.update_attributes(params[:userstory])
+        @unaccepted_userstories   = @project.userstories.sprint.unaccepted
+        @accepted_userstories     = @project.userstories.sprint.accepted
+        @backlog                  = @project.backlog
         format.html { redirect_to project_userstory_path @project, @userstory }
         format.js
       else

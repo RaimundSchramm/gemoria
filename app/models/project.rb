@@ -2,6 +2,7 @@ class Project < ActiveRecord::Base
   attr_accessible :name, :userstories_attributes
 
   has_many :userstories
+  has_many :sprints
 
   accepts_nested_attributes_for :userstories, allow_destroy: true
 
@@ -24,13 +25,26 @@ class Project < ActiveRecord::Base
   end
 
   def unaccepted_userstories
-    userstories.unaccepted
+    userstories.unaccepted.all
   end
 
   def accepted_userstories
-    userstories.accepted
+    userstories.accepted.all
   end
 
   def backlog
+    userstories.backlog.all
+  end
+
+  def sprint
+    userstories.sprint.all
+  end
+
+  def current_sprint_complete?
+    accepted_userstories == sprint ? true : false
+  end
+
+  def done
+    userstories.done.all
   end
 end

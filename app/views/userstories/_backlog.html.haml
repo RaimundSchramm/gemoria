@@ -1,0 +1,14 @@
+%section#backlog
+  %header
+    %h2 Backlog
+  %table
+    %thead
+      %tr
+        %td
+        %td Category
+        %td Description
+        %td Priority
+        %td Velocity
+        %td No.
+    %tbody
+      = render :partial => 'backlog_userstory', :collection => @backlog, :as => :userstory

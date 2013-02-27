@@ -112,4 +112,18 @@ module UserstoriesHelper
       obj.complete? ? 'complete' : 'incomplete'
     end
   end
+
+  def sprint_link(userstory)
+    link_to '<'.html_safe,
+            project_userstory_path(userstory.project, userstory, userstory: { position: Userstory::POSITION[:sprint], sprint_id: userstory.project.sprints.first.id }),
+            method: :put,
+            remote: true
+  end
+
+  def backlog_link(userstory)
+    link_to '>'.html_safe,
+            project_userstory_path(userstory.project, userstory, userstory: { position: Userstory::POSITION[:backlog], sprint_id: nil }),
+            method: :put,
+            remote: true
+  end
 end

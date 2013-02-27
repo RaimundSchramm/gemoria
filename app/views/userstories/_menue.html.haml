@@ -1,0 +1,5 @@
+%section.actions
+  = link_to 'New userstory', new_project_userstory_path(@project), id: 'new_userstory_link', remote: true
+  = link_to 'Back to project', @project
+  #complete_sprint
+    = complete_sprint_link(@project.sprints.first)

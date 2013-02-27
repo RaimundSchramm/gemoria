@@ -122,4 +122,23 @@ describe UserstoriesHelper do
       end
     end
   end
+
+  describe 'change position links' do
+    let!(:sprint) { create :sprint, project: userstory.project }
+    it 'returns a move to sprint link' do
+      expect(helper.sprint_link(userstory))
+      .to eq "<a href=\"/projects/#{userstory.project.id}/userstories/#{userstory.id}\?userstory%5Bposition%5D=sprint&amp;userstory%5Bsprint_id%5D=#{sprint.id}\""+
+             " data-method=\"put\""+
+             " data-remote=\"true\""+
+             " rel=\"nofollow\"><</a>"
+    end
+
+    it 'returns a move to backlog' do
+      expect(helper.backlog_link(userstory))
+      .to eq "<a href=\"/projects/#{userstory.project.id}/userstories/#{userstory.id}\?userstory%5Bposition%5D=backlog&amp;userstory%5Bsprint_id%5D=\""+
+             " data-method=\"put\""+
+             " data-remote=\"true\""+
+             " rel=\"nofollow\">></a>"
+    end
+  end
 end

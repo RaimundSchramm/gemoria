@@ -1,7 +1,8 @@
 %tr{ class: userstory.status }
+  %td= sprint_link(userstory) if userstory.position == 'backlog'
   %td= "#{userstory.category_name}"
   %td= link_to "#{userstory.description}", [@project, userstory]
   %td
   %td
-  %td= "#{userstory.status}"
+  %td
   %td= "#{userstory.name}"

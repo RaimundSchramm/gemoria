@@ -19,7 +19,7 @@ describe CurrentUserstoriesController do
       assigns(:current).should eq Userstory.where(status: 'opened')
     end
 
-    it 'assigns all recent userstories as @recent' do
+    xit 'assigns all recent userstories as @recent' do
       create :userstory, status: 'recent'
       get :index
       expect(assigns(:recent)).not_to be_empty

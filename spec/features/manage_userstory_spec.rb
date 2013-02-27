@@ -10,6 +10,7 @@ require 'spec_helper'
 feature 'manage userstory', js: true do
   let(:project)   { create :project }
   let(:userstory) { create :userstory, project: project }
+  let!(:sprint)    { create :sprint, project: project }
 
   #before { visit "/projects/#{project.id}/userstories/#{userstory.id}" }
 

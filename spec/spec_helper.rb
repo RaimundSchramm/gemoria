@@ -64,31 +64,37 @@ Spork.prefork do
     # without having to call them on FactoryGirl directly
     config.include FactoryGirl::Syntax::Methods
 
-    config.before(:suite) do
-      DatabaseCleaner.strategy = :truncation
-    end
+    # config.before(:suite) do
+    #   DatabaseCleaner.strategy = :truncation
+    # end
      
-    config.before(:each) do
-      DatabaseCleaner.start
-    end
+    # config.before(:each) do
+    #   DatabaseCleaner.start
+    # end
      
     config.after(:each) do
-      DatabaseCleaner.clean
+      # DatabaseCleaner.clean
+      Userstory.delete_all
+      Project.delete_all
+      Sprint.delete_all
+      AcceptanceTest.delete_all
+      Task.delete_all
+      Category.delete_all
     end
   end
 
-  # class ActiveRecord::Base
-  #   mattr_accessor :shared_connection
-  #   @@shared_connection = nil
+  class ActiveRecord::Base
+    mattr_accessor :shared_connection
+    @@shared_connection = nil
 
-  #   def self.connection
-  #     @shared_connection || retrieve_connection
-  #   end
-  # end
+    def self.connection
+      @shared_connection || retrieve_connection
+    end
+  end
 
   # # Forces all threads to share the same connection. This works on Capybara
   # # because it starts the web server in a thread
-  # ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
+  ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
 
 end
 

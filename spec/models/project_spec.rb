@@ -1,20 +1,22 @@
 require 'spec_helper'
 
 describe Project do
+
+  let(:project) { create :project }
+
   context 'attributes and constants' do
     context 'derived attributes and counters' do
-      let(:project) { FactoryGirl.create(:project) }
       describe '.size_of_all_userstories' do
         context 'WHEN it has no userstories' do
           it 'THEN it returns 0' do
-            project.size_of_all_userstories.should eq 0
+            expect(project.size_of_all_userstories).to eq 0
           end
         end
 
         context 'WHEN it has 1 or more userstories' do
           it 'THEN it returns their size' do
-            FactoryGirl.create(:userstory, project: project)
-            project.size_of_all_userstories.should eq 1
+            create :userstory, project: project
+            expect(project.size_of_all_userstories).to eq 1
           end
         end
       end
@@ -36,17 +38,17 @@ describe Project do
       end
 
       describe '.size_of_all_tasks' do
-        let(:userstory) { FactoryGirl.create(:userstory, project: project) }
+        let(:userstory) { create :userstory, project: project }
         context 'WHEN it has no tasks' do
           it 'THEN it returns 0' do
-            project.size_of_all_tasks.should eq 0
+            expect(project.size_of_all_tasks).to eq 0
           end
         end
 
         context 'WHEN it has 1 or more tasks' do
           it 'THEN it returns their size' do
-            FactoryGirl.create(:task, userstory: userstory)
-            project.size_of_all_tasks.should eq 1
+            create :task, userstory: userstory
+            expect(project.size_of_all_tasks).to eq 1
           end
         end
       end
@@ -77,7 +79,7 @@ describe Project do
 
         context 'WHEN it has 1 or more userstories that are accepted' do
           xit 'THEN it returns them' do
-            userstory = FactoryGirl.create(:userstory, project: project, status: Userstory::STATUS[:accepted])
+            userstory = create :userstory, project: project, status: Userstory::STATUS[:accepted]
             expect(project.accepted_userstories).to eq [userstory]
           end
         end
@@ -92,10 +94,40 @@ describe Project do
 
         context 'WHEN it has 1 or more userstories that are unaccepted' do
           it 'THEN it returns them' do
-            userstory = FactoryGirl.create(:userstory, project: project, status: Userstory::STATUS[:opened])
+            userstory = create :userstory, project: project, status: Userstory::STATUS[:opened]
             expect(project.unaccepted_userstories).to eq [userstory]
           end
         end
+      end
+
+      describe '.backlog' do
+        it 'returns all userstories in the backlog' do
+          userstory = create :userstory, project: project
+          expect(project.backlog).to eq [userstory]
+        end
+      end
+
+      describe '.sprint' do
+        it 'returns all userstories in the sprint' do
+          userstory = create :userstory_sprint, project: project
+          expect(project.sprint).to eq [userstory]
+        end
+      end
+    end
+  end
+
+  describe '.current_sprint_complete?' do
+    context 'WHEN at least one userstory of the current sprint are unaccepted' do
+      it 'THEN it returns false' do
+        userstory = create :userstory_sprint, project: project
+        expect(project.current_sprint_complete?).to eq false
+      end
+    end
+
+    context 'WHEN all userstories of the current sprint are accepted' do
+      it 'THEN it returns true' do
+        userstory = create :userstory_sprint_accepted, project: project
+        expect(project.current_sprint_complete?).to eq true
       end
     end
   end

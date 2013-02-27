@@ -5,6 +5,9 @@ Gemoria::Application.routes.draw do
 
   resources :projects do
     resources :userstories
+    resources :sprints, only: [:update] do
+      put 'complete', on: :member
+    end
   end
 
   resources :userstories, except: [:index, :new, :create, :show, :edit, :update, :destroy] do
