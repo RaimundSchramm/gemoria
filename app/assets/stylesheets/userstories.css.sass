@@ -23,13 +23,22 @@
 
 #current_sprint
   float: left
+  .complete
+    margin-top: 20px
+
 #backlog
   float: right
-  margin-top: 40px
+  table
+    margin-top: 40px
+
+#accepted
+  margin-top: 30px
 
 #backlog, #current_sprint, #accepted
   width: 550px
   padding: 10px
+  border: 1px solid black
+  background-color: #C7C7C7
   table
     width: 550px
 
@@ -40,13 +49,13 @@ tr.started
   background-color: #FFFD44
 
 tr.completed
-  background-color: #4B6195
+  background-color: #CC99FF
 
 tr.rejected
-  background-color: #DD6164
+  background-color: #E9999B
 
 tr.accepted
-  background-color: #A9D05C
+  background-color: #94FF70
 
 section#status
   &.opened
@@ -54,11 +63,11 @@ section#status
   &.started
     background-color: #DFD462
   &.completed
-    background-color: #6B4A97
+    background-color: #CC99FF
   &.rejected
-    background-color: #DF6262
+    background-color: #E9999B
   &.accepted
-    background-color: #4FB34F
+    background-color: #94FF70
 
 section#acceptance_tests
   width: 700px
@@ -71,12 +80,34 @@ section#tasks
     form
       display: inline
 
+table
+  thead
+    background-color: #ABABAB
+    font-size: 12px
+    font-weight: bold
+    text-align: left
+  tbody
+    font-size: 13px
+  .category,
+  .status,
+  .name
+    width: 55px
+  .description
+    width: 250px
+  .priority,
+  .velocity
+    width: 40px
+  a
+    color: #2E8AE6
+
 tr
   &.acceptance_test,
   &.task
     background-color: #ffb573
   td
     padding: 5px
+    &.move
+      width: 20px
   td.text
     width: 500px
     padding: 10px
@@ -88,7 +119,6 @@ tr
   &.complete
     background-color: #66e275
     td.text
-      text-decoration: line-through
       color: #777
   &:hover
     background-color: #ccc

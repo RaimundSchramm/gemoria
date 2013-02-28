@@ -1,34 +1,33 @@
 %section#current_sprint
   %header
     %h2 Current sprint
-    = @project.sprints.first.complete
   %section.incomplete
     %header
-      %h2 Incomplete
+      %h3 Incomplete
     %table
       %thead
         %tr
-          %td Category
-          %td Description
-          %td Priority
-          %td Velocity
-          %td Status
-          %td No.
+          %td.category Category
+          %td.description Description
+          %td.priority Priority
+          %td.velocity Velocity
+          %td.status Status
+          %td.name No.
           %td
       %tbody
         = render :partial => 'sprint_userstory', :collection => @unaccepted_userstories, :as => :userstory
   %section.complete
     %header
-      %h2 Complete
+      %h3 Complete
     %table
       %thead
         %tr
-          %td Category
-          %td Description
-          %td Priority
-          %td Velocity
-          %td Status
-          %td No.
+          %td.category Category
+          %td.description Description
+          %td.priority Priority
+          %td.velocity Velocity
+          %td.status Status
+          %td.name No.
           %td
       %tbody
         = render :partial => 'sprint_userstory', :collection => @accepted_userstories, :as => :userstory

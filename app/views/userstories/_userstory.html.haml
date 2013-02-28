@@ -1,7 +1,7 @@
 %tr{ class: userstory.status }
-  %td= "#{userstory.category_name}"
-  %td= link_to "#{userstory.description}", [@project, userstory]
-  %td
-  %td
-  %td= "#{userstory.status}"
-  %td= "#{userstory.name}"
+  %td.category= "#{userstory.category_name}"
+  %td.description= link_to "#{userstory.description}", [@project, userstory]
+  %td.priority
+  %td.velocity
+  %td.status= "#{userstory.status}"
+  %td.name= "#{userstory.name}"

@@ -1,8 +1,3 @@
-$('#new_userstory').hide();
+$('#new_userstory').remove();
 $('#new_userstory_link').show();
-<%# if @userstory.complete? %>
-//  $('section#complete_userstories tbody').append('<%= j render(@userstory) %>');
-<%# else %>
-//  $('section#incomplete_userstories tbody').append('<%= j render(@userstory) %>');
-<%# end %>
 $('section#backlog').replaceWith('<%= j render "backlog" %>');
