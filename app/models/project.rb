@@ -47,4 +47,13 @@ class Project < ActiveRecord::Base
   def done
     userstories.done.all
   end
+
+  # callbacks
+  after_create :create_initial_sprint
+
+  private
+
+  def create_initial_sprint
+    sprints.create
+  end
 end

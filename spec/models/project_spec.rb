@@ -131,4 +131,16 @@ describe Project do
       end
     end
   end
+
+  context 'callbacks' do
+    describe 'create_initial_sprint' do
+      it 'creates a sprint after create' do
+        project = build :project
+        expect(project.sprints).to be_empty
+        project.save
+        expect(project.sprints.count).to eq 1
+        expect(project.sprints).to eq [Sprint.last]
+      end
+    end
+  end
 end
