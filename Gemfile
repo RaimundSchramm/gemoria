@@ -44,7 +44,7 @@ group :development, :test do
 
   # automating on file change
   gem 'guard-rspec'     # for rspec-rails
-  gem 'rb-inotify', '~> 0.8.8'
+  gem 'rb-inotify'#, '~> 0.8.8'
   gem 'libnotify'
   gem 'guard-spork', github: 'guard/guard-spork'#, branch: 'master'     # for spork-rails
   gem 'guard-livereload'# for assets
