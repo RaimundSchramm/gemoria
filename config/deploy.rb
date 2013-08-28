@@ -78,8 +78,8 @@ end
 
 namespace :maintenance do
   task :update_data, roles: :app do
-    run "cd #{current_path} && bundle exec rake production:userstories RAILS_ENV=production"
+    # run "cd #{current_path} && bundle exec rake production:userstories RAILS_ENV=production"
     run "cd #{current_path} && bundle exec rake production:projects RAILS_ENV=production"
-    run "cd #{current_path} && bundle exec rake production:sprint_userstories RAILS_ENV=production"
+    # run "cd #{current_path} && bundle exec rake production:sprint_userstories RAILS_ENV=production"
   end
 end
