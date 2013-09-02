@@ -43,3 +43,21 @@ a#new_userstory_link
 .userstory .field
   input#us_name
     width: 50px
+
+.project
+  border: solid black 1px
+  background-color: #C7C7C7
+  height: 100px
+  width: 200px
+  padding: 10px 10px
+  margin: 0 0 10px 10px
+  float: left
+  overflow: auto
+  &:hover
+    background-color: #ccc
+    p.complete
+      visibility: hidden
+    p.detail
+      visibility: visible
+  p.detail
+    visibility: hidden

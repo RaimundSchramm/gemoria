@@ -1,19 +1,22 @@
 %h1 Projects
 %br
-- @projects.each do |project|
-  .project
-    %p
-      = link_to project.name, project
-    %p
-      Userstories:
-      = project.size_of_all_userstories
-      accepted:
-      = project.size_of_accepted_userstories
-    %p
-      Tasks:
-      = project.size_of_all_tasks
-      complete:
-      = project.size_of_completed_tasks
+%section.projects.group
+  - @projects.each do |project|
+    .project
+      %header
+        = link_to project.name, project
+      %p.detail
+        Userstories:
+        = project.size_of_all_userstories
+        accepted:
+        = project.size_of_accepted_userstories
+      %p.detail
+        Tasks:
+        = project.size_of_all_tasks
+        complete:
+        = project.size_of_completed_tasks
+      %p.complete
+        Complete: 90%
 
 %br
 = link_to 'New Project', new_project_path
