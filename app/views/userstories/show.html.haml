@@ -44,9 +44,6 @@
   = link_to 'Back to userstory management', project_userstories_path(@project), class: 'btn btn-mini'
   = link_to 'Edit userstory', edit_project_userstory_path(@project, @userstory), class: 'btn btn-mini'
   = link_to '(remove userstory)', project_userstory_path(@project, @userstory), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-mini'
-  #complete_sprint
-    = complete_sprint_link(@project.sprints.first)
-
 
 %hr
 

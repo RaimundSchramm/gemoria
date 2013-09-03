@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature 'manage userstories' do
   let(:project)  { create :project }
-  let!(:sprint)  { create :sprint, project: project }
+  let(:sprint)  { project.sprints.first }
   let!(:category) { create :category, name: 'Bug' }
 
   scenario 'new userstory moves to back log, is sprintless and opened', js: true do

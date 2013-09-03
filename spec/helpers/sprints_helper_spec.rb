@@ -13,6 +13,7 @@ describe SprintsHelper do
     it 'returns a move to sprint link' do
       expect(helper.complete_sprint_link(sprint))
       .to eq "<a href=\"/projects/#{sprint.project.id}/sprints/#{sprint.id}/complete\""+
+             " class=\"btn\""+
              " data-method=\"put\""+
              " rel=\"nofollow\">Complete sprint</a>"
     end

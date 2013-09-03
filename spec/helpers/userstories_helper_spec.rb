@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe UserstoriesHelper do
-  let(:userstory) { create :userstory }
+  let!(:userstory) { create :userstory }
 
   it 'returns a link according to the next status update' do
     expect(helper.link_to_next_status(userstory)).to eq helper.start_link(userstory)
@@ -124,10 +124,11 @@ describe UserstoriesHelper do
   end
 
   describe 'change position links' do
-    let!(:sprint) { create :sprint, project: userstory.project }
+    let(:sprint) { userstory.project.sprints.first }
     it 'returns a move to sprint link' do
       expect(helper.sprint_link(userstory))
       .to eq "<a href=\"/projects/#{userstory.project.id}/userstories/#{userstory.id}\?userstory%5Bposition%5D=sprint&amp;userstory%5Bsprint_id%5D=#{sprint.id}\""+
+             " class=\"btn btn-mini\""+
              " data-method=\"put\""+
              " data-remote=\"true\""+
              " rel=\"nofollow\"><</a>"
@@ -136,6 +137,7 @@ describe UserstoriesHelper do
     it 'returns a move to backlog' do
       expect(helper.backlog_link(userstory))
       .to eq "<a href=\"/projects/#{userstory.project.id}/userstories/#{userstory.id}\?userstory%5Bposition%5D=backlog&amp;userstory%5Bsprint_id%5D=\""+
+             " class=\"btn btn-mini\""+
              " data-method=\"put\""+
              " data-remote=\"true\""+
              " rel=\"nofollow\">></a>"

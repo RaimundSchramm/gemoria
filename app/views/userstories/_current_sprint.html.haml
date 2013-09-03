@@ -1,6 +1,9 @@
 %section#current_sprint
   %header
-    %h2 Current sprint
+    %h2
+      Current sprint
+      %span#complete_sprint
+        = complete_sprint_link(@project.sprints.first)
   %section.incomplete
     %header
       %h3 Incomplete
