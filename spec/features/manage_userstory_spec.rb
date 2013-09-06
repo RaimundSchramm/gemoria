@@ -8,7 +8,7 @@ require 'spec_helper'
 # And I am member of a project
 # And this project has a userstory
 feature 'manage userstory', js: true do
-  let(:project)   { create :project }
+  let!(:project)   { create :project }
   let(:userstory) { create :userstory, project: project }
   let!(:sprint)    { create :sprint, project: project }
 

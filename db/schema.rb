@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130226124718) do
+ActiveRecord::Schema.define(:version => 20130904192235) do
 
   create_table "acceptance_tests", :force => true do |t|
     t.integer  "userstory_id"
@@ -51,6 +51,13 @@ ActiveRecord::Schema.define(:version => 20130226124718) do
   end
 
   add_index "tasks", ["userstory_id"], :name => "index_tasks_on_userstory_id"
+
+  create_table "users", :force => true do |t|
+    t.string   "name"
+    t.string   "password_digest"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+  end
 
   create_table "userstories", :force => true do |t|
     t.string   "name"

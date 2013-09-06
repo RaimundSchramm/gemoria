@@ -80,6 +80,7 @@ Spork.prefork do
       AcceptanceTest.delete_all
       Task.delete_all
       Category.delete_all
+      User.delete_all
     end
   end
 
