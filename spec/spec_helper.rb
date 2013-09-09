@@ -16,7 +16,7 @@ Spork.prefork do
   require 'rspec/rails'
   require 'capybara/rspec'
   require 'capybara/poltergeist'
-  #require 'capybara/rails'
+  require 'capybara/rails'
 
   Capybara.javascript_driver = :poltergeist
 
@@ -64,6 +64,7 @@ Spork.prefork do
     # without having to call them on FactoryGirl directly
     config.include FactoryGirl::Syntax::Methods
 
+    config.include Capybara::DSL
     # config.before(:suite) do
     #   DatabaseCleaner.strategy = :truncation
     # end
@@ -82,6 +83,8 @@ Spork.prefork do
       Category.delete_all
       User.delete_all
     end
+
+    config.include FeatureHelpers
   end
 
   class ActiveRecord::Base

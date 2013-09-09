@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 feature 'A new project should have a sprint' do
+
+  before { login }
+
   scenario 'full rotation' do
 
     visit '/projects'

@@ -1,5 +1,6 @@
 class SprintsController < ApplicationController
 
+  before_filter :authenticate
   before_filter :find_parent
   before_filter :find_sprint
 

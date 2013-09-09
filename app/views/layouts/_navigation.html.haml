@@ -1,6 +1,16 @@
 = link_to 'Gemoria', root_path, class: 'nav-item'
-= link_to 'Projects', projects_path, class: 'nav-item'
-= link_to 'Categories', categories_path, class: 'nav-item'
+
+-# links that will be summarized under administration
+-#= link_to 'Projects', projects_path, class: 'nav-item'
+-#= link_to 'Categories', categories_path, class: 'nav-item'
 -#= link_to "Userstories", userstories_path, class: 'nav-item'
 -#= link_to "Tasks", tasks_path, class: 'nav-item'
-= link_to 'Sign up', signup_path
+
+-# user related links of top level navigation on every page
+- if current_user
+  = "#{current_user.name}"
+  = link_to "Logout", logout_path, method: :delete, id: 'logout_link'
+- else
+  = link_to 'Signup', signup_path, id: 'signup_link'
+  or
+  = link_to 'Login', login_path

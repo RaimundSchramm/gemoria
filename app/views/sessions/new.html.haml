@@ -1,0 +1,11 @@
+= form_tag sessions_path do
+  %fieldset
+    %legend Login
+    .field
+      = label_tag :name
+      = text_field_tag :name, params[:name]
+    .field
+      = label_tag :password
+      = password_field_tag :password
+    .actions
+      = submit_tag 'Log in'

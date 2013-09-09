@@ -31,8 +31,9 @@ describe TasksController do
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # TasksController. Be sure to keep this updated too.
+  let(:user) { create :user }
   def valid_session
-    {}
+    { user_id: user.id }
   end
 
   render_views

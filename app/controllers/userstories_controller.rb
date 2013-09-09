@@ -1,4 +1,6 @@
 class UserstoriesController < ApplicationController
+
+  before_filter :authenticate
   before_filter :parent
 
   def index

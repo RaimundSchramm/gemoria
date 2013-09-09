@@ -13,6 +13,7 @@ feature 'manage userstory', js: true do
   let!(:sprint)    { create :sprint, project: project }
 
   #before { visit "/projects/#{project.id}/userstories/#{userstory.id}" }
+  before { login }
 
   # When I visit this userstory
   # And click to add an acceptance test

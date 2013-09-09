@@ -3,7 +3,15 @@
 FactoryGirl.define do
   factory :user do
     name 'MyString'
-    password 'MyString'
-    password_confirmation 'MyString'
+    password 'secret'
+    password_confirmation 'secret'
+
+    factory :mund do
+      name 'mund'
+    end
+
+    factory :mirk do
+      name 'mirk'
+    end
   end
 end

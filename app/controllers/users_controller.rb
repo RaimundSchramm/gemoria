@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        session[:user_id] = @user.id
         flash[:notice] = 'Thank you for signing up.'
         format.html { redirect_to root_path }
       else

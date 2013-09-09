@@ -1,5 +1,6 @@
 class AcceptanceTestsController < ApplicationController
 
+  before_filter :authenticate
   before_filter :find_userstory
 
   def index

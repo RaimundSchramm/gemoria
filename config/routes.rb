@@ -1,10 +1,13 @@
 Gemoria::Application.routes.draw do
 
-  root :to => 'current_userstories#index'
-  match '/home' => 'home#index'
+  root :to => 'home#index'
 
-  match '/signup' => 'users#new'
-  resources :users, only: [:new, :create]
+  get '/signup' => 'users#new',           :as =>   :signup
+  resources :users,                       :only => [:new, :create]
+
+  get '/login' => 'sessions#new',         :as =>   :login
+  delete '/logout' => 'sessions#destroy', :as =>   :logout
+  resources :sessions,                    :only => [:new, :create, :destroy]
 
   resources :categories
 

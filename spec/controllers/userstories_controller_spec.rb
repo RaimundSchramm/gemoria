@@ -3,6 +3,7 @@ require 'spec_helper'
 describe UserstoriesController do
   render_views
 
+  let(:user)       { create :user }
   let(:project)    { create :project }
   let!(:userstory) { create :userstory, project: project }
   let!(:sprint)    { create :sprint, project: project }
@@ -16,7 +17,7 @@ describe UserstoriesController do
   end
 
   def valid_session
-    {}
+    { user_id: user.id }
   end
 
   context 'before_filters' do
