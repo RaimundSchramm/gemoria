@@ -2,7 +2,8 @@ require 'spec_helper'
 
 describe User do
 
-  let(:user) { build :user }
+  let(:user)    { create :user }
+  let(:project) { create :project }
 
   describe 'attributes and constants' do
     it 'its name is present' do
@@ -11,9 +12,19 @@ describe User do
     end
 
     it 'its name is unique' do
-      user = create :user
       user2 = build :user, name: user.name
       expect(user2.save).to be_false
+    end
+  end
+
+  describe '#has_ownership?(project)' do
+    it 'returns false if there is no ownership for this project' do
+      expect(user.has_ownership?(project)).to be_false
+    end
+
+    it 'returns true if there is an ownership for this project' do
+      user.projects = [project]
+      expect(user.has_ownership?(project)).to be_true
     end
   end
 end

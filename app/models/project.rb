@@ -1,8 +1,11 @@
 class Project < ActiveRecord::Base
   attr_accessible :name, :userstories_attributes
 
-  has_many :userstories
+  # associations
   has_many :sprints
+  has_many :userstories
+  has_many :ownerships
+  has_many :users, through: :ownerships
 
   accepts_nested_attributes_for :userstories, allow_destroy: true
 
