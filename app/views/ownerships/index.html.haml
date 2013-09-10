@@ -1,0 +1,7 @@
+%h2 Ownerships
+
+= link_to 'Edit', edit_multiple_ownerships_path
+
+%ul
+  - @ownerships.each do |ownership|
+    %li= "#{ownership.project.name}"

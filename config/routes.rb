@@ -24,4 +24,11 @@ Gemoria::Application.routes.draw do
   end
 
   resources :current_userstories, only: [:index]
+
+  resource :dashboard, only: [:show]
+
+  resources :ownerships, :only => [:index] do
+    get 'edit_multiple', :on => :collection
+    post 'create_or_delete_multiple', :on => :collection
+  end
 end

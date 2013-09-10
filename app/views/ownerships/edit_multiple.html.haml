@@ -1,0 +1,9 @@
+%h2 Edit ownerships
+
+= form_tag create_or_delete_multiple_ownerships_path, method: :post do
+  - @projects.each do |project|
+    %p
+      = check_box_tag 'project_ids[]', project.id, current_user.has_ownership?(project), id: "project_ids_#{project.id}"
+      = label_tag "project_ids_#{project.id}", project.name
+  %p
+    = submit_tag 'Set ownerships'
