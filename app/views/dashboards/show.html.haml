@@ -1,0 +1,25 @@
+%h2 Dashboard
+
+%section.projects.group
+  - @owned_projects.each do |project|
+    .project
+      %header
+        = link_to project.name, project
+      %p.detail
+        Userstories:
+        = project.size_of_all_userstories
+        accepted:
+        = project.size_of_accepted_userstories
+      %p.detail
+        Tasks:
+        = project.size_of_all_tasks
+        complete:
+        = project.size_of_completed_tasks
+      %p.complete
+        Complete: 90%
+
+%section.changelog
+  %header
+    %h2 Changelog
+    %ul
+      %li Update1

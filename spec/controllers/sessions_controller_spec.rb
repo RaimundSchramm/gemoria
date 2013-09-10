@@ -34,9 +34,9 @@ describe SessionsController do
         expect(flash[:notice]).to eq 'Logged in.'
       end
 
-      it 'redirects to home page' do
+      it 'redirects to dashboard' do
         post :create, valid
-        expect(response).to redirect_to root_path
+        expect(response).to redirect_to dashboard_path
       end
 
       it 'sets the user id into the session' do
