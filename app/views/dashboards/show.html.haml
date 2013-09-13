@@ -1,4 +1,10 @@
-%h2 Dashboard
+- content_for :nav_breadcrumbs do
+  %ul
+    - if current_user
+      %li Dashboard
+
+
+%h1 Dashboard
 
 %section.projects.group
   - @owned_projects.each do |project|

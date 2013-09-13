@@ -1,0 +1,4 @@
+%nav#breadcrumbs
+  - if current_user
+    %span You are here:
+    = yield :nav_breadcrumbs

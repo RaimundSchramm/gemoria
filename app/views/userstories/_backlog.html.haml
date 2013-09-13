@@ -1,6 +1,10 @@
 %section#backlog
   %header
-    %h2 Backlog
+    %h2
+      Backlog
+      %span#new_userstory
+        = link_to 'New userstory', new_project_userstory_path(@project), id: 'new_userstory_link', remote: true, class: 'btn'
+
   %table
     %thead
       %tr

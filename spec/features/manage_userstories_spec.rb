@@ -70,13 +70,12 @@ feature 'manage userstories' do
     click_on '<'
 
     # user interaction
-
     click_on "#{Userstory.last.description}"
     expect(current_path).to eq "/projects/#{project.id}/userstories/#{Userstory.last.id}"
     click_on 'Start'
     click_on 'Complete'
     click_on 'Accept'
-    click_on 'Back to userstory management'
+    click_on 'Manage userstories'
     expect(current_path).to eq "/projects/#{project.id}/userstories"
 
     # assert
@@ -114,7 +113,7 @@ feature 'manage userstories' do
     click_on 'Start'
     click_on 'Complete'
     click_on 'Accept'
-    click_on 'Back to userstory management'
+    click_on 'Manage userstories'
     expect(current_path).to eq "/projects/#{project.id}/userstories"
 
     # user interaction

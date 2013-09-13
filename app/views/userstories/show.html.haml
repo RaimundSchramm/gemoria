@@ -1,13 +1,25 @@
+- content_for :nav_breadcrumbs do
+  %ul
+    - if current_user
+      %li= link_to 'Dashboard', dashboard_path
+      %li= link_to "#{@project.name}", @project
+      %li= link_to "Manage userstories", project_userstories_path(@project)
+      %li= "#{@userstory.description}"
+
+- content_for :nav_context do
+  %ul
+    %li= link_to 'Destroy userstory', project_userstory_path(@project, @userstory), method: :delete, data: {confirm: 'Are you sure?'}
+    %li= link_to 'Edit userstory', edit_project_userstory_path(@project, @userstory)
+
 %header
   %h1
-    %span= "#{@userstory.full_name}"
-    %span= "--- #{@userstory.project.name}"
+    %span= "#{@userstory.project.name}"
 
 %section#acceptance_tests
   %header
     %h2 Acceptance Tests
   %section.actions
-    = link_to 'New acceptance test', new_userstory_acceptance_test_path(@userstory), id: 'new_acceptance_test_link', remote: true
+    = link_to 'New acceptance test', new_userstory_acceptance_test_path(@userstory), id: 'new_acceptance_test_link', remote: true, class: 'btn'
   %section.incomplete
     %header
       %h3 not yet accepted
@@ -25,7 +37,7 @@
   %header
     %h2 Tasks
   %section.actions
-    = link_to 'New task', new_userstory_task_path(@userstory), id: 'new_task_link', remote: true
+    = link_to 'New task', new_userstory_task_path(@userstory), id: 'new_task_link', remote: true, class: 'btn'
   %section.incomplete
     %header
       %h3 incomplete
@@ -40,10 +52,6 @@
         = render @complete_tasks
 
 %section#menue
-  = link_to 'Back to project', @project, class: 'btn btn-mini'
-  = link_to 'Back to userstory management', project_userstories_path(@project), class: 'btn btn-mini'
-  = link_to 'Edit userstory', edit_project_userstory_path(@project, @userstory), class: 'btn btn-mini'
-  = link_to '(remove userstory)', project_userstory_path(@project, @userstory), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-mini'
 
 %hr
 

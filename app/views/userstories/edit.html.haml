@@ -1,5 +1,12 @@
+- content_for :nav_breadcrumbs do
+  %ul
+    - if current_user
+      %li= link_to 'Dashboard', dashboard_path
+      %li= link_to "#{@project.name}", @project
+      %li= link_to "Manage userstories", project_userstories_path(@project)
+      %li= link_to "#{@userstory.description}", [@project, @userstory]
+      %li= 'Edit'
+
 %h1 Edit Userstory
 
 = render 'form'
-
-= link_to 'Back to Userstory', project_userstory_path(@project, @userstory)
