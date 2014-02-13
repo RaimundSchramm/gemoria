@@ -10,8 +10,13 @@ feature 'A userstory should have a rotating status' do
     login
 
     visit "/projects/#{project.id}/userstories/#{userstory.id}"
-    expect(page).to have_content userstory.full_name
-    expect(page).to have_content project.name
+
+    within "nav#breadcrumbs" do
+      expect(page).to have_content project.name
+    end
+    within "header h1" do
+      expect(page).to have_content userstory.description
+    end
     within "section#status" do
       expect(page).to have_content 'opened'
     end
