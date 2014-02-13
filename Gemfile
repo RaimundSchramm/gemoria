@@ -25,7 +25,7 @@ end
 
 group :development, :test do
   # debugger
-  gem 'debugger'
+  # gem 'debugger'
 
   # test framework for ruby and rails
   gem "rspec-rails"
@@ -61,3 +61,6 @@ end
 # dependency issues
 gem 'rack'#, '1.4.1'
 gem 'childprocess'#, '0.3.7'
+
+gem 'travis-lint'
+
