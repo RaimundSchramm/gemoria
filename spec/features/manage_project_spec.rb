@@ -17,7 +17,7 @@ feature 'A new project should have a sprint' do
     expect(Project.count).to eq 1
     expect(project.sprints).to eq [Sprint.last]
 
-    click_on 'Manage Userstories'
+    click_on 'Manage userstories'
     expect(current_path).to eq project_userstories_path(project)
   end
 end
