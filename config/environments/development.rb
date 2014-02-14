@@ -34,4 +34,8 @@ Gemoria::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # Rails 3.2.x requirement of bootstrap-sass
+  # see https://github.com/twbs/bootstrap-sass
+  config.assets.initialize_on_precompile = true
 end
