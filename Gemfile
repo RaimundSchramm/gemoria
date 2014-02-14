@@ -16,12 +16,12 @@ gem "email_spec"
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
 
-group :assets do
+#group :assets do
   gem 'sass-rails',   '~> 3.2.6'
   gem 'coffee-rails', '~> 3.2.2'
   gem 'uglifier',     '>= 1.0.3'
-  gem 'bootstrap-sass'
-end
+  gem 'bootstrap-sass', '~> 3.1.1'
+#end
 
 group :development, :test do
   # debugger
