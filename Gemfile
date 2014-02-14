@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails',              '3.2.12'
+gem 'rails', '3.2.16'
 gem 'jquery-rails'
 gem "thin"
 
@@ -17,9 +17,9 @@ gem "email_spec"
 gem 'bcrypt-ruby', '~> 3.0.0'
 
 group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'uglifier'
+  gem 'sass-rails',   '~> 3.2.6'
+  gem 'coffee-rails', '~> 3.2.2'
+  gem 'uglifier',     '>= 1.0.3'
   gem 'bootstrap-sass'
 end
 
