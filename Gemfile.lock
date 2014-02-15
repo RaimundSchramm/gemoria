@@ -1,14 +1,5 @@
-GIT
-  remote: git://github.com/guard/guard-spork.git
-  revision: bb25f86a394e8639fef73ff659dd624b7e18556c
-  specs:
-    guard-spork (1.5.1)
-      childprocess (>= 0.2.3)
-      guard (>= 1.1)
-      spork (>= 0.8.4)
-
 GEM
-  remote: http://rubygems.org/
+  remote: https://rubygems.org/
   specs:
     actionmailer (3.2.16)
       actionpack (= 3.2.16)
@@ -232,10 +223,6 @@ GEM
       websocket (~> 1.0.4)
     sexp_processor (4.4.1)
     slop (3.4.7)
-    spork (1.0.0rc4)
-    spork-rails (4.0.0)
-      rails (>= 3.0.0, < 5)
-      spork (>= 1.0rc0)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -278,7 +265,6 @@ DEPENDENCIES
   guard-jasmine
   guard-livereload
   guard-rspec
-  guard-spork!
   haml
   haml-rails
   hpricot
@@ -295,7 +281,6 @@ DEPENDENCIES
   ruby_parser
   rvm-capistrano
   sass-rails (~> 3.2.6)
-  spork-rails
   sqlite3
   thin
   travis-lint
