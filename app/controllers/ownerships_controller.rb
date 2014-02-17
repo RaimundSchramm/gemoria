@@ -1,6 +1,6 @@
 class OwnershipsController < ApplicationController
 
-  before_filter :authenticate
+  before_action :authenticate
 
   def index
     @ownerships = current_user.ownerships
@@ -14,5 +14,11 @@ class OwnershipsController < ApplicationController
     @projects = Project.find(params[:project_ids] || [])
     current_user.projects = @projects
     redirect_to ownerships_path
+  end
+
+  private
+
+  def project_and_user_params
+    params.require(:project_ids)
   end
 end

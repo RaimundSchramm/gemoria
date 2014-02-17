@@ -1,39 +1,44 @@
+GIT
+  remote: https://github.com/bradphelan/jasminerice.git
+  revision: 091349c27343bfa728b8e5745675f9ddbb7d9699
+  specs:
+    jasminerice (0.1.0)
+      coffee-rails
+
 GEM
   remote: https://rubygems.org/
   specs:
-    actionmailer (3.2.16)
-      actionpack (= 3.2.16)
+    actionmailer (4.0.2)
+      actionpack (= 4.0.2)
       mail (~> 2.5.4)
-    actionpack (3.2.16)
-      activemodel (= 3.2.16)
-      activesupport (= 3.2.16)
-      builder (~> 3.0.0)
+    actionpack (4.0.2)
+      activesupport (= 4.0.2)
+      builder (~> 3.1.0)
       erubis (~> 2.7.0)
-      journey (~> 1.0.4)
-      rack (~> 1.4.5)
-      rack-cache (~> 1.2)
-      rack-test (~> 0.6.1)
-      sprockets (~> 2.2.1)
-    activemodel (3.2.16)
-      activesupport (= 3.2.16)
-      builder (~> 3.0.0)
-    activerecord (3.2.16)
-      activemodel (= 3.2.16)
-      activesupport (= 3.2.16)
-      arel (~> 3.0.2)
-      tzinfo (~> 0.3.29)
-    activeresource (3.2.16)
-      activemodel (= 3.2.16)
-      activesupport (= 3.2.16)
-    activesupport (3.2.16)
+      rack (~> 1.5.2)
+      rack-test (~> 0.6.2)
+    activemodel (4.0.2)
+      activesupport (= 4.0.2)
+      builder (~> 3.1.0)
+    activerecord (4.0.2)
+      activemodel (= 4.0.2)
+      activerecord-deprecated_finders (~> 1.0.2)
+      activesupport (= 4.0.2)
+      arel (~> 4.0.0)
+    activerecord-deprecated_finders (1.0.3)
+    activesupport (4.0.2)
       i18n (~> 0.6, >= 0.6.4)
-      multi_json (~> 1.0)
+      minitest (~> 4.2)
+      multi_json (~> 1.3)
+      thread_safe (~> 0.1)
+      tzinfo (~> 0.3.37)
     addressable (2.3.5)
-    arel (3.0.3)
-    bcrypt-ruby (3.0.1)
+    arel (4.0.2)
+    atomic (1.1.14)
+    bcrypt-ruby (3.1.2)
     bootstrap-sass (3.1.1.0)
       sass (~> 3.2)
-    builder (3.0.4)
+    builder (3.1.4)
     capistrano (2.15.5)
       highline
       net-scp (>= 1.0.0)
@@ -55,15 +60,22 @@ GEM
     childprocess (0.4.2)
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.1.0)
-    coffee-rails (3.2.2)
+    coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
-      railties (~> 3.2.0)
+      railties (>= 4.0.0, < 5.0)
     coffee-script (2.2.0)
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
+    columnize (0.3.6)
     daemons (1.1.9)
     database_cleaner (1.2.0)
+    debugger (1.6.5)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.2.0)
+      debugger-ruby_core_source (~> 1.3.1)
+    debugger-linecache (1.2.0)
+    debugger-ruby_core_source (1.3.1)
     diff-lcs (1.2.5)
     em-websocket (0.5.0)
       eventmachine (>= 0.12.9)
@@ -104,21 +116,17 @@ GEM
       rspec (>= 2.14, < 4.0)
     haml (4.0.5)
       tilt
-    haml-rails (0.4)
-      actionpack (>= 3.1, < 4.1)
-      activesupport (>= 3.1, < 4.1)
-      haml (>= 3.1, < 4.1)
-      railties (>= 3.1, < 4.1)
+    haml-rails (0.5.3)
+      actionpack (>= 4.0.1)
+      activesupport (>= 4.0.1)
+      haml (>= 3.1, < 5.0)
+      railties (>= 4.0.1)
     hashr (0.0.22)
     highline (1.6.20)
     hike (1.2.3)
     hpricot (0.8.6)
     http_parser.rb (0.5.3)
     i18n (0.6.9)
-    jasminerice (0.0.10)
-      coffee-rails
-      haml
-    journey (1.0.4)
     jquery-rails (3.1.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
@@ -139,6 +147,7 @@ GEM
     method_source (0.8.2)
     mime-types (1.25.1)
     mini_portile (0.5.2)
+    minitest (4.7.5)
     multi_json (1.8.4)
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
@@ -162,34 +171,29 @@ GEM
       coderay (~> 1.0)
       method_source (~> 0.8)
       slop (~> 3.4)
-    rack (1.4.5)
-    rack-cache (1.2)
-      rack (>= 0.4)
-    rack-ssl (1.3.3)
-      rack
+    rack (1.5.2)
     rack-test (0.6.2)
       rack (>= 1.0)
-    rails (3.2.16)
-      actionmailer (= 3.2.16)
-      actionpack (= 3.2.16)
-      activerecord (= 3.2.16)
-      activeresource (= 3.2.16)
-      activesupport (= 3.2.16)
-      bundler (~> 1.0)
-      railties (= 3.2.16)
-    railties (3.2.16)
-      actionpack (= 3.2.16)
-      activesupport (= 3.2.16)
-      rack-ssl (~> 1.3.2)
+    rails (4.0.2)
+      actionmailer (= 4.0.2)
+      actionpack (= 4.0.2)
+      activerecord (= 4.0.2)
+      activesupport (= 4.0.2)
+      bundler (>= 1.3.0, < 2.0)
+      railties (= 4.0.2)
+      sprockets-rails (~> 2.0.0)
+    rails4_upgrade (0.5.0)
+      bundler (>= 1.2.2)
+      terminal-table (>= 1.4.5)
+    railties (4.0.2)
+      actionpack (= 4.0.2)
+      activesupport (= 4.0.2)
       rake (>= 0.8.7)
-      rdoc (~> 3.4)
-      thor (>= 0.14.6, < 2.0)
+      thor (>= 0.18.1, < 2.0)
     rake (10.1.1)
     rb-fsevent (0.9.4)
     rb-inotify (0.9.3)
       ffi (>= 0.5.0)
-    rdoc (3.12.2)
-      json (~> 1.4)
     rspec (2.14.1)
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
@@ -206,16 +210,16 @@ GEM
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
-    ruby_parser (3.4.0)
+    ruby_parser (3.4.1)
       sexp_processor (~> 4.1)
     rubyzip (1.1.0)
     rvm-capistrano (1.5.1)
       capistrano (~> 2.15.4)
     sass (3.2.14)
-    sass-rails (3.2.6)
-      railties (~> 3.2.0)
+    sass-rails (4.0.1)
+      railties (>= 4.0.0, < 5.0)
       sass (>= 3.1.10)
-      tilt (~> 1.3)
+      sprockets-rails (~> 2.0.0)
     selenium-webdriver (2.39.0)
       childprocess (>= 0.2.5)
       multi_json (~> 1.0)
@@ -223,17 +227,24 @@ GEM
       websocket (~> 1.0.4)
     sexp_processor (4.4.1)
     slop (3.4.7)
-    sprockets (2.2.2)
+    sprockets (2.10.1)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    sprockets-rails (2.0.1)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      sprockets (~> 2.8)
     sqlite3 (1.3.8)
+    terminal-table (1.4.5)
     thin (1.6.1)
       daemons (>= 1.0.9)
       eventmachine (>= 1.0.0)
       rack (>= 1.0.0)
     thor (0.18.1)
+    thread_safe (0.1.3)
+      atomic
     tilt (1.4.1)
     timers (1.1.0)
     travis-lint (1.7.0)
@@ -253,13 +264,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bcrypt-ruby (~> 3.0.0)
-  bootstrap-sass (~> 3.1.1)
+  bcrypt-ruby
+  bootstrap-sass
   capistrano
   capybara (~> 1.1.0)
   childprocess
-  coffee-rails (~> 3.2.2)
+  coffee-rails
   database_cleaner
+  debugger
   email_spec
   factory_girl_rails
   guard-jasmine
@@ -268,20 +280,21 @@ DEPENDENCIES
   haml
   haml-rails
   hpricot
-  jasminerice
+  jasminerice!
   jquery-rails
   launchy
   libnotify
   pg
   poltergeist
   rack
-  rails (= 3.2.16)
+  rails (~> 4.0.0)
+  rails4_upgrade
   rb-inotify
   rspec-rails
   ruby_parser
   rvm-capistrano
-  sass-rails (~> 3.2.6)
+  sass-rails
   sqlite3
   thin
   travis-lint
-  uglifier (>= 1.0.3)
+  uglifier

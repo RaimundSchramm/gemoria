@@ -1,7 +1,7 @@
 class AcceptanceTestsController < ApplicationController
 
-  before_filter :authenticate
-  before_filter :find_userstory
+  before_action :authenticate,
+                :find_userstory
 
   def index
     @incomplete_acceptance_tests = @userstory.acceptance_tests.incomplete
@@ -13,7 +13,7 @@ class AcceptanceTestsController < ApplicationController
   end
 
   def create
-    @acceptance_test = @userstory.acceptance_tests.new(params[:acceptance_test])
+    @acceptance_test = @userstory.acceptance_tests.new(acceptance_test_params)
     respond_to do |format|
       if @acceptance_test.save
         format.html { redirect_to userstory_acceptance_tests_path(@userstory) }
@@ -31,7 +31,7 @@ class AcceptanceTestsController < ApplicationController
   def update
     @acceptance_test = @userstory.acceptance_tests.find(params[:id])
     respond_to do |format|
-      if @acceptance_test.update_attributes(params[:acceptance_test])
+      if @acceptance_test.update_attributes(acceptance_test_params)
         format.html { redirect_to userstory_acceptance_tests_path(@userstory) }
         format.js
       else
@@ -53,5 +53,9 @@ class AcceptanceTestsController < ApplicationController
 
   def find_userstory
     @userstory = Userstory.find(params[:userstory_id])
+  end
+
+  def acceptance_test_params
+    params.require(:acceptance_test).permit(:description, :complete)
   end
 end

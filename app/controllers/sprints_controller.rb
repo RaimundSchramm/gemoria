@@ -1,11 +1,11 @@
 class SprintsController < ApplicationController
 
-  before_filter :authenticate
-  before_filter :find_parent
-  before_filter :find_sprint
+  before_action :authenticate,
+                :find_parent,
+                :find_sprint
 
   def update
-    @sprint.update_attributes(params[:sprint])
+    @sprint.update_attributes(sprint_params)
     redirect_to project_userstories_path
   end
 
@@ -22,5 +22,11 @@ class SprintsController < ApplicationController
 
   def find_sprint
     @sprint = @project.sprints.find params[:id]
+  end
+
+  private
+
+  def sprint_params
+    params.require(:sprint).permit(:project_id, :complete)
   end
 end

@@ -25,7 +25,11 @@ describe ProjectsController do
   # Project. As you add validations to Project, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    {}
+    attributes_for(:project)
+  end
+
+  def invalid_attributes
+    attributes_for(:project, name: nil)
   end
 
   # This should return the minimal set of values that should be in the session
@@ -91,14 +95,14 @@ describe ProjectsController do
       it "assigns a newly created but unsaved project as @project" do
         # Trigger the behavior that occurs when invalid params are submitted
         Project.any_instance.stub(:save).and_return(false)
-        post :create, {:project => {}}, valid_session
+        post :create, {:project => invalid_attributes}, valid_session
         assigns(:project).should be_a_new(Project)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Project.any_instance.stub(:save).and_return(false)
-        post :create, {:project => {}}, valid_session
+        post :create, {:project => invalid_attributes}, valid_session
         response.should render_template("new")
       end
     end
@@ -112,37 +116,42 @@ describe ProjectsController do
         # specifies that the Project created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Project.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, {:id => project.to_param, :project => {'these' => 'params'}}, valid_session
+        Project.any_instance.should_receive(:update_attributes).with('name' => 'MyString')
+        put :update, { :id => project.to_param, project: valid_attributes }, valid_session
       end
 
       it "assigns the requested project as @project" do
         project = Project.create! valid_attributes
-        put :update, {:id => project.to_param, :project => valid_attributes}, valid_session
+        put :update, { :id => project.to_param, :project => valid_attributes }, valid_session
         assigns(:project).should eq(project)
       end
 
       it "redirects to the project" do
         project = Project.create! valid_attributes
-        put :update, {:id => project.to_param, :project => valid_attributes}, valid_session
+        put :update, { :id => project.to_param, :project => valid_attributes }, valid_session
         response.should redirect_to(project)
       end
     end
 
     describe "with invalid params" do
+      before do
+        # Trigger the behavior that occurs when invalid params are submitted
+        Project.any_instance.stub(:update_attributes).and_return(false)
+      end
+
       it "assigns the project as @project" do
         project = Project.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Project.any_instance.stub(:save).and_return(false)
-        put :update, {:id => project.to_param, :project => {}}, valid_session
+
+        patch :update, { :id => project.to_param, :project => invalid_attributes }, valid_session
+
         assigns(:project).should eq(project)
       end
 
       it "re-renders the 'edit' template" do
         project = Project.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Project.any_instance.stub(:save).and_return(false)
-        put :update, {:id => project.to_param, :project => {}}, valid_session
+
+        patch :update, { :id => project.to_param, :project => invalid_attributes }, valid_session
+
         response.should render_template("edit")
       end
     end

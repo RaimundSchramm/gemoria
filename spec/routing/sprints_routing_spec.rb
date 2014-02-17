@@ -7,7 +7,7 @@ describe SprintsController do
     end
 
     it 'routes to #complete' do
-      expect(put('/projects/1/sprints/1/complete')).to route_to('sprints#complete', project_id: '1', id: '1')
+      expect(patch('/projects/1/sprints/1/complete')).to route_to('sprints#complete', project_id: '1', id: '1')
     end
   end
 end

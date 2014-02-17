@@ -1,5 +1,4 @@
 class Project < ActiveRecord::Base
-  attr_accessible :name, :userstories_attributes
 
   # associations
   has_many :sprints
@@ -28,27 +27,27 @@ class Project < ActiveRecord::Base
   end
 
   def unaccepted_userstories
-    userstories.unaccepted.all
+    userstories.unaccepted.load
   end
 
   def accepted_userstories
-    userstories.accepted.all
+    userstories.accepted.load
   end
 
   def backlog
-    userstories.backlog.all
+    userstories.backlog.load
   end
 
   def sprint
-    userstories.sprint.all
+    userstories.sprint.load
   end
 
   def current_sprint_complete?
-    accepted_userstories == sprint ? true : false
+    accepted_userstories.to_a == sprint.to_a ? true : false
   end
 
   def done
-    userstories.done.all
+    userstories.done.load
   end
 
   # callbacks

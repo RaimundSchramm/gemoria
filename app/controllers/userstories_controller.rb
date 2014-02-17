@@ -1,7 +1,7 @@
 class UserstoriesController < ApplicationController
 
-  before_filter :authenticate
-  before_filter :parent
+  before_action :authenticate,
+                :parent
 
   def index
     @unaccepted_userstories = @project.userstories.sprint.unaccepted
@@ -19,7 +19,7 @@ class UserstoriesController < ApplicationController
   end
 
   def create
-    @userstory = @project.userstories.new(params[:userstory])
+    @userstory = @project.userstories.new(userstory_params)
     respond_to do |format|
       if @userstory.save
         @backlog   = @project.backlog
@@ -47,7 +47,7 @@ class UserstoriesController < ApplicationController
     @userstory  = @project.userstories.find(params[:id])
     @old_status = @userstory.status
     respond_to do |format|
-      if @userstory.update_attributes(params[:userstory])
+      if @userstory.update_attributes(userstory_params)
         @unaccepted_userstories   = @project.userstories.sprint.unaccepted
         @accepted_userstories     = @project.userstories.sprint.accepted
         @backlog                  = @project.backlog
@@ -71,5 +71,18 @@ class UserstoriesController < ApplicationController
 
   def parent
     @project = Project.find(params[:project_id])
+  end
+
+  def userstory_params
+    params.require(:userstory)
+      .permit(
+        :project_id,
+        :category_id,
+        :sprint_id,
+        :description,
+        :status,
+        :position,
+        :name,
+        :complete)
   end
 end

@@ -15,7 +15,7 @@ describe Userstory do
       it 'returns all accepted userstories' do
         create :userstory_sprint_accepted
         expect(Userstory.accepted).not_to be_empty
-        expect(Userstory.accepted.all).to eq Userstory.where(status: Userstory::STATUS[:accepted])
+        expect(Userstory.accepted.to_a).to eq Userstory.where(status: Userstory::STATUS[:accepted])
       end
     end
 
@@ -23,7 +23,7 @@ describe Userstory do
       it 'returns all unaccepted userstories' do
         create :userstory
         expect(Userstory.unaccepted).not_to be_empty
-        expect(Userstory.unaccepted.all).to eq Userstory.where(status: Userstory::STATUS[:opened])
+        expect(Userstory.unaccepted.to_a).to eq Userstory.where(status: Userstory::STATUS[:opened])
       end
     end
 

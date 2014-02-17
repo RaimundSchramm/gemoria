@@ -1,5 +1,7 @@
 class Category < ActiveRecord::Base
-  attr_accessible :name
 
+  # attributes and constants
+
+  # associations
   has_many :userstories
 end

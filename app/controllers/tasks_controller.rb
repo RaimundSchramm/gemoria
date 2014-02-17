@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
 
-  before_filter :authenticate
-  before_filter :find_userstory
+  before_action :authenticate,
+                :find_userstory
 
   def index
     @incomplete_tasks = @userstory.incomplete_tasks
@@ -13,7 +13,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = @userstory.tasks.new(params[:task])
+    @task = @userstory.tasks.new(task_params)
     respond_to do |format|
       if @task.save
         format.html { redirect_to userstory_tasks_path(@userstory) }
@@ -36,7 +36,7 @@ class TasksController < ApplicationController
   def update
     @task = @userstory.tasks.find(params[:id])
     respond_to do |format|
-      if @task.update_attributes!(params[:task])
+      if @task.update_attributes!(task_params)
         format.html { redirect_to userstory_tasks_path(@userstory) }
         format.js
       else
@@ -58,5 +58,9 @@ class TasksController < ApplicationController
 
   def find_userstory
     @userstory = Userstory.find(params[:userstory_id])
+  end
+
+  def task_params
+    params.require(:task).permit(:userstory_id, :complete, :name)
   end
 end

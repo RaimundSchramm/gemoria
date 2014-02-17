@@ -54,7 +54,7 @@ describe UserstoriesController do
       userstory.update_attributes( { position: 'sprint' } )
       get 'index', parent, valid_session
       expect(assigns(:unaccepted_userstories)).not_to be_empty
-      expect(assigns(:unaccepted_userstories)).to eq project.unaccepted_userstories
+      expect(assigns(:unaccepted_userstories).to_a).to eq project.unaccepted_userstories
     end
 
     it "renders index template" do
@@ -113,12 +113,12 @@ describe UserstoriesController do
       end
 
       it 'assigns a new invalid userstory as @userstory' do
-        post 'create', valid_attributes.merge(userstory: {}), valid_session
+        post 'create', valid_attributes.merge(userstory: { description: '' }), valid_session
         assigns(:userstory).should be_a_new Userstory
       end
 
       it 'rerenders new template' do
-        post 'create', valid_attributes.merge(userstory: {}), valid_session
+        post 'create', valid_attributes.merge(userstory: { description: '' }), valid_session
         response.should render_template 'new'
       end
     end
@@ -171,12 +171,12 @@ describe UserstoriesController do
       end
 
       it 'assigns a new invalid userstory as @userstory' do
-        put 'update', valid_attributes.merge(id: userstory.to_param, userstory: {}), valid_session
+        put 'update', valid_attributes.merge(id: userstory.to_param, userstory: { description: '' }), valid_session
         assigns(:userstory).should eq userstory
       end
 
       it 'rerenders edit template' do
-        put 'update', valid_attributes.merge(id: userstory.to_param, userstory: {}), valid_session
+        put 'update', valid_attributes.merge(id: userstory.to_param, userstory: { description: '' }), valid_session
         response.should render_template 'edit'
       end
     end
