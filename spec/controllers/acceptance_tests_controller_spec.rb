@@ -11,6 +11,14 @@ describe AcceptanceTestsController do
     { user_id: user.id }
   end
 
+  def valid_params
+    { acceptance_test: { description: 'anything', complete: true } }
+  end
+
+  def invalid_params
+    { description: 'anything', complete: 'invalid' }
+  end
+
   context 'before_filters' do
     describe 'find_userstory' do
       it 'assigns the parent userstory to @userstory' do
@@ -89,19 +97,19 @@ describe AcceptanceTestsController do
       end
 
       it 'assigns a new acceptance test as instance variable' do
-        post :create, { userstory_id: userstory.to_param, acceptance_test: {} }, valid_session
+        post :create, { userstory_id: userstory.to_param, acceptance_test: { description: '', complete: '' } }, valid_session
         assigns(:acceptance_test).should be_a AcceptanceTest
         assigns(:acceptance_test).userstory_id.should eq userstory.id
       end
 
       it 'does not save the new acceptance test to the database' do
         expect {
-          post :create, { userstory_id: userstory.to_param, acceptance_test: {} }, valid_session
+          post :create, { userstory_id: userstory.to_param, acceptance_test: { description: '', complete: '' } }, valid_session
         }.not_to change(AcceptanceTest, :count)
       end
 
       it 're-renders new' do
-        post :create, { userstory_id: userstory.to_param, acceptance_test: {} }, valid_session
+        post :create, { userstory_id: userstory.to_param, acceptance_test: { description: '', complete: '' } }, valid_session
         response.should render_template 'new'
       end
     end
@@ -150,13 +158,18 @@ describe AcceptanceTestsController do
       before { AcceptanceTest.any_instance.stub(:save).and_return(false) }
 
       it 'does not update the acceptance test' do
-        put :update, { userstory_id: userstory.to_param, id: acceptance_test.to_param, acceptance_test: {} }, valid_session
+        patch :update,
+          { userstory_id:     userstory.to_param,
+            id:               acceptance_test.to_param,
+            acceptance_test:  { description: '', complete: '' } },
+          valid_session
+
         assigns(:acceptance_test).reload
         assigns(:acceptance_test).description.should eq 'MyText'
       end
 
       it 're-renders edit' do
-        put :update, { userstory_id: userstory.to_param, id: acceptance_test.to_param, acceptance_test: {} }, valid_session
+        put :update, { userstory_id: userstory.to_param, id: acceptance_test.to_param, acceptance_test: invalid_params }, valid_session
         response.should render_template 'edit'
       end
     end

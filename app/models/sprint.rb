@@ -1,7 +1,6 @@
 class Sprint < ActiveRecord::Base
-  attr_accessible :project_id,
-                  :complete
 
+  # associations
   belongs_to      :project
   has_many        :userstories
 

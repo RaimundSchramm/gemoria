@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.16'
+gem 'rails4_upgrade'
+
+gem 'rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem "thin"
 
@@ -14,24 +16,22 @@ gem "ruby_parser"
 gem "email_spec"
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby'#, '~> 3.0.0'
 
-#group :assets do
-  gem 'sass-rails',   '~> 3.2.6'
-  gem 'coffee-rails', '~> 3.2.2'
-  gem 'uglifier',     '>= 1.0.3'
-  gem 'bootstrap-sass', '~> 3.1.1'
-#end
+gem 'sass-rails'
+gem 'coffee-rails'
+gem 'uglifier'
+gem 'bootstrap-sass'
 
 group :development, :test do
   # debugger
-  # gem 'debugger'
+  gem 'debugger'
 
   # test framework for ruby and rails
   gem "rspec-rails"
 
   # test framework for javascript and jquery
-  gem 'jasminerice'
+  gem 'jasminerice', :git => 'https://github.com/bradphelan/jasminerice.git'
 
   # test framework for acceptance testing ruby, rails and javascript
   gem "capybara", '~> 1.1.0'

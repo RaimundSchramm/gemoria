@@ -1,14 +1,6 @@
 class Userstory < ActiveRecord::Base
-  # attributes and constants
-  attr_accessible     :project_id,
-                      :category_id,
-                      :sprint_id,
-                      :description,
-                      :status,
-                      :position,
-                      :name,
-                      :complete
 
+  # attributes and constants
   STATUS   = {        opened:    'opened',
                       started:   'started',
                       completed: 'completed',
@@ -26,13 +18,13 @@ class Userstory < ActiveRecord::Base
   has_many            :acceptance_tests
 
   # scopes
-  scope :sprint,      where(position: POSITION[:sprint])
-  scope :accepted,    sprint.where(status: STATUS[:accepted])
-  scope :unaccepted,  where('status <> ?', STATUS[:accepted])
-  scope :opened,      where(status: 'opened')
-  scope :recent,      where(status: 'recent').order('updated_at desc')
-  scope :backlog,     where(position: POSITION[:backlog])
-  scope :done,        where(position: POSITION[:done])
+  scope :sprint,      -> { where(position: POSITION[:sprint]) }
+  scope :accepted,    -> { sprint.where(status: STATUS[:accepted]) }
+  scope :unaccepted,  -> { where('status <> ?', STATUS[:accepted]) }
+  scope :opened,      -> { where(status: 'opened') }
+  scope :recent,      -> { where(status: 'recent').order('updated_at desc') }
+  scope :backlog,     -> { where(position: POSITION[:backlog]) }
+  scope :done,        -> { where(position: POSITION[:done]) }
 
   # derived attributes
   def full_name

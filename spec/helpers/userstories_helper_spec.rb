@@ -9,46 +9,52 @@ describe UserstoriesHelper do
 
   it 'returns a start link' do
     expect(helper.start_link(userstory))
-      .to eq "<a href=\"/projects/#{userstory.project.id}/userstories/#{userstory.id}?userstory%5Bstatus%5D=started\""+
+      .to eq "<a"+
              " data-method=\"put\""+
              " data-remote=\"true\""+
+             " href=\"/projects/#{userstory.project.id}/userstories/#{userstory.id}?userstory%5Bstatus%5D=started\""+
              " rel=\"nofollow\">Start</a>"
   end
 
   it 'returns a complete link' do
     expect(helper.complete_link(userstory))
-      .to eq "<a href=\"/projects/#{userstory.project.id}/userstories/#{userstory.id}\?userstory%5Bstatus%5D=completed\""+
+      .to eq "<a"+
              " data-method=\"put\""+
              " data-remote=\"true\""+
+             " href=\"/projects/#{userstory.project.id}/userstories/#{userstory.id}\?userstory%5Bstatus%5D=completed\""+
              " rel=\"nofollow\">Complete</a>"
   end
 
   it 'returns an accept link' do
     expect(helper.accept_link(userstory))
-    .to eq "<a href=\"/projects/#{userstory.project.id}/userstories/#{userstory.id}\?userstory%5Bstatus%5D=accepted\""+
+    .to eq "<a"+
            " data-method=\"put\""+
            " data-remote=\"true\""+
+           " href=\"/projects/#{userstory.project.id}/userstories/#{userstory.id}\?userstory%5Bstatus%5D=accepted\""+
            " rel=\"nofollow\">Accept</a>"
   end
 
   it 'returns a reject link' do
     expect(helper.reject_link(userstory))
-      .to eq "<a href=\"/projects/#{userstory.project.id}/userstories/#{userstory.id}\?userstory%5Bstatus%5D=rejected\""+
+      .to eq "<a"+
              " data-method=\"put\""+
              " data-remote=\"true\""+
+             " href=\"/projects/#{userstory.project.id}/userstories/#{userstory.id}\?userstory%5Bstatus%5D=rejected\""+
              " rel=\"nofollow\">Reject</a>"
   end
 
   it 'returns a couple of accept and reject links' do
     expect(helper.accept_and_reject_links(userstory))
-      .to eq "<a href=\"/projects/#{userstory.project.id}/userstories/#{userstory.id}\?userstory%5Bstatus%5D=accepted\""+
+      .to eq "<a"+
              " data-method=\"put\""+
              " data-remote=\"true\""+
+             " href=\"/projects/#{userstory.project.id}/userstories/#{userstory.id}\?userstory%5Bstatus%5D=accepted\""+
              " rel=\"nofollow\">Accept</a>"+
              "|"+
-             "<a href=\"/projects/#{userstory.project.id}/userstories/#{userstory.id}\?userstory%5Bstatus%5D=rejected\""+
+             "<a"+
              " data-method=\"put\""+
              " data-remote=\"true\""+
+             " href=\"/projects/#{userstory.project.id}/userstories/#{userstory.id}\?userstory%5Bstatus%5D=rejected\""+
              " rel=\"nofollow\">Reject</a>"
   end
 
@@ -56,13 +62,21 @@ describe UserstoriesHelper do
     it 'returns a complete link' do
       acceptance_test = create :acceptance_test, userstory: userstory, complete: false
       expect(helper.complete_acceptance_test_link(acceptance_test))
-        .to eq "<a href=\"/userstories/#{userstory.id}\/acceptance_tests\/#{acceptance_test.id}?acceptance_test%5Bcomplete%5D=true\" class=\"btn btn-mini\" data-method=\"put\" data-remote=\"true\" id=\"complete_acceptance_test_#{acceptance_test.id}\" rel=\"nofollow\" title=\"complete\"><i class=\"icon-ok\"></i></a>"
+        .to eq "<a class=\"btn btn-mini\""+
+               " data-method=\"put\""+
+               " data-remote=\"true\""+
+               " href=\"/userstories/#{userstory.id}\/acceptance_tests\/#{acceptance_test.id}?acceptance_test%5Bcomplete%5D=true\""+
+               " id=\"complete_acceptance_test_#{acceptance_test.id}\" rel=\"nofollow\" title=\"complete\"><i class=\"icon-ok\"></i></a>"
     end
 
     it 'returns an incomplete link' do
       acceptance_test = create :acceptance_test, userstory: userstory, complete: true
       expect(helper.complete_acceptance_test_link(acceptance_test))
-        .to eq "<a href=\"/userstories/#{userstory.id}\/acceptance_tests\/#{acceptance_test.id}?acceptance_test%5Bcomplete%5D=false\" class=\"btn btn-mini\" data-method=\"put\" data-remote=\"true\" id=\"incomplete_acceptance_test_#{acceptance_test.id}\" rel=\"nofollow\" title=\"incomplete\"><i class=\"icon-remove\"></i></a>"
+        .to eq "<a class=\"btn btn-mini\""+
+               " data-method=\"put\""+
+               " data-remote=\"true\""+
+               " href=\"/userstories/#{userstory.id}\/acceptance_tests\/#{acceptance_test.id}?acceptance_test%5Bcomplete%5D=false\""+
+               " id=\"incomplete_acceptance_test_#{acceptance_test.id}\" rel=\"nofollow\" title=\"incomplete\"><i class=\"icon-remove\"></i></a>"
     end
   end
 
@@ -70,13 +84,21 @@ describe UserstoriesHelper do
     it 'returns a complete link' do
       task = create :task, userstory: userstory, complete: false
       expect(helper.complete_task_link(task))
-        .to eq "<a href=\"/userstories/#{userstory.id}\/tasks\/#{task.id}?task%5Bcomplete%5D=true\" class=\"btn btn-mini\" data-method=\"put\" data-remote=\"true\" id=\"complete_task_#{task.id}\" rel=\"nofollow\" title=\"complete\"><i class=\"icon-ok\"></i></a>"
+        .to eq "<a class=\"btn btn-mini\""+
+               " data-method=\"put\""+
+               " data-remote=\"true\""+
+               " href=\"/userstories/#{userstory.id}\/tasks\/#{task.id}?task%5Bcomplete%5D=true\""+
+               " id=\"complete_task_#{task.id}\" rel=\"nofollow\" title=\"complete\"><i class=\"icon-ok\"></i></a>"
     end
 
     it 'returns an incomplete link' do
       task = create :task, userstory: userstory, complete: true
       expect(helper.complete_task_link(task))
-        .to eq "<a href=\"/userstories/#{userstory.id}\/tasks\/#{task.id}?task%5Bcomplete%5D=false\" class=\"btn btn-mini\" data-method=\"put\" data-remote=\"true\" id=\"incomplete_task_#{task.id}\" rel=\"nofollow\" title=\"incomplete\"><i class=\"icon-remove\"></i></a>"
+        .to eq "<a class=\"btn btn-mini\""+
+               " data-method=\"put\""+
+               " data-remote=\"true\""+
+               " href=\"/userstories/#{userstory.id}\/tasks\/#{task.id}?task%5Bcomplete%5D=false\""+
+               " id=\"incomplete_task_#{task.id}\" rel=\"nofollow\" title=\"incomplete\"><i class=\"icon-remove\"></i></a>"
     end
   end
 
@@ -84,9 +106,9 @@ describe UserstoriesHelper do
     it 'returns an edit link' do
       task = create :task, userstory: userstory, complete: false
       expect(helper.edit_link(task))
-        .to eq "<a href=\"/userstories/#{task.userstory.id}/tasks/#{task.id}/edit\""+
-               " class=\"btn btn-mini\""+
+        .to eq "<a class=\"btn btn-mini\""+
                " data-remote=\"true\""+
+               " href=\"/userstories/#{task.userstory.id}/tasks/#{task.id}/edit\""+
                " id=\"edit_task_#{task.id}\""+
                " title=\"edit\">"+
                "<i class=\"icon-pencil\"></i></a>"
@@ -97,11 +119,11 @@ describe UserstoriesHelper do
     it 'returns a destroy link' do
       task = create :task, userstory: userstory, complete: false
       expect(helper.destroy_link(task))
-        .to eq "<a href=\"/userstories/#{userstory.id}\/tasks/#{task.id}\""+
-               " class=\"btn btn-mini\""+
+        .to eq "<a class=\"btn btn-mini\""+
                " data-confirm=\"Are you sure?\""+
                " data-method=\"delete\""+
                " data-remote=\"true\""+
+               " href=\"/userstories/#{userstory.id}\/tasks/#{task.id}\""+
                " id=\"destroy_task_#{task.id}\""+
                " rel=\"nofollow\""+
                " title=\"destroy\">"+
@@ -127,19 +149,19 @@ describe UserstoriesHelper do
     let(:sprint) { userstory.project.sprints.first }
     it 'returns a move to sprint link' do
       expect(helper.sprint_link(userstory))
-      .to eq "<a href=\"/projects/#{userstory.project.id}/userstories/#{userstory.id}\?userstory%5Bposition%5D=sprint&amp;userstory%5Bsprint_id%5D=#{sprint.id}\""+
-             " class=\"btn btn-mini\""+
+      .to eq "<a class=\"btn btn-mini\""+
              " data-method=\"put\""+
              " data-remote=\"true\""+
+             " href=\"/projects/#{userstory.project.id}/userstories/#{userstory.id}\?userstory%5Bposition%5D=sprint&amp;userstory%5Bsprint_id%5D=#{sprint.id}\""+
              " rel=\"nofollow\"><</a>"
     end
 
     it 'returns a move to backlog' do
       expect(helper.backlog_link(userstory))
-      .to eq "<a href=\"/projects/#{userstory.project.id}/userstories/#{userstory.id}\?userstory%5Bposition%5D=backlog&amp;userstory%5Bsprint_id%5D=\""+
-             " class=\"btn btn-mini\""+
+      .to eq "<a class=\"btn btn-mini\""+
              " data-method=\"put\""+
              " data-remote=\"true\""+
+             " href=\"/projects/#{userstory.project.id}/userstories/#{userstory.id}\?userstory%5Bposition%5D=backlog&amp;userstory%5Bsprint_id%5D=\""+
              " rel=\"nofollow\">></a>"
     end
   end
