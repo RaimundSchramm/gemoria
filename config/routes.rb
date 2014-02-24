@@ -2,14 +2,21 @@ Gemoria::Application.routes.draw do
 
   root to: 'home#index'
 
-  get '/signup', to: 'users#new', as: :signup
-  resources :users, only: [:new, :create]
+  get '/signup',             to: 'users#new',        as: :signup
+  resources :users,          only: [:new, :create]
 
-  get '/login', to: 'sessions#new', as: :login
-  delete '/logout', to: 'sessions#destroy', as: :logout
-  resources :sessions, only: [:new, :create, :destroy]
+  get '/login',              to: 'sessions#new',     as: :login
+  delete '/logout',          to: 'sessions#destroy', as: :logout
+  resources :sessions,       only: [:new, :create, :destroy]
 
+  resource  :administration, only: [:show]
   resources :categories
+  resources :roles
+
+  resources :ownerships, only: [:index] do
+    get 'edit_multiple',              on: :collection
+    post 'create_or_delete_multiple', on: :collection
+  end
 
   resources :projects do
     resources :userstories
@@ -23,12 +30,7 @@ Gemoria::Application.routes.draw do
     resources :acceptance_tests, except: [:show]
   end
 
-  resources :current_userstories, only: [:index]
-
   resource :dashboard, only: [:show]
 
-  resources :ownerships, only: [:index] do
-    get 'edit_multiple', on: :collection
-    post 'create_or_delete_multiple', on: :collection
-  end
+  resources :current_userstories, only: [:index]
 end
