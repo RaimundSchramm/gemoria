@@ -30,7 +30,7 @@ describe 'js for userstories#show', ->
       $('a').hide()
       expect($('a')).toBeHidden()
       showActionLinksExcept($('a#new_task_link'))
-      expect($('a#new_acceptance_test_link')).toHaveCss({display: "inline"})
+      expect($('a#new_acceptance_test_link')).toHaveCss({display: "block"})
       expect($('a#new_task_link')).toBeHidden()
 
   describe 'removeAjaxForms', ->

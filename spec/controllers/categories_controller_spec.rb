@@ -31,9 +31,10 @@ describe CategoriesController do
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # CategoriesController. Be sure to keep this updated too.
-  let(:user) { create :user }
-
   def valid_session
+    user = mock_model(User)
+    user.stub(:admin?).and_return true
+    User.stub(:find).and_return user
     { user_id: user.id }
   end
 

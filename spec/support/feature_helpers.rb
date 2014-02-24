@@ -1,7 +1,7 @@
 module FeatureHelpers
 
   def login(user = nil)
-    user ||= create :user
+    user ||= create :admin
     visit '/'
     click_link 'Login'
     fill_in 'Name', with: "#{user.name}"

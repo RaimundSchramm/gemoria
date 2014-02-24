@@ -5,6 +5,7 @@ FactoryGirl.define do
     name 'MyString'
     password 'secret'
     password_confirmation 'secret'
+    admin false
 
     factory :mund do
       name 'mund'
@@ -12,6 +13,13 @@ FactoryGirl.define do
 
     factory :mirk do
       name 'mirk'
+    end
+
+    factory :admin do
+      admin true
+    end
+
+    factory :non_admin do
     end
   end
 end

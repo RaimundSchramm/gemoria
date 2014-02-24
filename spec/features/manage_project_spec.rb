@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature 'A new project should have a sprint' do
 
-  before { login }
+  before { login create :admin }
 
   scenario 'full rotation' do
 

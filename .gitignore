@@ -19,6 +19,7 @@ db/*.sqlite3
 /log/*
 /tmp/*
 #/config/initializers/secret_token.rb
+/app/assets/stylesheets/scaffolds.css.scss
 
 # various artifacts
 **.war
