@@ -4,7 +4,7 @@ describe OwnershipsController do
 
   render_views
 
-  let(:user)    { create :user }
+  let(:user)    { create :admin }
   let(:project) { create :project }
 
   def valid_session

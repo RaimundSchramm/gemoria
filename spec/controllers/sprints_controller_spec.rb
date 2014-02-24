@@ -3,7 +3,7 @@ require 'spec_helper'
 describe SprintsController do
   render_views
 
-  let(:user)    { create :user }
+  let(:user)    { create :admin }
   let(:project) { create :project }
   let(:sprint)  { create :sprint, project_id: project.id }
 
