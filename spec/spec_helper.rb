@@ -74,6 +74,7 @@ RSpec.configure do |config|
     Task.delete_all
     Category.delete_all
     User.delete_all
+    Role.delete_all
   end
 
   config.include FeatureHelpers
