@@ -19,7 +19,7 @@
   %header
     %h2 Acceptance Tests
   %section.actions
-    = link_to 'New acceptance test', new_userstory_acceptance_test_path(@userstory), id: 'new_acceptance_test_link', remote: true, class: 'btn'
+    = link_to 'New acceptance test', new_userstory_acceptance_test_path(@userstory), id: 'new_acceptance_test_link', remote: true, class: 'btn btn-default btn-xs'
   %section.incomplete
     %header
       %h3 not yet accepted
@@ -37,7 +37,7 @@
   %header
     %h2 Tasks
   %section.actions
-    = link_to 'New task', new_userstory_task_path(@userstory), id: 'new_task_link', remote: true, class: 'btn'
+    = link_to 'New task', new_userstory_task_path(@userstory), id: 'new_task_link', remote: true, class: 'btn btn-default btn-xs'
   %section.incomplete
     %header
       %h3 incomplete
