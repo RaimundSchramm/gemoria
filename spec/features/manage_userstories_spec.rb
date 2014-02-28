@@ -75,6 +75,7 @@ feature 'manage userstories' do
     click_on 'Start'
     click_on 'Complete'
     click_on 'Accept'
+    find('a', text: 'Context').click
     click_on 'Manage userstories'
     expect(current_path).to eq "/projects/#{project.id}/userstories"
 
@@ -113,6 +114,7 @@ feature 'manage userstories' do
     click_on 'Start'
     click_on 'Complete'
     click_on 'Accept'
+    find('a', text: 'Context').click
     click_on 'Manage userstories'
     expect(current_path).to eq "/projects/#{project.id}/userstories"
 
