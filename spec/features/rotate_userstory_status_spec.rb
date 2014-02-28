@@ -11,9 +11,10 @@ feature 'A userstory should have a rotating status' do
 
     visit "/projects/#{project.id}/userstories/#{userstory.id}"
 
-    within "nav#breadcrumbs" do
-      expect(page).to have_content project.name
-    end
+    # disabled until breadcrumbs are designed
+    # within "nav#breadcrumbs" do
+    #   expect(page).to have_content project.name
+    # end
     within "header h1" do
       expect(page).to have_content userstory.description
     end
