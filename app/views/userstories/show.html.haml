@@ -7,9 +7,10 @@
       %li= "#{@userstory.description}"
 
 - content_for :nav_context do
-  %ul
-    %li= link_to 'Destroy userstory', project_userstory_path(@project, @userstory), method: :delete, data: {confirm: 'Are you sure?'}
-    %li= link_to 'Edit userstory', edit_project_userstory_path(@project, @userstory)
+  %li= link_to 'Destroy userstory', project_userstory_path(@project, @userstory), method: :delete, data: {confirm: 'Are you sure?'}
+  %li= link_to 'Edit userstory', edit_project_userstory_path(@project, @userstory)
+  %li.divider
+  %li= link_to 'Manage userstories', project_userstories_path(@project)
 
 %header
   %h1

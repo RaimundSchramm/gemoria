@@ -1,2 +1,6 @@
-%nav#context
-  = yield :nav_context
+%li.dropdown
+  %a.dropdown-toggle{ data: { toggle: 'dropdown'} }
+    Context
+    %b.caret
+  %ul.dropdown-menu.dropdown-menue-right
+    = yield :nav_context
