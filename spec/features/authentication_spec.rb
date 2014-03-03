@@ -23,8 +23,8 @@ feature 'authentication' do
     click_link 'Signup'
     expect(current_path).to eq signup_path
 
-    fill_in 'Name', with: 'Raimund'
-    fill_in 'Password', with: 'secret'
+    fill_in 'Name',                  with: 'Raimund'
+    fill_in 'Password',              with: 'secret'
     fill_in 'Password confirmation', with: 'secret'
     click_button 'Sign up'
 
@@ -32,8 +32,8 @@ feature 'authentication' do
 
     visit '/signup'
 
-    fill_in 'Name', with: 'Raimund'
-    fill_in 'Password', with: 'secret'
+    fill_in 'Name',                  with: 'Raimund'
+    fill_in 'Password',              with: 'secret'
     fill_in 'Password confirmation', with: 'secret'
     expect { click_button 'Sign up' }.not_to change(User, :count)
 
@@ -67,11 +67,7 @@ feature 'authentication' do
   end
 
   scenario 'As a User I want to be signed in after signup' do
-    click_link 'Signup'
-    fill_in 'Name', with: 'mirk'
-    fill_in 'Password', with: 'secret'
-    fill_in 'Password confirmation', with: 'secret'
-    click_button 'Sign up'
+    sign_up_user({ name: 'mirk', password: 'secret', password_confirmation: 'secret' })
 
     expect(current_path).to eq root_path
     expect(page).to have_content 'mirk'
