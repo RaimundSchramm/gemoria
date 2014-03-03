@@ -3,11 +3,7 @@ require 'spec_helper'
 feature 'authorization' do
 
   scenario 'As a new user When I sign up I am a non-admin user' do
-    visit '/signup'
-    fill_in 'Name',                  with: 'New user'
-    fill_in 'Password',              with: 'secret'
-    fill_in 'Password confirmation', with: 'secret'
-    click_on 'Sign up'
+    sign_up_user({ name: 'New user', password: 'secret', password_confirmation: 'secret' })
     expect(User.count).to eq 1
     expect(User.last.admin?).to be_false
     expect(current_path).to eq '/'
