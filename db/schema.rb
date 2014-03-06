@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(version: 20140221085025) do
   create_table "acceptance_tests", force: true do |t|
     t.integer  "userstory_id"
     t.text     "description"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.boolean  "complete"
   end
 
@@ -25,21 +25,21 @@ ActiveRecord::Schema.define(version: 20140221085025) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "ownerships", force: true do |t|
     t.integer  "user_id"
     t.integer  "project_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "projects", force: true do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "roles", force: true do |t|
@@ -51,15 +51,15 @@ ActiveRecord::Schema.define(version: 20140221085025) do
   create_table "sprints", force: true do |t|
     t.boolean  "complete"
     t.integer  "project_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "tasks", force: true do |t|
     t.string   "name"
     t.boolean  "complete"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "userstory_id"
   end
 
@@ -68,15 +68,15 @@ ActiveRecord::Schema.define(version: 20140221085025) do
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.boolean  "admin"
   end
 
   create_table "userstories", force: true do |t|
     t.string   "name"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.boolean  "complete"
     t.integer  "project_id"
     t.string   "status"
