@@ -5,10 +5,10 @@
       %li= "#{@project.name}"
 
 - content_for :nav_context do
-  %ul
-    %li= link_to 'Destroy project', project_path(@project), method: :delete, data: { confirm: 'Are you sure?' }
-    %li= link_to 'Edit project', edit_project_path(@project)
-    %li= link_to 'Manage userstories', project_userstories_path(@project)  
+  %li= link_to 'Destroy project', project_path(@project), method: :delete, data: { confirm: 'Are you sure?' }
+  %li= link_to 'Edit project', edit_project_path(@project)
+  %li.divider
+  %li= link_to 'Manage userstories', project_userstories_path(@project)
 
 %h1= @project.name
 
