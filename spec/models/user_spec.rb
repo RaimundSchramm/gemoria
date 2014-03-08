@@ -5,6 +5,8 @@ describe User do
   let(:user)    { create :user }
   let(:project) { create :project }
 
+  it { should have_secure_password }
+
   describe 'attributes and constants' do
     it 'its name is present' do
       user = build :user, name: ''
