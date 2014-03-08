@@ -60,3 +60,4 @@ gem 'childprocess'#, '0.3.7'
 
 gem 'travis-lint'
 
+gem 'simplecov', require: false, group: :test
