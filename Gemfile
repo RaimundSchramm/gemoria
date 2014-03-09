@@ -25,7 +25,7 @@ gem 'bootstrap-sass'
 
 group :development, :test do
   # debugger
-  gem 'debugger'
+  gem 'debugger', '~> 1.6.0'
 
   # test framework for ruby and rails
   gem "rspec-rails", '~> 2.14.0'
