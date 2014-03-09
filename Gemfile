@@ -40,7 +40,7 @@ group :development, :test do
   gem 'poltergeist'
 
   # test fixtures replacement
-  gem "factory_girl_rails"
+  gem "factory_girl_rails", '~> 4.4.0'
 
   # automating on file change
   gem 'guard-rspec'     # for rspec-rails
