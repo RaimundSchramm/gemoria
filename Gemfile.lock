@@ -98,9 +98,9 @@ GEM
       eventmachine (>= 0.12.0)
     ffi (1.9.3)
     formatador (0.2.4)
-    guard (2.4.0)
+    guard (2.5.1)
       formatador (>= 0.2.4)
-      listen (~> 2.1)
+      listen (~> 2.6)
       lumberjack (~> 1.0)
       pry (>= 0.9.12)
       thor (>= 0.18.1)
@@ -114,7 +114,7 @@ GEM
       em-websocket (~> 0.5)
       guard (~> 2.0)
       multi_json (~> 1.8)
-    guard-rspec (4.2.6)
+    guard-rspec (4.2.8)
       guard (~> 2.1)
       rspec (>= 2.14, < 4.0)
     haml (4.0.5)
@@ -138,7 +138,7 @@ GEM
       addressable (~> 2.3)
     libnotify (0.8.2)
       ffi (>= 1.0.11)
-    listen (2.5.0)
+    listen (2.7.0)
       celluloid (>= 0.15.2)
       celluloid-io (>= 0.15.0)
       rb-fsevent (>= 0.9.3)
@@ -286,7 +286,7 @@ DEPENDENCIES
   factory_girl_rails (~> 4.4.0)
   guard-jasmine
   guard-livereload
-  guard-rspec
+  guard-rspec (~> 4.2.0)
   haml
   haml-rails
   hpricot
