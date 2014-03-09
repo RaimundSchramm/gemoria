@@ -16,7 +16,7 @@ gem "ruby_parser"
 gem "email_spec"
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt-ruby'#, '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.1.2'
 
 gem 'sass-rails'
 gem 'coffee-rails'
