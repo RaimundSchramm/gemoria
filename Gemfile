@@ -28,7 +28,7 @@ group :development, :test do
   gem 'debugger'
 
   # test framework for ruby and rails
-  gem "rspec-rails"
+  gem "rspec-rails", '~> 2.14.0'
 
   # test framework for javascript and jquery
   gem 'jasminerice', :git => 'https://github.com/bradphelan/jasminerice.git'
