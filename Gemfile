@@ -6,7 +6,7 @@ gem 'rails', '4.0.3'
 gem 'jquery-rails'
 gem "thin"
 
-gem 'sqlite3'
+gem 'sqlite3', '~> 1.3.0'
 gem 'pg'
 
 gem "haml"
