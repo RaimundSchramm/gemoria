@@ -34,10 +34,10 @@ group :development, :test do
   gem 'jasminerice', :git => 'https://github.com/bradphelan/jasminerice.git'
 
   # test framework for acceptance testing ruby, rails and javascript
-  gem "capybara", '~> 1.1.0'
+  gem "capybara", '~> 2.2.0'
   gem 'launchy'
   gem 'database_cleaner'
-  gem 'poltergeist'
+  gem 'poltergeist', '~> 1.5.0'
 
   # test fixtures replacement
   gem "factory_girl_rails", '~> 4.4.0'
