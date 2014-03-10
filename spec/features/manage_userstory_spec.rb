@@ -23,8 +23,10 @@ feature 'manage userstory', js: true do
     visit "/projects/#{project.id}/userstories/#{userstory.id}"
 
     # assert
-    within 'section section.actions' do
+    within 'section#tasks section.actions' do
       page.should_not have_selector('form.new_task')
+    end
+    within 'section#acceptance_tests section.actions' do
       page.should_not have_selector('form.new_acceptance_test')
     end
 
@@ -35,7 +37,7 @@ feature 'manage userstory', js: true do
     # assert
     within 'section#acceptance_tests section.actions' do
       page.should have_selector('form.new_acceptance_test')
-      page.should have_selector('a#new_acceptance_test_link', display: 'none')
+      expect(page).not_to have_selector('a#new_acceptance_test_link')
     end
   end
 
@@ -47,8 +49,7 @@ feature 'manage userstory', js: true do
     visit "/projects/#{project.id}/userstories/#{userstory.id}"
 
     # assert
-    within 'section section.actions' do
-      page.should_not have_selector('form.new_task')
+    within 'section#acceptance_tests section.actions' do
       page.should_not have_selector('form.new_acceptance_test')
     end
 
@@ -59,7 +60,7 @@ feature 'manage userstory', js: true do
     # assert
     within 'section#tasks section.actions' do
       page.should have_selector('form.new_task')
-      page.should have_selector('a#new_task_link', display: 'none')
+      expect(page).not_to have_selector('a#new_task_link')
     end
   end
 
@@ -83,11 +84,11 @@ feature 'manage userstory', js: true do
     # assert
     within 'section#tasks section.actions' do
       page.should_not have_selector('form.new_task')
-      page.should have_selector('a#new_task_link', display: 'none')
+      expect(page).to have_selector('a#new_task_link')
     end
     within 'section#acceptance_tests section.actions' do
       page.should have_selector('form.new_acceptance_test')
-      page.should have_selector('a#new_acceptance_test_link', display: 'none')
+      expect(page).not_to have_selector('a#new_acceptance_test_link')
     end
   end
 
@@ -111,11 +112,11 @@ feature 'manage userstory', js: true do
     # assert
     within 'section#acceptance_tests section.actions' do
       page.should_not have_selector('form.new_acceptance_test')
-      page.should have_selector('a#new_acceptance_test_link', display: 'none')
+      expect(find_link('New acceptance test').visible?).to be_true
     end
     within 'section#tasks section.actions' do
       page.should have_selector('form.new_task')
-      page.should have_selector('a#new_task_link', display: 'none')
+      expect(page).not_to have_selector('a#new_task_link')
     end
   end
 
@@ -141,14 +142,14 @@ feature 'manage userstory', js: true do
     # assert
     within 'section#acceptance_tests section.actions' do
       page.should_not have_selector('form.edit_acceptance_test')
-      page.should have_selector('a#new_acceptance_test_link', display: 'none')
+      expect(find_link('New acceptance test').visible?).to be_true
     end
     within 'section#acceptance_tests section.incomplete' do
       page.should have_selector("#acceptance_test_#{acceptance_test.id}")
     end
     within 'section#tasks section.actions' do
-      page.should have_selector('form.new_task')
-      page.should have_selector('a#new_task_link', display: 'none')
+      expect(page).to have_selector('form#new_task')
+      expect(page).to have_selector('a#new_task_link', visible: false)
     end
   end
 
@@ -177,7 +178,7 @@ feature 'manage userstory', js: true do
       page.should have_link  "destroy_acceptance_test_#{AcceptanceTest.last.id}"
     end
     within 'section#acceptance_tests section.actions' do
-      page.should have_selector 'a#new_acceptance_test_link', display: 'inline'
+      expect(find_link('New acceptance test').visible?).to be_true
     end
   end
 
@@ -206,7 +207,7 @@ feature 'manage userstory', js: true do
       page.should have_link  "destroy_task_#{Task.last.id}"
     end
     within 'section#tasks section.actions' do
-      page.should have_selector 'a#new_task_link', display: 'inline'
+      expect(find_link('New task').visible?).to be_true
     end
   end
 
@@ -223,7 +224,7 @@ feature 'manage userstory', js: true do
     # assert
     within 'section#acceptance_tests section.actions' do
       page.should_not have_selector 'form#new_acceptance_test'
-      page.should have_selector 'a#new_acceptance_test_link', display: 'inline'
+      expect(find_link('New acceptance test').visible?).to be_true
     end
   end
 
@@ -243,7 +244,7 @@ feature 'manage userstory', js: true do
       page.should have_selector "form.edit_acceptance_test"
     end
     within 'section#acceptance_tests section.incomplete' do
-      page.should have_selector "#acceptance_test_#{acceptance_test.id}", display: 'none'
+      expect(page).not_to have_selector "#acceptance_test_#{acceptance_test.id}"
     end
 
     # user interaction
@@ -276,7 +277,7 @@ feature 'manage userstory', js: true do
       page.should have_selector "form.edit_task"
     end
     within 'section#tasks section.incomplete' do
-      page.should have_selector "#task_#{task.id}", display: 'none'
+      expect(page).not_to have_selector("a#task_#{task.id}")
     end
 
     # user interaction
@@ -316,7 +317,7 @@ feature 'manage userstory', js: true do
       page.should have_selector 'form.edit_task'
     end
     within 'section#tasks section.incomplete' do
-      page.should have_selector "#task_#{task.id}", display: 'none'
+      expect(page).not_to have_selector("task_#{task.id}")
     end
     within 'section#acceptance_tests' do
       page.should_not have_selector 'form.edit_acceptance_test'
@@ -358,7 +359,7 @@ feature 'manage userstory', js: true do
     # assert
     within 'section#acceptance_tests section.actions' do
       page.should_not have_selector "form#edit_acceptance_test"
-      page.should have_selector 'a#new_acceptance_test_link', display: 'inline'
+      expect(find_link('New acceptance test').visible?).to be_true
     end
     within 'section#acceptance_tests section.incomplete' do
       page.should_not have_selector "#acceptance_test_#{acceptance_test.id}"
@@ -389,7 +390,7 @@ feature 'manage userstory', js: true do
     # assert
     within 'section#tasks section.actions' do
       page.should_not have_selector "form#edit_task"
-      page.should have_selector 'a#new_task_link', display: 'inline'
+      expect(find_link('New task').visible?).to be_true
     end
     within 'section#tasks section.incomplete' do
       page.should_not have_selector "#task_#{task.id}"
@@ -417,7 +418,7 @@ feature 'manage userstory', js: true do
       page.should_not have_selector "#acceptance_test_#{acceptance_test.id}"
     end
     within 'section#acceptance_tests section.actions' do
-      page.should have_selector 'a#new_acceptance_test_link', display: 'inline'
+      expect(find_link('New acceptance test').visible?).to be_true
     end
   end
 
@@ -437,7 +438,7 @@ feature 'manage userstory', js: true do
       page.should_not have_selector "#task_#{task.id}"
     end
     within 'section#tasks section.actions' do
-      page.should have_selector 'a#new_task_link', display: 'inline'
+      expect(find_link('New task').visible?).to be_true
     end
   end
 
@@ -464,7 +465,7 @@ feature 'manage userstory', js: true do
       page.should_not have_selector "#task_#{task.id}"
     end
     within 'section#tasks section.actions' do
-      page.should have_selector 'a#new_task_link', display: 'inline'
+      expect(find_link('New task').visible?).to be_true
     end
     within 'section#acceptance_tests' do
       page.should_not have_selector 'form.edit_acceptance_test'
@@ -472,6 +473,7 @@ feature 'manage userstory', js: true do
       page.should have_selector "#acceptance_test_#{acceptance_test.id}"
     end
   end
+  #TODO clearify and resolve inconsistent test results
 
   # When I visit this userstory
   # And I add an acceptance test
@@ -496,7 +498,7 @@ feature 'manage userstory', js: true do
       page.should_not have_selector "#task_#{task.id}"
     end
     within 'section#tasks section.actions' do
-      page.should have_selector 'a#new_task_link', display: 'inline'
+      expect(find_link('New task').visible?).to be_true
     end
     within 'section#acceptance_tests' do
       page.should_not have_selector 'form.new_acceptance_test'
