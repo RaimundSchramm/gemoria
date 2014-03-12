@@ -12,24 +12,27 @@ require 'capybara/rspec'
 require 'capybara/poltergeist'
 require 'capybara/rails'
 
-Capybara.javascript_driver = :poltergeist
-
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
+Capybara.javascript_driver = :poltergeist
+FactoryGirl.reload
+
 RSpec.configure do |config|
   config.include(EmailSpec::Helpers)
   config.include(EmailSpec::Matchers)
+
+  # This allows you to use the core set of syntax methods (build,
+  # build_stubbed, create, attributes_for, and their *_list counterparts)
+  # without having to call them on FactoryGirl directly
+  config.include FactoryGirl::Syntax::Methods
+  config.include Capybara::DSL
+  config.include FeatureHelpers
+
   #config.include Capybara::DSL
   #config.include Capybara::RSpecMatchers
-  # ## Mock Framework
-  #
-  # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
-  #
-  # config.mock_with :mocha
-  # config.mock_with :flexmock
-  # config.mock_with :rr
+
   config.mock_with :rspec
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
@@ -53,46 +56,23 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 
-  # This allows you to use the core set of syntax methods (build,
-  # build_stubbed, create, attributes_for, and their *_list counterparts)
-  # without having to call them on FactoryGirl directly
-  config.include FactoryGirl::Syntax::Methods
+  config.before(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+  end
 
-  config.include Capybara::DSL
-  # config.before(:suite) do
-  #   DatabaseCleaner.strategy = :truncation
-  # end
-   
-  # config.before(:each) do
-  #   DatabaseCleaner.start
-  # end
-   
+  config.before(:each) do
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before(:each, :js => true) do
+    DatabaseCleaner.strategy = :truncation
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
   config.after(:each) do
-    # DatabaseCleaner.clean
-    Userstory.delete_all
-    Project.delete_all
-    Sprint.delete_all
-    AcceptanceTest.delete_all
-    Task.delete_all
-    Category.delete_all
-    User.delete_all
-    Role.delete_all
-  end
-
-  config.include FeatureHelpers
-end
-
-class ActiveRecord::Base
-  mattr_accessor :shared_connection
-  @@shared_connection = nil
-
-  def self.connection
-    @shared_connection || retrieve_connection
+    DatabaseCleaner.clean
   end
 end
-
-# # Forces all threads to share the same connection. This works on Capybara
-# # because it starts the web server in a thread
-ActiveRecord::Base.shared_connection = ActiveRecord::Base.connection
-
-FactoryGirl.reload
