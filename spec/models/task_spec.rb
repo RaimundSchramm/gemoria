@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe Task do
+  context 'associations' do
+    it { should belong_to :userstory }
+  end
+
   context 'scopes' do
     describe '.complete' do
       it 'returns all completed tasks' do

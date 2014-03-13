@@ -7,6 +7,11 @@ describe User do
 
   it { should have_secure_password }
 
+  context 'associations' do
+    it { should have_many :ownerships }
+    it { should have_many(:projects).through(:ownerships) }
+  end
+
   describe 'attributes and constants' do
     it 'its name is present' do
       user = build :user, name: ''
