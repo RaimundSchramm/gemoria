@@ -8,6 +8,11 @@ describe Userstory do
   end
 
   context 'associations' do
+    it { should belong_to :project }
+    it { should belong_to :category }
+    it { should belong_to :sprint }
+    it { should have_many :acceptance_tests }
+    it { should have_many :tasks }
   end
 
   context 'scopes' do

@@ -4,6 +4,13 @@ describe Project do
 
   let(:project) { create :project }
 
+  context 'associations' do
+    it { should have_many :sprints }
+    it { should have_many :userstories }
+    it { should have_many :ownerships }
+    it { should have_many(:users).through(:ownerships) }
+  end
+
   context 'attributes and constants' do
     context 'derived attributes and counters' do
       describe '.size_of_all_userstories' do
