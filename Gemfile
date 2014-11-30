@@ -24,6 +24,7 @@ gem 'uglifier'
 gem 'bootstrap-sass'
 
 group :development, :test do
+  gem 'spring'
   gem 'byebug'
 
   # test framework for ruby and rails
