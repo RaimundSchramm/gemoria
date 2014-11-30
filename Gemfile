@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails4_upgrade'
 
-gem 'rails', '4.0.3'
+gem 'rails', '4.0.12'
 gem 'jquery-rails'
 gem "thin"
 
@@ -16,7 +16,7 @@ gem "ruby_parser"
 gem "email_spec"
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt-ruby', '~> 3.1.2'
+gem 'bcrypt-ruby'
 
 gem 'sass-rails'
 gem 'coffee-rails'
@@ -24,8 +24,7 @@ gem 'uglifier'
 gem 'bootstrap-sass'
 
 group :development, :test do
-  # debugger
-  gem 'debugger', '~> 1.6.0'
+  gem 'byebug'
 
   # test framework for ruby and rails
   gem "rspec-rails", '~> 2.14.0'
