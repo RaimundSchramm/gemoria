@@ -33,4 +33,6 @@ Gemoria::Application.routes.draw do
   resource :dashboard, only: [:show]
 
   resources :current_userstories, only: [:index]
+
+  resources :password_resets, only: [:new, :create, :edit, :update]
 end
