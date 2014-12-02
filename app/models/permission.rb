@@ -13,6 +13,7 @@ class Permission < Struct.new(:user)
       return true if controller == 'home'                && action == 'index'
       return true if controller == 'users'               && action.in?(%w[new create])
       return true if controller == 'sessions'            && action.in?(%w[new create])
+      return true if controller == 'password_resets'     && action.in?(%w[new create edit update])
     # members
     else
       return true if controller == 'home'                && action.in?(%w[index])
