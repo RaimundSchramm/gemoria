@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140221085025) do
+ActiveRecord::Schema.define(version: 20141201162252) do
 
   create_table "acceptance_tests", force: true do |t|
     t.integer  "userstory_id"
@@ -71,6 +71,9 @@ ActiveRecord::Schema.define(version: 20140221085025) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "admin"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_sent_at"
+    t.string   "email"
   end
 
   create_table "userstories", force: true do |t|
