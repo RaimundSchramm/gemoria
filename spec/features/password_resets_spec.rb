@@ -28,7 +28,7 @@ feature 'resetting password' do
     # add mailer template
     fill_in 'Email', with: 'mund@test.com'
     click_button 'Reset Password'
-    expect(current_path).to eq password_resets_path
+    expect(current_path).to eq root_path
 
     # 3 - resource: edit password reset
     # add route
