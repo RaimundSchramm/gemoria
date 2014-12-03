@@ -28,22 +28,23 @@ group :development, :test do
   gem 'byebug'
 
   # test framework for ruby and rails
-  gem "rspec-rails", '~> 2.14.0'
+  gem "rspec-rails", '~> 3.0'
+  gem 'rspec-activemodel-mocks'
 
   # test framework for javascript and jquery
   gem 'jasminerice', :git => 'https://github.com/bradphelan/jasminerice.git'
 
   # test framework for acceptance testing ruby, rails and javascript
-  gem "capybara", '~> 2.2.0'
+  gem "capybara"
   gem 'launchy'
   gem 'database_cleaner'
-  gem 'poltergeist', '~> 1.5.0'
+  gem 'poltergeist'
 
   # test fixtures replacement
   gem "factory_girl_rails", '~> 4.4.0'
 
   # automating on file change
-  gem 'guard-rspec', '~> 4.2.0'# for rspec-rails
+  #gem 'guard-rspec', '~> 4.2.0'# for rspec-rails
   gem 'rb-inotify'#, '~> 0.8.8'
   gem 'libnotify'
   gem 'guard-livereload'# for assets

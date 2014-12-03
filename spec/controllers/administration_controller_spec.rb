@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe AdministrationsController do
+describe AdministrationsController, :type => :controller do
 
   let(:user) { create :admin }
 

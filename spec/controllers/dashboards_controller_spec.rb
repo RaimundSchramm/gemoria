@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe DashboardsController do
+describe DashboardsController, :type => :controller do
 
   render_views
 

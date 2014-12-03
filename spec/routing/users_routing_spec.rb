@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'routing Users' do
+describe 'routing Users', :type => :routing do
 
   context 'custom routes' do
     it 'GET /signup routes to users#new' do

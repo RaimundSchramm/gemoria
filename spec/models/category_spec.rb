@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe Category do
+describe Category, :type => :model do
   context 'associations' do
-    it { should have_many :userstories }
+    it { is_expected.to have_many :userstories }
   end
 
   context 'attributes and constants' do

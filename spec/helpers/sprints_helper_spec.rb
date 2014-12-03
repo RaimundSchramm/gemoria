@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe SprintsHelper do
+describe SprintsHelper, :type => :helper do
   let(:project) { create :project }
   let(:sprint)  { create :sprint, project: project }
 
   before do
-    project.stub(:current_sprint_complete?).and_return true
-    project.stub(:sprint).and_return [1]
+    allow(project).to receive(:current_sprint_complete?).and_return true
+    allow(project).to receive(:sprint).and_return [1]
   end
 
   describe 'change position links' do

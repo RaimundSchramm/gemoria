@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe RolesController do
+describe RolesController, :type => :routing do
   describe 'routing' do
     it 'routes to #index' do
       expect(get('/roles')).to route_to('roles#index')

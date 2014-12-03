@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe OwnershipsController do
+describe OwnershipsController, :type => :controller do
 
   render_views
 

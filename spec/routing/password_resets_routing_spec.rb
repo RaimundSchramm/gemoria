@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Reset Password Routing -' do
+describe 'Reset Password Routing -', :type => :routing do
   describe 'uses RESTful routes:' do
     it 'GET /password_resets/new routes to password_resets#new' do
       expect(get 'password_resets/new').to route_to 'password_resets#new'

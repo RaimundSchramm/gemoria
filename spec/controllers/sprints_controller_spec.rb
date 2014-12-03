@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe SprintsController do
+describe SprintsController, :type => :controller do
   render_views
 
   let(:user)    { create :admin }

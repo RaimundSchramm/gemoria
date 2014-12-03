@@ -24,10 +24,10 @@ feature 'manage userstory', js: true do
 
     # assert
     within 'section#tasks section.actions' do
-      page.should_not have_selector('form.new_task')
+      expect(page).not_to have_selector('form.new_task')
     end
     within 'section#acceptance_tests section.actions' do
-      page.should_not have_selector('form.new_acceptance_test')
+      expect(page).not_to have_selector('form.new_acceptance_test')
     end
 
     # user interaction
@@ -36,7 +36,7 @@ feature 'manage userstory', js: true do
     end
     # assert
     within 'section#acceptance_tests section.actions' do
-      page.should have_selector('form.new_acceptance_test')
+      expect(page).to have_selector('form.new_acceptance_test')
       expect(page).not_to have_selector('a#new_acceptance_test_link')
     end
   end
@@ -50,7 +50,7 @@ feature 'manage userstory', js: true do
 
     # assert
     within 'section#acceptance_tests section.actions' do
-      page.should_not have_selector('form.new_acceptance_test')
+      expect(page).not_to have_selector('form.new_acceptance_test')
     end
 
     # user interaction
@@ -59,7 +59,7 @@ feature 'manage userstory', js: true do
     end
     # assert
     within 'section#tasks section.actions' do
-      page.should have_selector('form.new_task')
+      expect(page).to have_selector('form.new_task')
       expect(page).not_to have_selector('a#new_task_link')
     end
   end
@@ -83,11 +83,11 @@ feature 'manage userstory', js: true do
     end
     # assert
     within 'section#tasks section.actions' do
-      page.should_not have_selector('form.new_task')
+      expect(page).not_to have_selector('form.new_task')
       expect(page).to have_selector('a#new_task_link')
     end
     within 'section#acceptance_tests section.actions' do
-      page.should have_selector('form.new_acceptance_test')
+      expect(page).to have_selector('form.new_acceptance_test')
       expect(page).not_to have_selector('a#new_acceptance_test_link')
     end
   end
@@ -111,11 +111,11 @@ feature 'manage userstory', js: true do
     end
     # assert
     within 'section#acceptance_tests section.actions' do
-      page.should_not have_selector('form.new_acceptance_test')
-      expect(find_link('New acceptance test').visible?).to be_true
+      expect(page).not_to have_selector('form.new_acceptance_test')
+      expect(find_link('New acceptance test').visible?).to be_truthy
     end
     within 'section#tasks section.actions' do
-      page.should have_selector('form.new_task')
+      expect(page).to have_selector('form.new_task')
       expect(page).not_to have_selector('a#new_task_link')
     end
   end
@@ -141,11 +141,11 @@ feature 'manage userstory', js: true do
     end
     # assert
     within 'section#acceptance_tests section.actions' do
-      page.should_not have_selector('form.edit_acceptance_test')
-      expect(find_link('New acceptance test').visible?).to be_true
+      expect(page).not_to have_selector('form.edit_acceptance_test')
+      expect(find_link('New acceptance test').visible?).to be_truthy
     end
     within 'section#acceptance_tests section.incomplete' do
-      page.should have_selector("#acceptance_test_#{acceptance_test.id}")
+      expect(page).to have_selector("#acceptance_test_#{acceptance_test.id}")
     end
     within 'section#tasks section.actions' do
       expect(page).to have_selector('form#new_task')
@@ -169,16 +169,16 @@ feature 'manage userstory', js: true do
     end
     # assert
     within 'section#acceptance_tests section.actions' do
-      page.should_not have_selector 'form#new_acceptance_test'
+      expect(page).not_to have_selector 'form#new_acceptance_test'
     end
     within 'section#acceptance_tests section.incomplete' do
-      page.should have_selector "#acceptance_test_#{AcceptanceTest.last.id}"
-      page.should have_link  "edit_acceptance_test_#{AcceptanceTest.last.id}"
-      page.should have_link  "complete_acceptance_test_#{AcceptanceTest.last.id}"
-      page.should have_link  "destroy_acceptance_test_#{AcceptanceTest.last.id}"
+      expect(page).to have_selector "#acceptance_test_#{AcceptanceTest.last.id}"
+      expect(page).to have_link  "edit_acceptance_test_#{AcceptanceTest.last.id}"
+      expect(page).to have_link  "complete_acceptance_test_#{AcceptanceTest.last.id}"
+      expect(page).to have_link  "destroy_acceptance_test_#{AcceptanceTest.last.id}"
     end
     within 'section#acceptance_tests section.actions' do
-      expect(find_link('New acceptance test').visible?).to be_true
+      expect(find_link('New acceptance test').visible?).to be_truthy
     end
   end
 
@@ -198,16 +198,16 @@ feature 'manage userstory', js: true do
     end
     # assert
     within 'section#tasks section.actions' do
-      page.should_not have_selector 'form#new_task'
+      expect(page).not_to have_selector 'form#new_task'
     end
     within 'section#tasks section.incomplete' do
-      page.should have_selector "#task_#{Task.last.id}"
-      page.should have_link  "edit_task_#{Task.last.id}"
-      page.should have_link  "complete_task_#{Task.last.id}"
-      page.should have_link  "destroy_task_#{Task.last.id}"
+      expect(page).to have_selector "#task_#{Task.last.id}"
+      expect(page).to have_link  "edit_task_#{Task.last.id}"
+      expect(page).to have_link  "complete_task_#{Task.last.id}"
+      expect(page).to have_link  "destroy_task_#{Task.last.id}"
     end
     within 'section#tasks section.actions' do
-      expect(find_link('New task').visible?).to be_true
+      expect(find_link('New task').visible?).to be_truthy
     end
   end
 
@@ -223,8 +223,8 @@ feature 'manage userstory', js: true do
     find('.btn.close').click
     # assert
     within 'section#acceptance_tests section.actions' do
-      page.should_not have_selector 'form#new_acceptance_test'
-      expect(find_link('New acceptance test').visible?).to be_true
+      expect(page).not_to have_selector 'form#new_acceptance_test'
+      expect(find_link('New acceptance test').visible?).to be_truthy
     end
   end
 
@@ -241,7 +241,7 @@ feature 'manage userstory', js: true do
     end
     # assert
     within 'section#acceptance_tests section.actions' do
-      page.should have_selector "form.edit_acceptance_test"
+      expect(page).to have_selector "form.edit_acceptance_test"
     end
     within 'section#acceptance_tests section.incomplete' do
       expect(page).not_to have_selector "#acceptance_test_#{acceptance_test.id}"
@@ -253,11 +253,11 @@ feature 'manage userstory', js: true do
     end
     # assert
     within 'section#acceptance_tests section.actions' do
-      page.should_not have_selector "form#acceptance_test"
+      expect(page).not_to have_selector "form#acceptance_test"
     end
     within 'section#acceptance_tests section.incomplete' do
-      page.should have_selector "#acceptance_test_#{acceptance_test.id}"
-      page.should have_link  "edit_acceptance_test_#{acceptance_test.id}"
+      expect(page).to have_selector "#acceptance_test_#{acceptance_test.id}"
+      expect(page).to have_link  "edit_acceptance_test_#{acceptance_test.id}"
     end
   end
 
@@ -274,7 +274,7 @@ feature 'manage userstory', js: true do
     end
     # assert
     within 'section#tasks section.actions' do
-      page.should have_selector "form.edit_task"
+      expect(page).to have_selector "form.edit_task"
     end
     within 'section#tasks section.incomplete' do
       expect(page).not_to have_selector("a#task_#{task.id}")
@@ -286,11 +286,11 @@ feature 'manage userstory', js: true do
     end
     # assert
     within 'section#tasks section.actions' do
-      page.should_not have_selector "form#task"
+      expect(page).not_to have_selector "form#task"
     end
     within 'section#tasks section.incomplete' do
-      page.should have_selector "#task_#{task.id}"
-      page.should have_link  "edit_task_#{task.id}"
+      expect(page).to have_selector "#task_#{task.id}"
+      expect(page).to have_link  "edit_task_#{task.id}"
     end
   end
 
@@ -314,15 +314,15 @@ feature 'manage userstory', js: true do
     end
     # assert
     within 'section#tasks section.actions' do
-      page.should have_selector 'form.edit_task'
+      expect(page).to have_selector 'form.edit_task'
     end
     within 'section#tasks section.incomplete' do
       expect(page).not_to have_selector("task_#{task.id}")
     end
     within 'section#acceptance_tests' do
-      page.should_not have_selector 'form.edit_acceptance_test'
-      page.should have_selector "#acceptance_test_#{acceptance_test.id}"
-      page.should have_selector '#new_acceptance_test_link'
+      expect(page).not_to have_selector 'form.edit_acceptance_test'
+      expect(page).to have_selector "#acceptance_test_#{acceptance_test.id}"
+      expect(page).to have_selector '#new_acceptance_test_link'
     end
 
     # user interaction
@@ -335,8 +335,8 @@ feature 'manage userstory', js: true do
     end
     # assert
     within 'section#acceptance_tests' do
-      page.should_not have_selector "form#new_acceptance_test"
-      page.should have_selector '#new_acceptance_test_link'
+      expect(page).not_to have_selector "form#new_acceptance_test"
+      expect(page).to have_selector '#new_acceptance_test_link'
     end
   end
 
@@ -358,16 +358,16 @@ feature 'manage userstory', js: true do
     end
     # assert
     within 'section#acceptance_tests section.actions' do
-      page.should_not have_selector "form#edit_acceptance_test"
-      expect(find_link('New acceptance test').visible?).to be_true
+      expect(page).not_to have_selector "form#edit_acceptance_test"
+      expect(find_link('New acceptance test').visible?).to be_truthy
     end
     within 'section#acceptance_tests section.incomplete' do
-      page.should_not have_selector "#acceptance_test_#{acceptance_test.id}"
-      page.should_not have_content  'first complete'
+      expect(page).not_to have_selector "#acceptance_test_#{acceptance_test.id}"
+      expect(page).not_to have_content  'first complete'
     end
     within 'section#acceptance_tests section.complete' do
-      page.should have_selector "#acceptance_test_#{acceptance_test.id}"
-      page.should have_content  'first complete'
+      expect(page).to have_selector "#acceptance_test_#{acceptance_test.id}"
+      expect(page).to have_content  'first complete'
     end
   end
 
@@ -389,16 +389,16 @@ feature 'manage userstory', js: true do
     end
     # assert
     within 'section#tasks section.actions' do
-      page.should_not have_selector "form#edit_task"
-      expect(find_link('New task').visible?).to be_true
+      expect(page).not_to have_selector "form#edit_task"
+      expect(find_link('New task').visible?).to be_truthy
     end
     within 'section#tasks section.incomplete' do
-      page.should_not have_selector "#task_#{task.id}"
-      page.should_not have_content  'first complete'
+      expect(page).not_to have_selector "#task_#{task.id}"
+      expect(page).not_to have_content  'first complete'
     end
     within 'section#tasks section.complete' do
-      page.should have_selector "#task_#{task.id}"
-      page.should have_content  'first complete'
+      expect(page).to have_selector "#task_#{task.id}"
+      expect(page).to have_content  'first complete'
     end
   end
 
@@ -415,10 +415,10 @@ feature 'manage userstory', js: true do
     end
     # assert
     within 'section#acceptance_tests section.incomplete' do
-      page.should_not have_selector "#acceptance_test_#{acceptance_test.id}"
+      expect(page).not_to have_selector "#acceptance_test_#{acceptance_test.id}"
     end
     within 'section#acceptance_tests section.actions' do
-      expect(find_link('New acceptance test').visible?).to be_true
+      expect(find_link('New acceptance test').visible?).to be_truthy
     end
   end
 
@@ -435,10 +435,10 @@ feature 'manage userstory', js: true do
     end
     # assert
     within 'section#tasks section.incomplete' do
-      page.should_not have_selector "#task_#{task.id}"
+      expect(page).not_to have_selector "#task_#{task.id}"
     end
     within 'section#tasks section.actions' do
-      expect(find_link('New task').visible?).to be_true
+      expect(find_link('New task').visible?).to be_truthy
     end
   end
 
@@ -462,15 +462,15 @@ feature 'manage userstory', js: true do
     end
     # assert
     within 'section#tasks section.incomplete' do
-      page.should_not have_selector "#task_#{task.id}"
+      expect(page).not_to have_selector "#task_#{task.id}"
     end
     within 'section#tasks section.actions' do
-      expect(find_link('New task').visible?).to be_true
+      expect(find_link('New task').visible?).to be_truthy
     end
     within 'section#acceptance_tests' do
-      page.should_not have_selector 'form.edit_acceptance_test'
-      page.should have_selector '#new_acceptance_test_link'
-      page.should have_selector "#acceptance_test_#{acceptance_test.id}"
+      expect(page).not_to have_selector 'form.edit_acceptance_test'
+      expect(page).to have_selector '#new_acceptance_test_link'
+      expect(page).to have_selector "#acceptance_test_#{acceptance_test.id}"
     end
   end
   #TODO clearify and resolve inconsistent test results
@@ -495,15 +495,15 @@ feature 'manage userstory', js: true do
     end
     # assert
     within 'section#tasks section.incomplete' do
-      page.should_not have_selector "#task_#{task.id}"
+      expect(page).not_to have_selector "#task_#{task.id}"
     end
     within 'section#tasks section.actions' do
-      expect(find_link('New task').visible?).to be_true
+      expect(find_link('New task').visible?).to be_truthy
     end
     within 'section#acceptance_tests' do
-      page.should_not have_selector 'form.new_acceptance_test'
-      page.should have_selector '#new_acceptance_test_link'
-      page.should have_selector "#acceptance_test_#{acceptance_test.id}"
+      expect(page).not_to have_selector 'form.new_acceptance_test'
+      expect(page).to have_selector '#new_acceptance_test_link'
+      expect(page).to have_selector "#acceptance_test_#{acceptance_test.id}"
     end
   end
 end

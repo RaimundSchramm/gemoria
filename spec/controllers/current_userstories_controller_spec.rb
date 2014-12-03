@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CurrentUserstoriesController do
+describe CurrentUserstoriesController, :type => :controller do
   render_views
 
   let(:user) { create :user }
@@ -11,17 +11,17 @@ describe CurrentUserstoriesController do
   describe 'GET #index' do
     it 'renders index template' do
       get :index, {}, valid_session
-      response.should render_template('index')
+      expect(response).to render_template('index')
     end
 
     it 'returns HTTP success' do
       get :index, {}, valid_session
-      response.should be_success
+      expect(response).to be_success
     end
 
     it 'assigns all opened userstories as @current' do
       get :index, {}, valid_session
-      assigns(:current).should eq Userstory.where(status: 'opened')
+      expect(assigns(:current)).to eq Userstory.where(status: 'opened')
     end
 
     xit 'assigns all recent userstories as @recent' do

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe UserstoriesController do
+describe UserstoriesController, :type => :controller do
   render_views
 
   let(:user)       { create :user }
@@ -22,7 +22,7 @@ describe UserstoriesController do
 
   context 'before_filters' do
     xit 'responds to #parent' do
-      controller.should respond_to :parent
+      expect(controller).to respond_to :parent
     end
 
     describe '#parent' do
@@ -30,7 +30,7 @@ describe UserstoriesController do
         it 'assigns the parent project for every REST action' do
           [:index, :new].each do |action|
             get action, valid_attributes, valid_session
-            assigns(:project).should eq project
+            expect(assigns(:project)).to eq project
           end
         end
       end
@@ -71,18 +71,18 @@ describe UserstoriesController do
   describe "GET 'new'" do
     it 'returns http success' do
       get 'new', valid_attributes, valid_session
-      response.should be_success
+      expect(response).to be_success
     end
 
     it 'assigns new userstory to parent project' do
       get 'new', valid_attributes, valid_session
-      assigns(:userstory).should be_a_new Userstory
-      assigns(:userstory).project_id.should eq project.id
+      expect(assigns(:userstory)).to be_a_new Userstory
+      expect(assigns(:userstory).project_id).to eq project.id
     end
 
     it 'renders new template' do
       get 'new', valid_attributes, valid_session
-      response.should render_template 'new'
+      expect(response).to render_template 'new'
     end
   end
 
@@ -96,30 +96,30 @@ describe UserstoriesController do
 
       it 'assigns a newly created userstory as @userstory' do
         post 'create', valid_attributes, valid_session
-        assigns(:userstory).should be_a Userstory
-        assigns(:userstory).should be_persisted
-        assigns(:userstory).project_id.should eq project.id
+        expect(assigns(:userstory)).to be_a Userstory
+        expect(assigns(:userstory)).to be_persisted
+        expect(assigns(:userstory).project_id).to eq project.id
       end
 
       it 'redirects to index' do
         post 'create', valid_attributes, valid_session
-        response.should redirect_to assigns(:userstory).project
+        expect(response).to redirect_to assigns(:userstory).project
       end
     end
 
     context 'with invalid params' do
       before do
-        Userstory.any_instance.stub(:save).and_return false
+        allow_any_instance_of(Userstory).to receive(:save).and_return false
       end
 
       it 'assigns a new invalid userstory as @userstory' do
         post 'create', valid_attributes.merge(userstory: { description: '' }), valid_session
-        assigns(:userstory).should be_a_new Userstory
+        expect(assigns(:userstory)).to be_a_new Userstory
       end
 
       it 'rerenders new template' do
         post 'create', valid_attributes.merge(userstory: { description: '' }), valid_session
-        response.should render_template 'new'
+        expect(response).to render_template 'new'
       end
     end
   end
@@ -127,57 +127,57 @@ describe UserstoriesController do
   describe "GET 'show'" do
     it 'assigns the userstory' do
       get 'show', valid_attributes.merge(id: userstory.to_param), valid_session
-      assigns(:userstory).should eq userstory
+      expect(assigns(:userstory)).to eq userstory
     end
 
     it 'renders show template' do
       get 'show', valid_attributes.merge(id: userstory.to_param), valid_session
-      response.should render_template 'show'
+      expect(response).to render_template 'show'
     end
   end
 
   describe "GET 'edit'" do
     it 'assigns the userstory' do
       get 'edit', valid_attributes.merge(id: userstory.to_param), valid_session
-      assigns(:userstory).should eq userstory
+      expect(assigns(:userstory)).to eq userstory
     end
 
     it 'renders edit template' do
       get 'edit', valid_attributes.merge(id: userstory.to_param), valid_session
-      response.should render_template 'edit'
+      expect(response).to render_template 'edit'
     end
   end
 
   describe "PUT 'update'" do
     it 'assigns the userstory' do
       put 'update', valid_attributes.merge(id: userstory.to_param, userstory: { name: 'US2' }), valid_session
-      assigns(:userstory).should eq userstory
+      expect(assigns(:userstory)).to eq userstory
     end
 
     it 'redirects to index' do
       put 'update', valid_attributes.merge(id: userstory.to_param, userstory: { name: 'US2' }), valid_session
-      response.should redirect_to project_userstory_path(project, userstory)
+      expect(response).to redirect_to project_userstory_path(project, userstory)
     end
 
     it 'updates the userstory' do
       put 'update', valid_attributes.merge(id: userstory.to_param, userstory: { name: 'US2' }), valid_session
       userstory.reload
-      assigns(:userstory).name.should eq 'US2'
+      expect(assigns(:userstory).name).to eq 'US2'
     end
 
     context 'with invalid params' do
       before do
-        Userstory.any_instance.stub(:update_attributes).and_return false
+        allow_any_instance_of(Userstory).to receive(:update_attributes).and_return false
       end
 
       it 'assigns a new invalid userstory as @userstory' do
         put 'update', valid_attributes.merge(id: userstory.to_param, userstory: { description: '' }), valid_session
-        assigns(:userstory).should eq userstory
+        expect(assigns(:userstory)).to eq userstory
       end
 
       it 'rerenders edit template' do
         put 'update', valid_attributes.merge(id: userstory.to_param, userstory: { description: '' }), valid_session
-        response.should render_template 'edit'
+        expect(response).to render_template 'edit'
       end
     end
   end
@@ -185,19 +185,19 @@ describe UserstoriesController do
   describe "DELETE 'destroy'" do
     it 'assigns the userstory' do
       delete 'destroy', valid_attributes.merge({ id: userstory.to_param }), valid_session
-      assigns(:userstory).should eq userstory
+      expect(assigns(:userstory)).to eq userstory
     end
 
     it 'redirects to index' do
       delete 'destroy', valid_attributes.merge({ id: userstory.to_param }), valid_session
-      response.should redirect_to project_userstories_path(project)
+      expect(response).to redirect_to project_userstories_path(project)
     end
 
     it 'deletes this userstory' do
       expect {
         delete 'destroy', valid_attributes.merge({ id: userstory.to_param }), valid_session
       }.to change(Userstory, :count).from(1).to(0)
-      assigns(:project).userstories.size.should eq 0
+      expect(assigns(:project).userstories.size).to eq 0
     end
   end
 end

@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe HomeController do
+describe HomeController, :type => :controller do
   render_views
 
   describe "GET 'index'" do
     it "returns http success" do
       get 'index'
-      response.should be_success
+      expect(response).to be_success
     end
   end
 

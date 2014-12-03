@@ -18,7 +18,7 @@ require 'spec_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-describe RolesController do
+describe RolesController, :type => :controller do
 
   # This should return the minimal set of attributes required to create a valid
   # Role. As you add validations to Role, be sure to
@@ -34,7 +34,7 @@ describe RolesController do
     it "assigns all roles as @roles" do
       role = Role.create! valid_attributes
       get :index, {}, valid_session
-      assigns(:roles).should eq([role])
+      expect(assigns(:roles)).to eq([role])
     end
   end
 
@@ -42,14 +42,14 @@ describe RolesController do
     it "assigns the requested role as @role" do
       role = Role.create! valid_attributes
       get :show, {:id => role.to_param}, valid_session
-      assigns(:role).should eq(role)
+      expect(assigns(:role)).to eq(role)
     end
   end
 
   describe "GET new" do
     it "assigns a new role as @role" do
       get :new, {}, valid_session
-      assigns(:role).should be_a_new(Role)
+      expect(assigns(:role)).to be_a_new(Role)
     end
   end
 
@@ -57,7 +57,7 @@ describe RolesController do
     it "assigns the requested role as @role" do
       role = Role.create! valid_attributes
       get :edit, {:id => role.to_param}, valid_session
-      assigns(:role).should eq(role)
+      expect(assigns(:role)).to eq(role)
     end
   end
 
@@ -71,29 +71,29 @@ describe RolesController do
 
       it "assigns a newly created role as @role" do
         post :create, {:role => valid_attributes}, valid_session
-        assigns(:role).should be_a(Role)
-        assigns(:role).should be_persisted
+        expect(assigns(:role)).to be_a(Role)
+        expect(assigns(:role)).to be_persisted
       end
 
       it "redirects to the created role" do
         post :create, {:role => valid_attributes}, valid_session
-        response.should redirect_to(Role.last)
+        expect(response).to redirect_to(Role.last)
       end
     end
 
     describe "with invalid params" do
       it "assigns a newly created but unsaved role as @role" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Role.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Role).to receive(:save).and_return(false)
         post :create, {:role => { "name" => "invalid value" }}, valid_session
-        assigns(:role).should be_a_new(Role)
+        expect(assigns(:role)).to be_a_new(Role)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
-        Role.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Role).to receive(:save).and_return(false)
         post :create, {:role => { "name" => "invalid value" }}, valid_session
-        response.should render_template("new")
+        expect(response).to render_template("new")
       end
     end
   end
@@ -106,20 +106,20 @@ describe RolesController do
         # specifies that the Role created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Role.any_instance.should_receive(:update).with({ "name" => "MyString" })
+        expect_any_instance_of(Role).to receive(:update).with({ "name" => "MyString" })
         put :update, {:id => role.to_param, :role => { "name" => "MyString" }}, valid_session
       end
 
       it "assigns the requested role as @role" do
         role = Role.create! valid_attributes
         put :update, {:id => role.to_param, :role => valid_attributes}, valid_session
-        assigns(:role).should eq(role)
+        expect(assigns(:role)).to eq(role)
       end
 
       it "redirects to the role" do
         role = Role.create! valid_attributes
         put :update, {:id => role.to_param, :role => valid_attributes}, valid_session
-        response.should redirect_to(role)
+        expect(response).to redirect_to(role)
       end
     end
 
@@ -127,17 +127,17 @@ describe RolesController do
       it "assigns the role as @role" do
         role = Role.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Role.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Role).to receive(:save).and_return(false)
         put :update, {:id => role.to_param, :role => { "name" => "invalid value" }}, valid_session
-        assigns(:role).should eq(role)
+        expect(assigns(:role)).to eq(role)
       end
 
       it "re-renders the 'edit' template" do
         role = Role.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
-        Role.any_instance.stub(:save).and_return(false)
+        allow_any_instance_of(Role).to receive(:save).and_return(false)
         put :update, {:id => role.to_param, :role => { "name" => "invalid value" }}, valid_session
-        response.should render_template("edit")
+        expect(response).to render_template("edit")
       end
     end
   end
@@ -153,7 +153,7 @@ describe RolesController do
     it "redirects to the roles list" do
       role = Role.create! valid_attributes
       delete :destroy, {:id => role.to_param}, valid_session
-      response.should redirect_to(roles_url)
+      expect(response).to redirect_to(roles_url)
     end
   end
 

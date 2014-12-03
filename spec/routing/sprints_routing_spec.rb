@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe SprintsController do
+describe SprintsController, :type => :routing do
   describe 'RESTful routing' do
     it 'routes to #update' do
       expect(put('/projects/1/sprints/1')).to route_to('sprints#update', project_id: '1', id: '1')

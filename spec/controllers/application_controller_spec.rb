@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ApplicationController do
+describe ApplicationController, :type => :controller do
 
   controller do
     def index
@@ -12,8 +12,8 @@ describe ApplicationController do
 
     it 'handles authorizable but Not-authenticated' do
       current_permission = Permission.new(user)
-      controller.stub(:current_user).and_return nil
-      controller.stub(:current_permission).and_return current_permission
+      allow(controller).to receive(:current_user).and_return nil
+      allow(controller).to receive(:current_permission).and_return current_permission
 
       get :index
       expect(response).to redirect_to login_path
@@ -22,9 +22,9 @@ describe ApplicationController do
 
     it 'handles Not-authorized but authenticatable' do
       current_permission = Permission.new(user)
-      controller.stub(:current_user).and_return user
-      controller.stub(:current_permission).and_return current_permission
-      current_permission.stub(:allow?).and_return false
+      allow(controller).to receive(:current_user).and_return user
+      allow(controller).to receive(:current_permission).and_return current_permission
+      allow(current_permission).to receive(:allow?).and_return false
 
       get :index
       expect(response).to redirect_to root_path

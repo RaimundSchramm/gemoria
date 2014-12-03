@@ -1,11 +1,11 @@
 require "spec_helper"
 
-describe UserMailer do
+describe UserMailer, :type => :mailer do
   describe "password_reset" do
     let!(:mund) { create :mund, email: 'mund@test.com' }
     let(:mail) { UserMailer.password_reset(mund) }
 
-    before { mund.stub(:password_reset_token).and_return 1 }
+    before { allow(mund).to receive(:password_reset_token).and_return 1 }
 
     it "renders the headers" do
       expect(mail.subject).to eq 'Password Reset'

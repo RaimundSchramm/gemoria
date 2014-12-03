@@ -6,7 +6,6 @@ require 'rubygems'
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'email_spec'
-require 'rspec/autorun'
 require 'rspec/rails'
 require 'capybara/rspec'
 require 'capybara/poltergeist'
@@ -76,3 +75,25 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 end
+
+# RSpec 3.x - Deprecation-Warnings
+# `mock_model` is deprecated. Use the `rspec-activemodel-mocks` gem instead. Called from /home/mund/projects/gemoria/spec/controllers/categories_controller_spec.rb:35:in `valid_session'.
+
+# --------------------------------------------------------------------------------
+# rspec-rails 3 will no longer automatically infer an example group's spec type
+# from the file location. You can explicitly opt-in to this feature using this
+# snippet:
+
+# RSpec.configure do |config|
+#   config.infer_spec_type_from_file_location!
+# end
+
+# If you wish to manually label spec types via metadata you can safely ignore
+# this warning and continue upgrading to RSpec 3 without addressing it.
+# --------------------------------------------------------------------------------
+
+
+# If you need more of the backtrace for any of these deprecations to
+# identify where to make the necessary changes, you can configure
+# `config.raise_errors_for_deprecations!`, and it will turn the
+# deprecation warnings into errors, giving you the full backtrace.

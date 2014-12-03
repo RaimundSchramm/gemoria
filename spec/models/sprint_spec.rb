@@ -1,12 +1,12 @@
 require 'spec_helper'
 
-describe Sprint do
+describe Sprint, :type => :model do
   let(:sprint)     { create :sprint }
   let!(:userstory) { create :userstory_sprint_accepted, sprint: sprint }
 
   context 'associations' do
-    it { should belong_to :project }
-    it { should have_many :userstories }
+    it { is_expected.to belong_to :project }
+    it { is_expected.to have_many :userstories }
   end
 
   describe '#complete!' do

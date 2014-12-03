@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe UserstoriesHelper do
+describe UserstoriesHelper, :type => :helper do
   let!(:userstory) { create :userstory }
 
   it 'returns a link according to the next status update' do

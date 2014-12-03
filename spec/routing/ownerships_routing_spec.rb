@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe OwnershipsController do
+describe OwnershipsController, :type => :routing do
   describe 'RESTful routes' do
     it 'GET /ownerships routes to ownerships#index' do
       expect(get '/ownerships').to route_to 'ownerships#index'

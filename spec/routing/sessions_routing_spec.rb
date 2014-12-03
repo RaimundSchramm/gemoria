@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'routing sessions' do
+describe 'routing sessions', :type => :routing do
 
   describe 'custom routes' do
     it 'GET /login routes to sessions#new' do

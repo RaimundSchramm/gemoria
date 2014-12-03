@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Userstory do
+describe Userstory, :type => :model do
 
   let(:userstory) { create :userstory }
 
@@ -8,11 +8,11 @@ describe Userstory do
   end
 
   context 'associations' do
-    it { should belong_to :project }
-    it { should belong_to :category }
-    it { should belong_to :sprint }
-    it { should have_many :acceptance_tests }
-    it { should have_many :tasks }
+    it { is_expected.to belong_to :project }
+    it { is_expected.to belong_to :category }
+    it { is_expected.to belong_to :sprint }
+    it { is_expected.to have_many :acceptance_tests }
+    it { is_expected.to have_many :tasks }
   end
 
   context 'scopes' do
@@ -72,14 +72,14 @@ describe Userstory do
     describe '#incomplete_tasks' do
       it 'returns all incomplete tasks of userstory' do
         task = create(:task, userstory: userstory, complete: false)
-        userstory.incomplete_tasks.should eq [task]
+        expect(userstory.incomplete_tasks).to eq [task]
       end
     end
 
     describe '#complete_tasks' do
       it 'returns all complete tasks of userstory' do
         task = create(:task, userstory: userstory, complete: true)
-        userstory.complete_tasks.should eq [task]
+        expect(userstory.complete_tasks).to eq [task]
       end
     end
 
@@ -124,7 +124,7 @@ describe Userstory do
     describe '#full_name' do
       it 'returns the name and the description as one string' do
         userstory = FactoryGirl.create(:userstory, name: 'US1', description: 'First Userstory')
-        userstory.full_name.should eq 'US1: First Userstory'
+        expect(userstory.full_name).to eq 'US1: First Userstory'
       end
     end
   end
