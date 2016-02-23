@@ -15,6 +15,7 @@ It is a work in progress. It focusses on the task at hand of agile development, 
 - Javascript-Runtime-Environment, for example nodejs
 - bundler
 - postgres for production
+- phantomjs
 
 ### Installation
 Get the code.
@@ -25,3 +26,6 @@ Install the gems.
 
 Set up the database.
 `rake db:setup`
+
+Run the tests with Rake or RSpec to see if everything is fine.
+`rake` or `rspec`
