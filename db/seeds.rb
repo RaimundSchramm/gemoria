@@ -6,5 +6,12 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create(name: 'superadmin', password: 'changeme', password_confirmation: 'changeme')
+# provides a superadmin user
+User.create(name: 'superadmin', password: 'changeme', password_confirmation: 'changeme', admin: true)
+
+# provides usual names for categories of userstories
+userstory_categories = %w(bug chore feature)
+userstory_categories.each do |cat|
+  Category.create name: cat
+end
 
