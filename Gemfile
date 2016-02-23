@@ -32,7 +32,7 @@ group :development, :test do
   gem 'rspec-activemodel-mocks'
 
   # test framework for javascript and jquery
-  gem 'jasminerice', :git => 'https://github.com/bradphelan/jasminerice.git'
+  gem 'jasminerice'#, :git => 'https://github.com/bradphelan/jasminerice.git'
 
   # test framework for acceptance testing ruby, rails and javascript
   gem "capybara"
