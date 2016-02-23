@@ -19,5 +19,9 @@ It is a work in progress. It focusses on the task at hand of agile development, 
 ### Installation
 Get the code.
 `git clone https://github.com/RaimundSchramm/gemoria.git`
+
 Install the gems.
 `cd path-to-gemoria && bundle`
+
+Set up the database.
+`rake db:setup`
