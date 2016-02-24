@@ -44,7 +44,7 @@ group :development, :test do
   gem "factory_girl_rails", '~> 4.4.0'
 
   # automating on file change
-  #gem 'guard-rspec', '~> 4.2.0'# for rspec-rails
+  gem 'guard-rspec', '~> 4.2.0'# for rspec-rails
   gem 'rb-inotify'#, '~> 0.8.8'
   gem 'libnotify'
   gem 'guard-livereload'# for assets
