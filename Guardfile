@@ -1,3 +1,4 @@
+require 'active_support'
 require 'active_support/core_ext'
 
 guard 'livereload' do
@@ -10,7 +11,7 @@ guard 'livereload' do
   watch(%r{(app|vendor)/assets/\w+/(.+\.(css|js|html)).*})  { |m| "/assets/application.css.sass" }
 end
 
-guard 'rspec', cli: "--color --format nested --fail-fast --drb", wait: 60, all_after_pass: false, all_on_start: false, cucumber: false do
+guard 'rspec', cmd: "bundle exec rspec", cmd_additional_args: "--color --format nested --fail-fast --drb", wait: 60, all_after_pass: false, all_on_start: true, cucumber: false do
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  #{ "spec" }
