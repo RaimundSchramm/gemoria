@@ -1,8 +1,15 @@
 %header.group
   %nav.navbar.navbar-default
-    .container
-      = link_to 'Gemoria', root_path, class: 'navbar-brand'
-      .collapse.navbar-collapse
+    .container-fluid
+      .navbar-header
+        %button.navbar-toggle.collapsed{ data: { toggle: 'collapse', target:'#top-level-menue' }, type: 'button' }
+          %span.sr-only
+            Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        = link_to 'Gemoria', root_path, class: 'navbar-brand'
+      .collapse.navbar-collapse#top-level-menue
         %ul.nav.navbar-nav.navbar-right
           - if current_user
             %li= link_to 'Administration', administration_path
@@ -11,7 +18,7 @@
             %li.dropdown
               %a.dropdown-toggle{ data: { toggle: 'dropdown'} }
                 Account
-                %b.caret
+                %span.caret
               %ul.dropdown-menu.dropdown-menue-right
                 %li= link_to 'Edit profile', href: '#'
                 %li.divider
