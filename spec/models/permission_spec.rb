@@ -15,6 +15,7 @@ describe Permission, :type => :model do
 
       it { is_expected.to allow_access_to('sessions', 'new') }
       it { is_expected.to allow_access_to('sessions', 'create') }
+      it { is_expected.to allow_access_to('releases', 'index') }
     end
 
     describe 'restricts access' do
