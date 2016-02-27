@@ -35,4 +35,6 @@ Gemoria::Application.routes.draw do
   resources :current_userstories, only: [:index]
 
   resources :password_resets, only: [:new, :create, :edit, :update]
+
+  get '/releases', to: 'releases#index'
 end
