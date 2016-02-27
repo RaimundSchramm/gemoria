@@ -31,8 +31,12 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize
-    unless current_permission.allow?(params[:controller], params[:action])
+    unless allowed?
       redirect_to root_path, alert: 'Not authorized'
     end
+  end
+
+  def allowed?
+    current_permission.allow?(params[:controller], params[:action])
   end
 end
