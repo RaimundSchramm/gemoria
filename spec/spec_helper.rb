@@ -97,3 +97,9 @@ end
 # identify where to make the necessary changes, you can configure
 # `config.raise_errors_for_deprecations!`, and it will turn the
 # deprecation warnings into errors, giving you the full backtrace.
+
+RSpec.configure do |config|
+  config.detail_color = :magenta
+  config.tty = true
+  config.color = true
+end
