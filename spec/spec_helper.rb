@@ -103,3 +103,10 @@ RSpec.configure do |config|
   config.tty = true
   config.color = true
 end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end
