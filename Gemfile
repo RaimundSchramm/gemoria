@@ -49,6 +49,8 @@ group :development, :test do
   gem 'guard-livereload'# for assets
   gem 'guard-jasmine'   # for jasminerice, depends on phantomjs
 
+  gem 'jasmine-jquery-rails', '2.0.3'
+
 #   # for deployment
 #   gem 'capistrano'
 #   gem 'rvm-capistrano'
