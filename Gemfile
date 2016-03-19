@@ -31,9 +31,6 @@ group :development, :test do
   gem 'rspec-rails',  '3.4.2'
   gem 'rspec-activemodel-mocks', '1.0.3'
 
-#   # test framework for javascript and jquery
-#   gem 'jasminerice', :git => 'https://github.com/bradphelan/jasminerice.git'
-
 #   # test framework for acceptance testing ruby, rails and javascript
   gem 'capybara',         '2.6.2'
   gem 'database_cleaner', '1.5.1'
