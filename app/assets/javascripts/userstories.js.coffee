@@ -3,7 +3,7 @@
 ## You can use CoffeeScript in this file: http:#jashkenas.github.com/coffee-script/
 
 $.fn.closeFormAndReactivateActions = ->
-  this.click ->
+  this.on 'click', ->
     removeParentForm($(this))
     showActionLinksExcept()
     showItems()
