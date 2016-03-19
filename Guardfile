@@ -11,7 +11,7 @@ guard 'livereload' do
   watch(%r{(app|vendor)/assets/\w+/(.+\.(css|js|html)).*})  { |m| "/assets/application.css.sass" }
 end
 
-guard 'rspec', cmd: "bundle exec rspec", cmd_additional_args: "--fail-fast --drb", wait: 60, all_after_pass: false, all_on_start: false, cucumber: false do
+guard 'rspec', cmd: "bundle exec rspec", cmd_additional_args: "--fail-fast --drb", wait: 60, all_after_pass: false, all_on_start: true, cucumber: false do
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  #{ "spec" }
@@ -32,7 +32,7 @@ guard 'rspec', cmd: "bundle exec rspec", cmd_additional_args: "--fail-fast --drb
   watch(%r{^spec/acceptance/steps/(.+)_steps\.rb$})   { |m| Dir[File.join("**/#{m[1]}.feature")][0] || 'spec/acceptance' }
 end
 
-guard :jasmine, all_on_start: false, all_after_pass: false, wait: 60 do
+guard :jasmine, all_on_start: true, all_after_pass: false, wait: 60 do
   watch(%r{spec/javascripts/spec\.(js\.coffee|js|coffee)$}) { 'spec/javascripts' }
   watch(%r{spec/javascripts/.+_spec\.(js\.coffee|js|coffee)$})
   watch(%r{app/assets/javascripts/(.+?)\.(js\.coffee|js|coffee)(?:\.\w+)*$}) { |m| "spec/javascripts/#{ m[1] }_spec.#{ m[2] }" }
