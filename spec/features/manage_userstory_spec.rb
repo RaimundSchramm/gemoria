@@ -8,9 +8,9 @@ require 'spec_helper'
 # And I am member of a project
 # And this project has a userstory
 feature 'manage userstory', js: true do
-  let!(:project)   { create :project }
+  let(:project)   { create :project }
   let(:userstory) { create :userstory, project: project }
-  let!(:sprint)    { create :sprint, project: project }
+  let(:sprint)    { create :sprint, project: project }
 
   #before { visit "/projects/#{project.id}/userstories/#{userstory.id}" }
   before { login }
@@ -411,7 +411,7 @@ feature 'manage userstory', js: true do
 
     # user interaction
     within "#acceptance_test_#{acceptance_test.id}" do
-      click_on "destroy_acceptance_test_#{AcceptanceTest.last.id}"
+      accept_alert { click_on "destroy_acceptance_test_#{AcceptanceTest.last.id}" }
     end
     # assert
     within 'section#acceptance_tests section.incomplete' do
@@ -431,7 +431,7 @@ feature 'manage userstory', js: true do
 
     # user interaction
     within "#task_#{task.id}" do
-      click_on "destroy_task_#{task.id}"
+      accept_alert { click_on "destroy_task_#{task.id}" }
     end
     # assert
     within 'section#tasks section.incomplete' do
@@ -458,7 +458,7 @@ feature 'manage userstory', js: true do
 
     # user interaction
     within "#task_#{task.id}" do
-      click_on "destroy_task_#{task.id}"
+      accept_alert { click_on "destroy_task_#{task.id}" }
     end
     # assert
     within 'section#tasks section.incomplete' do
@@ -491,15 +491,18 @@ feature 'manage userstory', js: true do
 
     # user interaction
     within "#task_#{task.id}" do
-      click_on "destroy_task_#{task.id}"
+      expect(page).to have_content "first"
+      accept_alert { click_on "destroy_task_#{task.id}" }
     end
     # assert
     within 'section#tasks section.incomplete' do
+      expect(page).not_to have_content "first"
       expect(page).not_to have_selector "#task_#{task.id}"
     end
     within 'section#tasks section.actions' do
       expect(find_link('New task').visible?).to be_truthy
     end
+
     within 'section#acceptance_tests' do
       expect(page).not_to have_selector 'form.new_acceptance_test'
       expect(page).to have_selector '#new_acceptance_test_link'
