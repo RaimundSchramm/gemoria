@@ -15,7 +15,8 @@ require 'capybara/rails'
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
-Capybara.javascript_driver = :poltergeist
+# Capybara.javascript_driver = :poltergeist
+Capybara.javascript_driver = :selenium
 FactoryGirl.reload
 
 RSpec.configure do |config|
@@ -102,4 +103,11 @@ RSpec.configure do |config|
   config.detail_color = :magenta
   config.tty = true
   config.color = true
+end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
 end

@@ -1,24 +1,6 @@
-describe 'js for close button in forms', ->
-  beforeEach ->
-    loadFixtures 'form'
-
-  describe "removeParentForm", ->
-    it "removes parent on click", ->
-      $('button.close').closeFormAndReactivateActions()
-      spyEvent = spyOnEvent('button', 'click')
-      $('button').click()
-      expect('click').toHaveBeenTriggeredOn('button')
-      expect(spyEvent).toHaveBeenTriggered()
-      expect($('form')).not.toExist()
-
-  describe 'removeParentForm', ->
-    it 'removes the parent form of clicked close button', ->
-      removeParentForm($('button.close'))
-      expect($('form')).not.toExist()
-
 describe 'js for userstories#show', ->
   beforeEach ->
-    loadFixtures 'userstories_show'
+    loadFixtures 'userstories_show.html'
 
   describe 'hideActionLink(node)', ->
     it 'hides any node (used in js templates for action links)', ->
@@ -54,13 +36,14 @@ describe 'js for userstories#show', ->
   describe 'showItems', ->
     it 'displays any previously hidden item', ->
       $('div#acceptance_test_1').hide()
+      expect($('section')).toExist()
       expect($('div#acceptance_test_1')).toBeHidden()
       showItems()
       expect($('div#acceptance_test_1')).toBeVisible()
 
 describe 'renderAjaxForm(type, form)', ->
   it 'puts a form String into section#actions', ->
-    loadFixtures 'userstories_index'
+    loadFixtures 'userstories_index.html'
     expect($('form#new_userstory')).not.toExist()
     form = '<form id="new_userstory"></form>'
     type = 'userstories'
