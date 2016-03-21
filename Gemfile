@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 # gem 'rails4_upgrade'
 
-gem 'rails',                     '4.1.9'
+gem 'rails',                     '4.1.10'
 gem 'jquery-rails',              '3.1.4'
 gem 'thin',                      '1.6.4'
 
