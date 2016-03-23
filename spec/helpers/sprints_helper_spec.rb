@@ -13,9 +13,10 @@ describe SprintsHelper, :type => :helper do
     it 'returns a move to sprint link' do
       expect(helper.complete_sprint_link(sprint))
       .to eq "<a class=\"btn\""+
+             " rel=\"nofollow\""+
              " data-method=\"patch\""+
              " href=\"/projects/#{sprint.project.id}/sprints/#{sprint.id}/complete\""+
-             " rel=\"nofollow\">Complete sprint</a>"
+             ">Complete sprint</a>"
     end
 
     xit 'returns a move to backlog' do
