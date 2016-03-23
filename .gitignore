@@ -81,3 +81,5 @@ pickle-email-*.html
 #git patch files
 *.patch
 
+# byebug history
+.byebug_history
