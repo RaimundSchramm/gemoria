@@ -16,7 +16,7 @@ describe AcceptanceTestsController, :type => :controller do
   end
 
   def invalid_params
-    { description: 'anything', complete: 'invalid' }
+    { description: 'anything', complete: false }
   end
 
   context 'before_filters' do
