@@ -18,6 +18,9 @@ class Userstory < ActiveRecord::Base
   has_many            :acceptance_tests
 
   # scopes
+
+  default_scope { order :updated_at }
+
   scope :sprint,      -> { where(position: POSITION[:sprint]) }
   scope :accepted,    -> { sprint.where(status: STATUS[:accepted]) }
   scope :unaccepted,  -> { where('status <> ?', STATUS[:accepted]) }

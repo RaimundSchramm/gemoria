@@ -63,6 +63,16 @@ describe Userstory, :type => :model do
         expect(Userstory.sprint).to match_array Userstory.where(position: 'sprint')
       end
     end
+
+    describe 'default scope' do
+      it 'returns all userstories ordered by their last update latest to oldest' do
+        create :userstory_sprint, name: 'first'
+        create :userstory_sprint, name: 'last'
+        Userstory.where(name: 'last').first.update(updated_at: DateTime.now.advance(seconds: 5))
+        expect(Userstory.sprint.first.name).to eq 'first'
+        expect(Userstory.sprint.last.name).to eq 'last'
+      end
+    end
   end
 
   context 'delegates' do
