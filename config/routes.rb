@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
 
+  get 'static_pages/style_guide', as: :style_guide
+
   get '/signup',             to: 'users#new',        as: :signup
   resources :users,          only: [:new, :create]
 
