@@ -17,6 +17,7 @@ gem 'uglifier',                  '3.0.0'
 gem 'turbolinks',                '2.5.3'
 
 gem 'jbuilder',                  '~> 2.0'
+gem 'simple_form',               '3.2.1'
 
 group :doc do
   gem 'sdoc',                    '~> 0.4.0'
