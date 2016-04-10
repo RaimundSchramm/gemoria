@@ -1,0 +1,15 @@
+%h2 Edit Ownership
+
+= form_for @ownership do |f|
+  %table
+    %thead
+      %tr
+        %th Project Name
+        %th Scrum Role
+    %tbody
+      %tr
+        %td= "#{@ownership.project.name}"
+        %td= f.select :role_id, Role.all.map {|role| [role.name, role.id]}, prompt: 'Choose please'
+  = f.submit 'Update'
+
+= link_to 'Back', :back
