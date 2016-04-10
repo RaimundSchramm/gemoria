@@ -16,9 +16,27 @@ class OwnershipsController < ApplicationController
     redirect_to ownerships_path
   end
 
+  def edit
+    @ownership = Ownership.find(params[:id])
+  end
+
+  def update
+    @ownership = Ownership.find(params[:id])
+
+    if @ownership.update(ownership_params)
+      redirect_to ownerships_path
+    else
+      render 'edit'
+    end
+  end
+
   private
 
   def project_and_user_params
     params.require(:project_ids)
+  end
+
+  def ownership_params
+    params.require(:ownership).permit(:role_id)
   end
 end
