@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :categories
   resources :roles
 
-  resources :ownerships, only: [:index] do
+  resources :ownerships, only: [:index, :edit, :update] do
     get 'edit_multiple',              on: :collection
     post 'create_or_delete_multiple', on: :collection
   end

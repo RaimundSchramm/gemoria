@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141201162252) do
+ActiveRecord::Schema.define(version: 20160409143926) do
 
-  create_table "acceptance_tests", force: true do |t|
+  create_table "acceptance_tests", force: :cascade do |t|
     t.integer  "userstory_id"
     t.text     "description"
     t.datetime "created_at"
@@ -23,40 +23,43 @@ ActiveRecord::Schema.define(version: 20141201162252) do
 
   add_index "acceptance_tests", ["userstory_id"], name: "index_acceptance_tests_on_userstory_id"
 
-  create_table "categories", force: true do |t|
-    t.string   "name"
+  create_table "categories", force: :cascade do |t|
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "ownerships", force: true do |t|
+  create_table "ownerships", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "role_id"
   end
 
-  create_table "projects", force: true do |t|
-    t.string   "name"
+  add_index "ownerships", ["role_id"], name: "index_ownerships_on_role_id"
+
+  create_table "projects", force: :cascade do |t|
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "roles", force: true do |t|
-    t.string   "name"
+  create_table "roles", force: :cascade do |t|
+    t.string   "name",       limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "sprints", force: true do |t|
+  create_table "sprints", force: :cascade do |t|
     t.boolean  "complete"
     t.integer  "project_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "tasks", force: true do |t|
-    t.string   "name"
+  create_table "tasks", force: :cascade do |t|
+    t.string   "name",         limit: 255
     t.boolean  "complete"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -65,27 +68,27 @@ ActiveRecord::Schema.define(version: 20141201162252) do
 
   add_index "tasks", ["userstory_id"], name: "index_tasks_on_userstory_id"
 
-  create_table "users", force: true do |t|
-    t.string   "name"
-    t.string   "password_digest"
+  create_table "users", force: :cascade do |t|
+    t.string   "name",                   limit: 255
+    t.string   "password_digest",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "admin"
-    t.string   "password_reset_token"
+    t.string   "password_reset_token",   limit: 255
     t.datetime "password_reset_sent_at"
-    t.string   "email"
+    t.string   "email",                  limit: 255
   end
 
-  create_table "userstories", force: true do |t|
-    t.string   "name"
+  create_table "userstories", force: :cascade do |t|
+    t.string   "name",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "complete"
     t.integer  "project_id"
-    t.string   "status"
+    t.string   "status",      limit: 255
     t.text     "description"
     t.integer  "category_id"
-    t.string   "position"
+    t.string   "position",    limit: 255
     t.integer  "sprint_id"
   end
 

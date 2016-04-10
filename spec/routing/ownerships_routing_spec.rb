@@ -5,6 +5,14 @@ describe OwnershipsController, :type => :routing do
     it 'GET /ownerships routes to ownerships#index' do
       expect(get '/ownerships').to route_to 'ownerships#index'
     end
+
+    it 'GET /ownership/1/edit should not route to ownerships#edit' do
+      expect(get '/ownerships/1/edit').to be_routable
+    end
+
+    it 'PUT /ownership/1 should not route to ownerships#update' do
+      expect(put '/ownerships/1').to be_routable
+    end
   end
 
   describe 'custom routes' do
@@ -20,14 +28,6 @@ describe OwnershipsController, :type => :routing do
   describe 'excluded RESTful routes' do
     it 'GET /ownership should not route to ownerships#show' do
       expect(get '/ownerships/1').not_to be_routable
-    end
-
-    it 'GET /ownership/1/edit should not route to ownerships#edit' do
-      expect(get '/ownerships/1/edit').not_to be_routable
-    end
-
-    it 'PUT /ownership/1 should not route to ownerships#update' do
-      expect(put '/ownerships/1').not_to be_routable
     end
 
     it 'DELETE /ownerships/1 should not route to ownerships#destroy' do

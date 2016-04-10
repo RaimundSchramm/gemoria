@@ -55,4 +55,58 @@ describe OwnershipsController, :type => :controller do
       expect(response).to redirect_to ownerships_path
     end
   end
+
+  describe 'GET edit' do
+    let(:role) { Role.create name: 'Product Owner' }
+    let(:ownership) { create :ownership, project: project }
+
+    it 'assigns ownership' do
+      get :edit, { id: ownership.to_param }, valid_session
+      expect(assigns(:ownership)).not_to be_nil
+    end
+
+    it 'renders edit' do
+      get :edit, { id: ownership.to_param }, valid_session
+      expect(response).to render_template 'edit'
+    end
+  end
+
+  describe 'PUT update' do
+    let!(:role)      { Role.create name: 'Product Owner' }
+    let!(:role2)     { Role.create name: 'Developer' }
+    let!(:ownership) { create :ownership, project: project, role: role }
+
+    it 'assigns ownership' do
+      get :update, { id: ownership.to_param, ownership: { role_id: role2.id } }, valid_session
+      expect(assigns(:ownership)).not_to be_nil
+    end
+
+    describe 'with valid params' do
+      it 'updates ownership' do
+        get :update, { id: ownership.to_param, ownership: { role_id: role2.id } }, valid_session
+        expect(assigns(:ownership).role.name).to eq 'Developer'
+      end
+
+      it 'redirects to ownerships' do
+        get :update, { id: ownership.to_param, ownership: { role_id: role2.id } }, valid_session
+        expect(response).to redirect_to ownerships_path
+      end
+    end
+
+    describe 'with invalid params' do
+      before do
+        allow_any_instance_of(Ownership).to receive(:update).and_return false
+      end
+
+      it 'must not update ownership' do
+        get :update, { id: ownership.to_param, ownership: { role_id: role2.id } }, valid_session
+        expect(assigns(:ownership).role.name).not_to eq 'Developer'
+      end
+
+      it 're-renders edit' do
+        get :update, { id: ownership.to_param, ownership: { role_id: role2.id } }, valid_session
+        expect(response).to render_template 'edit'
+      end
+    end
+  end
 end

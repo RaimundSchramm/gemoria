@@ -7,6 +7,8 @@ describe UserstoriesController, :type => :controller do
   let(:project)    { create :project }
   let!(:userstory) { create :userstory, project: project }
   let!(:sprint)    { create :sprint, project: project }
+  let!(:role)      { create :role, name: 'Developer' }
+  let!(:ownership) { create :ownership, project: project, user: user, role: role }
 
   def valid_attributes
     parent.merge(userstory: attributes_for(:userstory))

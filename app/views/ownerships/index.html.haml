@@ -1,7 +1,16 @@
 %h2 Ownerships
 
-= link_to 'Edit', edit_multiple_ownerships_path
+%p= link_to 'Edit Ownerships', edit_multiple_ownerships_path
 
-%ul
-  - @ownerships.each do |ownership|
-    %li= "#{ownership.project.name}"
+%table
+  %thead
+    %tr
+      %th Project Name
+      %th Scrum Role
+      %th Action
+  %tbody
+    - @ownerships.each do |ownership|
+      %tr{ id: "ownership_#{ownership.id}" }
+        %td= ownership.project.name
+        %td= ownership.role.try(:name)
+        %td= link_to 'Edit', edit_ownership_path(ownership)
