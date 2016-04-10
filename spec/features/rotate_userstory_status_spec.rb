@@ -7,7 +7,11 @@ feature 'A userstory should have a rotating status' do
     userstory = create :userstory, project: project
     sprint    = create :sprint, project: project
 
-    login
+    user      = create :admin
+    role      = create :role, name: 'Developer'
+    ownership = create :ownership, project: project, user: user, role: role
+
+    login user
 
     visit "/projects/#{project.id}/userstories/#{userstory.id}"
 

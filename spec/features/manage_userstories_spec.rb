@@ -5,7 +5,11 @@ feature 'manage userstories' do
   let(:sprint)  { project.sprints.first }
   let!(:category) { create :category, name: 'Bug' }
 
-  before { login }
+  let!(:user) { create :admin }
+  let!(:role) { create :role, name: 'Developer' }
+  let!(:ownership) { create :ownership, project: project, user: user, role: role }
+
+  before { login user }
 
   scenario 'new userstory moves to back log, is sprintless and opened', js: true do
     visit "/projects/#{project.id}/userstories"

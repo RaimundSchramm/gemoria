@@ -12,8 +12,12 @@ feature 'manage userstory', js: true do
   let(:userstory) { create :userstory, project: project }
   let(:sprint)    { create :sprint, project: project }
 
+  let!(:user)       { create :admin }
+  let!(:role)      { create :role, name: 'Developer' }
+  let!(:ownership) { create :ownership, project: project, user: user, role: role }
+
   #before { visit "/projects/#{project.id}/userstories/#{userstory.id}" }
-  before { login }
+  before { login user }
 
   # When I visit this userstory
   # And click to add an acceptance test
