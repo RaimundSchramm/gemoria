@@ -18,4 +18,8 @@ module FeatureHelpers
     fill_in 'Password confirmation', with: "#{ user_atts[:password_confirmation] }"
     click_on 'Sign up'
   end
+
+  def click_dropdown(name = '')
+    find('a', text: name).click
+  end
 end
