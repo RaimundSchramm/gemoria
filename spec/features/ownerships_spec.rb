@@ -9,10 +9,10 @@ feature 'As a user I want to manage my ownerships of projects' do
   background do
     login user
   end
- 
+
   scenario 'listing my ownerships' do
     user.projects = [first, second]
-    click_link 'Administration'
+    click_dropdown 'Administration'
     click_link 'Ownerships'
     expect(current_path).to eq ownerships_path
     expect(page).to have_content('first')
@@ -20,7 +20,7 @@ feature 'As a user I want to manage my ownerships of projects' do
   end
 
   scenario 'creating ownerships' do
-    click_link 'Administration'
+    click_dropdown 'Administration'
     click_link 'Ownerships'
     expect(current_path).to eq ownerships_path
     expect(page).not_to have_content('first')
@@ -36,7 +36,7 @@ feature 'As a user I want to manage my ownerships of projects' do
 
   scenario 'deleting ownerships' do
     user.projects = [first, second]
-    click_link 'Administration'
+    click_dropdown 'Administration'
     click_link 'Ownerships'
     click_link 'Edit Ownerships'
     uncheck 'first'
@@ -49,7 +49,7 @@ feature 'As a user I want to manage my ownerships of projects' do
   scenario 'adding a scrum role to an ownership' do
     Role.create name: 'Developer'
     user.projects = [first, second]
-    click_link 'Administration'
+    click_dropdown 'Administration'
     click_link 'Ownerships'
     expect(page).to have_content 'Project Name'
     expect(page).to have_content 'Scrum Role'
