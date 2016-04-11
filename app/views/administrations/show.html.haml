@@ -1,5 +1,14 @@
-= link_to 'Ownerships', ownerships_path
-%br
-= link_to 'Roles', roles_path
-%br
-= link_to 'Style Guide', style_guide_path
+%section.administrations
+  %ul
+    %li
+      = link_to 'Ownerships', ownerships_path
+      %span.pull-right Add Members with Roles to your Projects
+    %li
+      = link_to 'Projects', projects_path
+      %span.pull-right Create new Projects
+    %li
+      = link_to 'Roles', roles_path
+      %span.pull-right Manage the Roles for your Project Members
+    %li
+      = link_to 'Style Guide', style_guide_path
+      %span.pull-right See the styles used for this app
