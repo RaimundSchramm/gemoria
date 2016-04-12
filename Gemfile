@@ -36,6 +36,7 @@ end
 
 group :development, :test do
   gem 'spring',                  '1.6.4'
+  gem 'spring-commands-rspec',   '1.0.4'
   gem 'byebug',                  '8.2.2'
 
   # test framework for ruby and rails
