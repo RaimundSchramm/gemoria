@@ -61,6 +61,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:userstory_id, :complete, :name)
+    params.require(:task).permit(:userstory_id, :complete, :name, :number)
   end
 end
