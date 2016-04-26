@@ -6,6 +6,14 @@ describe Task, :type => :model do
   end
 
   context 'scopes' do
+    describe 'default scope' do
+      it 'orders tasks by their number' do
+        task2 = Task.create(number: 2)
+        task1 = Task.create(number: 1)
+        expect(Task.all).to eq [task1, task2]
+      end
+    end
+
     describe '.complete' do
       it 'returns all completed tasks' do
         expect(Task.complete).to eq Task.where(complete: true)
