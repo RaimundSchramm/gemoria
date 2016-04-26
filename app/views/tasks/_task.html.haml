@@ -1,4 +1,5 @@
 %tr.task{ id: "task_#{task.id}", class: "#{complete_class(task)}" }
+  %td.text= task.number
   %td.text= task.name
   %td.actions
     = edit_link(task)
