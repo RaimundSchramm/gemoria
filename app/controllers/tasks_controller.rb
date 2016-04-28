@@ -54,6 +54,19 @@ class TasksController < ApplicationController
     end
   end
 
+  def sort
+    params[:task].each_with_index do |task_id, i|
+      task = Task.find(task_id)
+      task.update(number: i + 1)
+    end
+
+    @tasks = Task.find(params[:task])
+
+    respond_to do |format|
+      format.js {}
+    end
+  end
+
   private
 
   def find_userstory
