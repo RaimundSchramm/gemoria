@@ -15,6 +15,7 @@ gem 'bootstrap-sass',            '3.3.6'
 gem 'coffee-rails',              '4.1.1'
 gem 'uglifier',                  '3.0.0'
 gem 'turbolinks',                '2.5.3'
+gem 'jquery-ui-rails',           '5.0.5'
 
 gem 'jbuilder',                  '~> 2.0'
 gem 'simple_form',               '3.2.1'
