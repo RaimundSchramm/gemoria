@@ -29,3 +29,17 @@ $.fn.closeFormAndReactivateActions = ->
 
 @showItems = ->
   $('.acceptance_test, .task').show()
+
+$.fn.sortableTasks = ->
+  $(this).sortable(
+    axis: 'y'
+    update: ->
+      $.ajax(
+        type: 'PUT'
+        url:  $(this).data('update-url')
+        data: $(this).sortable('serialize')
+      )
+  )
+
+$ ->
+  $('section#tasks tbody').sortableTasks()
