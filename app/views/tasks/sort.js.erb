@@ -1,0 +1,7 @@
+<% if @tasks.first.complete? %>
+  $('section#tasks .complete tbody').replaceWith("<%= j render 'tasks', locals: { tasks: @tasks } %>");
+  $('section#tasks tbody').sortableTasks();
+<% else %>
+  $('section#tasks .incomplete tbody').replaceWith("<%= j render 'tasks', locals: { tasks: @tasks } %>");
+  $('section#tasks tbody').sortableTasks();
+<% end %>

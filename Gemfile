@@ -15,6 +15,7 @@ gem 'bootstrap-sass',            '3.3.6'
 gem 'coffee-rails',              '4.1.1'
 gem 'uglifier',                  '3.0.0'
 gem 'turbolinks',                '2.5.3'
+gem 'jquery-ui-rails',           '5.0.5'
 
 gem 'jbuilder',                  '~> 2.0'
 gem 'simple_form',               '3.2.1'
@@ -60,6 +61,8 @@ group :development, :test do
   gem 'guard-jasmine',           '2.0.6' # for jasminerice, depends on phantomjs
 
   gem 'jasmine-jquery-rails',    '2.0.3'
+
+  gem 'awesome_print'
 end
 
 # dependency issues

@@ -30,6 +30,10 @@ describe TasksController, :type => :routing do
       it "routes to #destroy" do
         expect(delete("/userstories/1/tasks/1")).to route_to("tasks#destroy", userstory_id: '1', :id => "1")
       end
+
+      it "routes to #sort" do
+        expect(put("/userstories/1/tasks/sort")).to route_to("tasks#sort", userstory_id: '1')
+      end
     end
   end
 

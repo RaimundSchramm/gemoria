@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
 
   before_action :authenticate,
+                :authorize,
                 :find_userstory
 
   def index
@@ -51,6 +52,19 @@ class TasksController < ApplicationController
     respond_to do |format|
       format.html { redirect_to userstory_tasks_path(@userstory) }
       format.js
+    end
+  end
+
+  def sort
+    params[:task].each_with_index do |task_id, i|
+      task = Task.find(task_id)
+      task.update(number: i + 1)
+    end
+
+    @tasks = Task.find(params[:task])
+
+    respond_to do |format|
+      format.js {}
     end
   end
 

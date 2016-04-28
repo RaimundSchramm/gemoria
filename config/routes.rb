@@ -28,7 +28,9 @@ Rails.application.routes.draw do
   end
 
   resources :userstories, except: [:index, :new, :create, :show, :edit, :update, :destroy] do
-    resources :tasks
+    resources :tasks do
+      put 'sort', on: :collection
+    end
     resources :acceptance_tests, except: [:show]
   end
 

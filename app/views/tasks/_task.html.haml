@@ -1,4 +1,7 @@
 %tr.task{ id: "task_#{task.id}", class: "#{complete_class(task)}" }
+  %td.handle
+    %span.glyphicon.glyphicon-arrow-up
+    %span.glyphicon.glyphicon-arrow-down
   %td.text= task.number
   %td.text= task.name
   %td.actions

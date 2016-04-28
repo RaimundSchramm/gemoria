@@ -80,6 +80,7 @@ describe Permission, :type => :model do
       it { is_expected.not_to allow_access_to('tasks', 'edit') }
       it { is_expected.not_to allow_access_to('tasks', 'update') }
       it { is_expected.not_to allow_access_to('tasks', 'destroy') }
+      it { is_expected.not_to allow_access_to('tasks', 'sort') }
 
       it { is_expected.not_to allow_access_to('current_userstories', 'index') }
     end
@@ -161,7 +162,7 @@ describe Permission, :type => :model do
     end
   end
 
-  context 'for members', focus: true do
+  context 'for members' do
     describe 'grants access' do
       subject { Permission.new(User.new admin: false) }
       it { is_expected.to allow_access_to('home', 'index') }

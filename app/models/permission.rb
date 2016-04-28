@@ -23,8 +23,9 @@ class Permission < Struct.new(:user)
       return true if controller == 'dashboards'          && action.in?(%w[show])
       return true if controller == 'userstories'         && action.in?(%w[index new create show edit update destroy])
       return true if controller == 'acceptance_tests'    && action.in?(%w[index new create show edit update destroy])
-      return true if controller == 'tasks'               && action.in?(%w[index new create show edit update destroy])
+      return true if controller == 'tasks'               && action.in?(%w[index new create show edit update destroy sort])
       return true if controller == 'current_userstories' && action.in?(%w[index])
+      return true if controller == 'projects'            && action.in?(%w[show])
     end
 
     false
