@@ -61,6 +61,8 @@ group :development, :test do
   gem 'guard-jasmine',           '2.0.6' # for jasminerice, depends on phantomjs
 
   gem 'jasmine-jquery-rails',    '2.0.3'
+
+  gem 'awesome_print'
 end
 
 # dependency issues
