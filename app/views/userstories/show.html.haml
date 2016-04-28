@@ -16,18 +16,18 @@
   %h1
     %span= "#{@userstory.description}"
 
-%section#acceptance_tests
+%section#acceptance_tests.group
   %header
     %h2 Acceptance Tests
   %section.actions
-    = link_to 'New acceptance test', new_userstory_acceptance_test_path(@userstory), id: 'new_acceptance_test_link', remote: true, class: 'btn btn-default btn-xs'
-  %section.incomplete
+    = link_to 'New acceptance test', new_userstory_acceptance_test_path(@userstory), id: 'new_acceptance_test_link', remote: true, class: 'btn btn-default btn-xs pull-right'
+  %section.incomplete.pull-left
     %header
       %h3 not yet accepted
     %table
       %tbody
         = render @incomplete_acceptance_tests
-  %section.complete
+  %section.complete.pull-left
     %header
       %h3 accepted
     %table
@@ -35,22 +35,22 @@
         = render @complete_acceptance_tests
 
 - if current_user.has_scrum_role?(@project)
-  %section#tasks
+  %section#tasks.group
     %header
       %h2 Tasks
     %section.actions
-      = link_to 'New task', new_userstory_task_path(@userstory), id: 'new_task_link', remote: true, class: 'btn btn-default btn-xs'
-    %section.incomplete
+      = link_to 'New task', new_userstory_task_path(@userstory), id: 'new_task_link', remote: true, class: 'btn btn-default btn-xs pull-right'
+    %section.incomplete.pull-left
       %header
         %h3 incomplete
       %table
-        %tbody
+        %tbody{ data: { update_url: "#{sort_userstory_tasks_path(@userstory)}" } }
           = render @incomplete_tasks
-    %section.complete
+    %section.complete.pull-left
       %header
         %h3 complete
       %table
-        %tbody
+        %tbody{ data: { update_url: "#{sort_userstory_tasks_path(@userstory)}" } }
           = render @complete_tasks
 
 %section#menue
