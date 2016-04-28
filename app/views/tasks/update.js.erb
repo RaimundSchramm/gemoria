@@ -4,7 +4,7 @@ showActionLinksExcept();
 $('#task_<%= @task.id %>').remove();
 
 <% if @task.complete? %>
-  $('section#tasks section.complete').append('<%= j render @task %>');
+  $('section#tasks section.complete tbody').append('<%= j render @task %>');
 <% else %>
-  $('section#tasks section.incomplete').append('<%= j render @task %>');
+  $('section#tasks section.incomplete tbody').append('<%= j render @task %>');
 <% end %>
