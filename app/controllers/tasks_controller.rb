@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
 
   before_action :authenticate,
+                :authorize,
                 :find_userstory
 
   def index
