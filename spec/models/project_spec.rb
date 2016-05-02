@@ -11,6 +11,16 @@ describe Project, :type => :model do
     it { is_expected.to have_many(:users).through(:ownerships) }
   end
 
+  context 'scopes' do
+    describe 'default' do
+      it 'orders by name' do
+        names = ['0 first', 'a second', 'B third', 'c last']
+        names.reverse.each { |name| create :project, name: name }
+        expect(Project.pluck(:name)).to eq names
+      end
+    end
+  end
+
   context 'attributes and constants' do
     context 'derived attributes and counters' do
       describe '.size_of_all_userstories' do

@@ -8,6 +8,9 @@ class Project < ActiveRecord::Base
 
   accepts_nested_attributes_for :userstories, allow_destroy: true
 
+  # scopes
+  default_scope { order("LOWER(name)") }
+
   #attributes and constants
   #  derived attributes and counters
   def size_of_all_userstories
