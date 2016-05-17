@@ -1,6 +1,7 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "basics/mixins"
 
 h1.releases, section.release
 	margin: 0px auto 10px auto
@@ -13,12 +14,8 @@ section.release
 	border: 1px solid black
 
 section.release
-	-webkit-box-shadow: 	 5px 5px 5px 0px rgba(0,0,0,0.75)
-	-moz-box-shadow: 			 5px 5px 5px 0px rgba(0,0,0,0.75)
-	box-shadow: 					 5px 5px 5px 0px rgba(0,0,0,0.75)
-	-webkit-border-radius: 5px 5px 5px 5px
-	-moz-border-radius: 	 5px 5px 5px 5px
-	border-radius:				 5px 5px 5px 5px
+	@include shadow_box(5px, 5px, 5px, 0px, rgba(0,0,0,0.75))
+	@include round_corners(5px, 5px, 5px, 5px)
 	header
 		padding-top: 5px
 		h2
