@@ -1,0 +1,9 @@
+@mixin shadow_box($h-shadow:0, $v-shadow:0, $blur:0, $spread:0, $color:#ccc)
+  -webkit-box-shadow:    $h-shadow $v-shadow $blur 0px $color
+  -moz-box-shadow:       $h-shadow $v-shadow $blur 0px $color
+  box-shadow:            $h-shadow $v-shadow $blur 0px $color
+
+@mixin round_corners($top-left:0px, $top-right:0px, $bottom-right:0px, $bottom-left:0px)
+  -webkit-border-radius: $top-left $top-right $bottom-right $bottom-left
+  -moz-border-radius:    $top-left $top-right $bottom-right $bottom-left
+  border-radius:         $top-left $top-right $bottom-right $bottom-left
