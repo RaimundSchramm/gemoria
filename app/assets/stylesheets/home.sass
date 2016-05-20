@@ -4,47 +4,47 @@
 @import "basics/mixins"
 
 h1.releases, section.release
-	margin: 0px auto 10px auto
-	max-width: 500px
+  margin: 0px auto 10px auto
+  max-width: 500px
 
 h1.releases
-	text-align: center
+  text-align: center
 
 section.release
-	border: 1px solid black
+  border: 1px solid black
 
 section.release
-	@include shadow_box(5px, 5px, 5px, 0px, rgba(0,0,0,0.75))
-	@include round_corners(5px, 5px, 5px, 5px)
-	header
-		padding-top: 5px
-		h2
-			padding-left: 5px
-			span.version
-				float: right
-				padding-right: 5px
-	section.features
-		header
-			h3
-				text-align: center
-				padding-bottom: 5px
+  @include shadow_box(5px, 5px, 5px, 0px, rgba(0,0,0,0.75))
+  @include round_corners(5px, 5px, 5px, 5px)
+  header
+    padding-top: 5px
+    h2
+      padding-left: 5px
+      span.version
+        float: right
+        padding-right: 5px
+  section.features
+    header
+      h3
+        text-align: center
+        padding-bottom: 5px
 
 // color
 
 section.release
-	color: #10203A
-	background-color: #A4C6CF
-	header
-		background-color: #102739
-		color: #D9D9DB
-		h2
-			span
-				color: #EBF3F6
-				font-weight: bold
-	section.features
-		header
-			h3
-				color: #E8EDE9
-		ul
-			background-color: #EBF3F6
+  color: #10203A
+  background-color: #A4C6CF
+  header
+    background-color: #102739
+    color: #D9D9DB
+    h2
+      span
+        color: #EBF3F6
+        font-weight: bold
+  section.features
+    header
+      h3
+        color: #E8EDE9
+    ul
+      background-color: #EBF3F6
 
