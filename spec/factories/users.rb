@@ -1,22 +1,20 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
-FactoryGirl.define do
+FactoryBot.define do
   factory :user do
-    name 'MyString'
-    password 'secret'
-    password_confirmation 'secret'
-    admin false
+    name                  { 'MyString' }
+    password              { 'secret' }
+    password_confirmation { 'secret' }
+    admin                 { false }
 
     factory :mund do
-      name 'mund'
+      name { 'mund' }
     end
 
     factory :mirk do
-      name 'mirk'
+      name { 'mirk' }
     end
 
     factory :admin do
-      admin true
+      admin { true }
     end
 
     factory :non_admin do

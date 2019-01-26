@@ -1,3 +1,2 @@
-SimpleCov.start 'rails' do
-end
-
+#SimpleCov.start 'rails' do
+#end

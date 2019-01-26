@@ -11,7 +11,11 @@ guard 'livereload' do
   watch(%r{(app|vendor)/assets/\w+/(.+\.(css|js|html)).*})  { |m| "/assets/application.css.sass" }
 end
 
+<<<<<<< HEAD
 guard 'rspec', cmd: "bundle exec spring rspec", cmd_additional_args: "--fail-fast --drb", wait: 60, all_after_pass: false, all_on_start: true, cucumber: false do
+=======
+guard 'rspec', cmd: "bundle exec spring rspec", cmd_additional_args: "--fail-fast --drb", wait: 60, all_after_pass: false, all_on_start: false, cucumber: false do
+>>>>>>> enhancement/upgrade-gems-for-target-version-with-rails-4.2.5.1
   watch(%r{^spec/.+_spec\.rb$})
   watch(%r{^lib/(.+)\.rb$})     { |m| "spec/lib/#{m[1]}_spec.rb" }
   watch('spec/spec_helper.rb')  #{ "spec" }
