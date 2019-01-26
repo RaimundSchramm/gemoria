@@ -41,7 +41,7 @@ group :development, :test do
 
   # test framework for ruby and rails
   gem 'rspec-rails'
-  # gem 'rspec-activemodel-mocks', '1.0.3'
+  gem 'rspec-activemodel-mocks'
   #gem 'rubocop-rspec'# needs Ruby >= 2.2 -.-
 
   # test framework for acceptance testing ruby, rails and javascript
