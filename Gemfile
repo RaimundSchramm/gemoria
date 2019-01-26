@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails',                     '4.2.7'
+gem 'rails',                     '4.2.8'
 gem 'thin',                      '1.6.4'
 
 gem 'sqlite3',                   '~> 1.3.0'
@@ -25,6 +25,8 @@ end
 gem 'email_spec',                '2.0.0'
 
 gem 'bcrypt',                    '3.1.11'
+
+gem 'simple_form'
 
 group :development do
   # for deployment
