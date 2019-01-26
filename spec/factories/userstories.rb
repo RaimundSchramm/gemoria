@@ -1,10 +1,8 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
-
-FactoryGirl.define do
+FactoryBot.define do
   factory :userstory do
     project
-    name "MyString"
-    description "MyString"
+    name        { "MyString" }
+    description { "MyString" }
 
     factory :userstory_sprint do
       after(:create) do |userstory|

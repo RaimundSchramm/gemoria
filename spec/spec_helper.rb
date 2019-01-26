@@ -17,7 +17,7 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 # Capybara.javascript_driver = :poltergeist
 Capybara.javascript_driver = :selenium
-FactoryGirl.reload
+FactoryBot.reload
 
 RSpec.configure do |config|
   config.include(EmailSpec::Helpers)
@@ -26,7 +26,7 @@ RSpec.configure do |config|
   # This allows you to use the core set of syntax methods (build,
   # build_stubbed, create, attributes_for, and their *_list counterparts)
   # without having to call them on FactoryGirl directly
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
   config.include Capybara::DSL
   config.include FeatureHelpers
 

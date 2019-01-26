@@ -133,7 +133,7 @@ describe Userstory, :type => :model do
   context 'derived attributes' do
     describe '#full_name' do
       it 'returns the name and the description as one string' do
-        userstory = FactoryGirl.create(:userstory, name: 'US1', description: 'First Userstory')
+        userstory = create(:userstory, name: 'US1', description: 'First Userstory')
         expect(userstory.full_name).to eq 'US1: First Userstory'
       end
     end
