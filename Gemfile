@@ -9,6 +9,7 @@ group :production do
 end
 
 gem 'jquery-rails',              '4.1.1'
+gem 'jquery-ui-rails'
 gem 'haml-rails',                '0.9.0'
 gem 'sass-rails',                '~> 5.0'
 gem 'bootstrap-sass',            '3.3.6'
@@ -40,8 +41,8 @@ group :development, :test do
 
   # test framework for ruby and rails
   gem 'rspec-rails'
-  #gem 'rubocop-rspec'# needs Ruby >= 2.2 -.-
   # gem 'rspec-activemodel-mocks', '1.0.3'
+  #gem 'rubocop-rspec'# needs Ruby >= 2.2 -.-
 
   # test framework for acceptance testing ruby, rails and javascript
   gem 'capybara',                '2.6.2'
