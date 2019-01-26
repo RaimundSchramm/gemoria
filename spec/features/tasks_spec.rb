@@ -15,7 +15,7 @@ feature Tasks do
 
   background { login mund }
 
-  scenario 'adding a Task with an order number', js: true do
+  scenario 'adding a Task with an order number' do
     visit "/projects/#{project.id}/userstories/#{userstory.id}"
     within 'div.content header h1' do
       expect(page).to have_content 'MyUserstory'

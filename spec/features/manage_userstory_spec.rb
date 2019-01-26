@@ -7,7 +7,7 @@ require 'spec_helper'
 # Given I am a product owner
 # And I am member of a project
 # And this project has a userstory
-feature 'manage userstory', js: true do
+feature 'manage userstory' do
   let(:project)   { create :project }
   let(:userstory) { create :userstory, project: project }
   let(:sprint)    { create :sprint, project: project }
@@ -23,7 +23,7 @@ feature 'manage userstory', js: true do
   # And click to add an acceptance test
   # Then a form is displayed for adding
   # And the new link disappears
-  scenario 'new acceptance test', js: true do
+  scenario 'new acceptance test' do
     visit "/projects/#{project.id}/userstories/#{userstory.id}"
 
     # assert
@@ -49,7 +49,7 @@ feature 'manage userstory', js: true do
   # And click to add a task
   # Then a form is displayed for adding
   # And the new link disappears
-  scenario 'new task', js: true do
+  scenario 'new task' do
     visit "/projects/#{project.id}/userstories/#{userstory.id}"
 
     # assert
@@ -75,7 +75,7 @@ feature 'manage userstory', js: true do
   # And the new link disappears
   # And other forms are removed
   # And other action links are displayed
-  scenario 'new acceptance test after new task', js: true do
+  scenario 'new acceptance test after new task' do
     visit "/projects/#{project.id}/userstories/#{userstory.id}"
 
     # user interaction
@@ -103,7 +103,7 @@ feature 'manage userstory', js: true do
   # And the new link disappears
   # And other forms are removed
   # And other action links are displayed
-  scenario 'new task after new acceptance test', js: true do
+  scenario 'new task after new acceptance test' do
     visit "/projects/#{project.id}/userstories/#{userstory.id}"
 
     # user interaction
@@ -132,7 +132,7 @@ feature 'manage userstory', js: true do
   # And other forms are removed
   # And other action links are displayed
   # And other items are displayed
-  scenario 'new task after edit acceptance test', js: true do
+  scenario 'new task after edit acceptance test' do
     acceptance_test = create :acceptance_test, userstory: userstory
     visit "/projects/#{project.id}/userstories/#{userstory.id}"
 
@@ -162,7 +162,7 @@ feature 'manage userstory', js: true do
   # Then the form disappears
   # And the new link appears
   # And the acceptance test is listed as accepted or not accepted
-  scenario 'create acceptance test', js: true do
+  scenario 'create acceptance test' do
     visit "/projects/#{project.id}/userstories/#{userstory.id}"
 
     # user interaction
@@ -191,7 +191,7 @@ feature 'manage userstory', js: true do
   # Then the form disappears
   # And the new link appears
   # And the acceptance test is listed as accepted or not accepted
-  scenario 'create task', js: true do
+  scenario 'create task' do
     visit "/projects/#{project.id}/userstories/#{userstory.id}"
 
     # user interaction
@@ -219,7 +219,7 @@ feature 'manage userstory', js: true do
   # And click to add an acceptance test
   # And click to close the form
   # Then page looks the same like for submitting form
-  scenario 'close new acceptance test form', js: true do
+  scenario 'close new acceptance test form' do
     visit "/projects/#{project.id}/userstories/#{userstory.id}"
 
     # user interaction
@@ -235,7 +235,7 @@ feature 'manage userstory', js: true do
   # When I visit this userstory
   # And click to edit an acceptance test
   # Then page looks the same like for new
-  scenario 'edit acceptance test', js: true do
+  scenario 'edit acceptance test' do
     acceptance_test = create :acceptance_test, userstory: userstory, description: 'first'
     visit "/projects/#{project.id}/userstories/#{userstory.id}"
 
@@ -268,7 +268,7 @@ feature 'manage userstory', js: true do
   # When I visit this userstory
   # And click to edit an acceptance test
   # Then page looks the same like for new
-  scenario 'edit task', js: true do
+  scenario 'edit task' do
     task = create :task, userstory: userstory, name: 'first'
     visit "/projects/#{project.id}/userstories/#{userstory.id}"
 
@@ -302,7 +302,7 @@ feature 'manage userstory', js: true do
   # And click to add or edit any item
   # And click to edit a task
   # Then page looks the same like for new
-  scenario 'edit task after new or edit', js: true do
+  scenario 'edit task after new or edit' do
     task            = create :task, userstory: userstory, name: 'first'
     acceptance_test = create :acceptance_test, userstory: userstory, description: 'first click here'
     visit "/projects/#{project.id}/userstories/#{userstory.id}"
@@ -347,7 +347,7 @@ feature 'manage userstory', js: true do
   # When I visit this userstory
   # And I update an acceptance test
   # Then page looks the same like for create
-  scenario 'update acceptance test', js: true do
+  scenario 'update acceptance test' do
     acceptance_test = create :acceptance_test, userstory: userstory, description: 'first'
     visit "/projects/#{project.id}/userstories/#{userstory.id}"
 
@@ -378,7 +378,7 @@ feature 'manage userstory', js: true do
   # When I visit this userstory
   # And I update an acceptance test
   # Then page looks the same like for create
-  scenario 'update task', js: true do
+  scenario 'update task' do
     task = create :task, userstory: userstory, name: 'first'
     visit "/projects/#{project.id}/userstories/#{userstory.id}"
 
@@ -409,7 +409,7 @@ feature 'manage userstory', js: true do
   # When I visit this userstory
   # And I delete an acceptance test
   # Then page looks the same like for update and create
-  scenario 'delete acceptance test', js: true do
+  scenario 'delete acceptance test' do
     acceptance_test = create :acceptance_test, userstory: userstory, description: 'first'
     visit "/projects/#{project.id}/userstories/#{userstory.id}"
 
@@ -429,7 +429,7 @@ feature 'manage userstory', js: true do
   # When I visit this userstory
   # And I delete a task
   # Then page looks the same like for update and create
-  scenario 'delete task', js: true do
+  scenario 'delete task' do
     task = create :task, userstory: userstory, name: 'first'
     visit "/projects/#{project.id}/userstories/#{userstory.id}"
 
@@ -450,7 +450,7 @@ feature 'manage userstory', js: true do
   # And I edit an acceptance test
   # And I delete a task
   # Then page looks the same like for update and create
-  scenario 'delete task after edit', js: true do
+  scenario 'delete task after edit' do
     task            = create :task, userstory: userstory, name: 'first'
     acceptance_test = create :acceptance_test, userstory: userstory, description: 'first to click'
     visit "/projects/#{project.id}/userstories/#{userstory.id}"
@@ -483,7 +483,7 @@ feature 'manage userstory', js: true do
   # And I add an acceptance test
   # And I delete a task
   # Then page looks the same like for update and create
-  scenario 'delete task after new', js: true do
+  scenario 'delete task after new' do
     task            = create :task, userstory: userstory, name: 'first'
     acceptance_test = create :acceptance_test, userstory: userstory, description: 'first to click'
     visit "/projects/#{project.id}/userstories/#{userstory.id}"
