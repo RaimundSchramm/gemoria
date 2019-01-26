@@ -11,7 +11,7 @@ end
 gem 'jquery-rails',              '4.1.1'
 gem 'jquery-ui-rails'
 gem 'haml-rails',                '0.9.0'
-gem 'sass-rails',                '~> 5.0'
+gem 'sass-rails'
 gem 'bootstrap-sass',            '3.3.6'
 gem 'coffee-rails',              '4.1.1'
 gem 'uglifier',                  '3.0.0'
