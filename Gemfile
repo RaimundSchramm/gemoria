@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails',                     '4.2.7'
+gem 'rails',                     '4.2.8'
 gem 'thin',                      '1.6.4'
 
 gem 'sqlite3',                   '~> 1.3.0'
@@ -9,8 +9,9 @@ group :production do
 end
 
 gem 'jquery-rails',              '4.1.1'
+gem 'jquery-ui-rails'
 gem 'haml-rails',                '0.9.0'
-gem 'sass-rails',                '~> 5.0'
+gem 'sass-rails'
 gem 'bootstrap-sass',            '3.3.6'
 gem 'coffee-rails',              '4.1.1'
 gem 'uglifier',                  '3.0.0'
@@ -26,6 +27,8 @@ gem 'email_spec',                '2.0.0'
 
 gem 'bcrypt',                    '3.1.11'
 
+gem 'simple_form'
+
 group :development do
   # for deployment
   gem 'capistrano',              '2.15.7' #see capistrano-rails
@@ -38,8 +41,8 @@ group :development, :test do
 
   # test framework for ruby and rails
   gem 'rspec-rails'
+  gem 'rspec-activemodel-mocks'
   #gem 'rubocop-rspec'# needs Ruby >= 2.2 -.-
-  # gem 'rspec-activemodel-mocks', '1.0.3'
 
   # test framework for acceptance testing ruby, rails and javascript
   gem 'capybara',                '2.6.2'
