@@ -11,7 +11,7 @@ feature 'manage userstories' do
 
   before { login user }
 
-  scenario 'new userstory moves to back log, is sprintless and opened', js: true do
+  scenario 'new userstory moves to back log, is sprintless and opened' do
     visit "/projects/#{project.id}/userstories"
 
     # user interaction
@@ -33,7 +33,7 @@ feature 'manage userstories' do
     expect(sprint).not_to be_complete
   end
 
-  scenario 'new userstory moves from backlog to sprint, is in sprint and opened', js: true do
+  scenario 'new userstory moves from backlog to sprint, is in sprint and opened' do
     # create_new_backlog_item
     visit "/projects/#{project.id}/userstories"
     click_on 'New userstory'
@@ -63,7 +63,7 @@ feature 'manage userstories' do
     expect(sprint).not_to be_complete
   end
 
-  scenario 'update userstories in sprint to mark sprint as complete', js: true do
+  scenario 'update userstories in sprint to mark sprint as complete' do
     # create_new_backlog_item
     visit "/projects/#{project.id}/userstories"
     click_on 'New userstory'
@@ -101,7 +101,7 @@ feature 'manage userstories' do
     expect(sprint).not_to be_complete
   end
 
-  scenario 'prepare and complete sprint', js: true do
+  scenario 'prepare and complete sprint' do
     # create_new_backlog_item
     visit "/projects/#{project.id}/userstories"
     click_on 'New userstory'
